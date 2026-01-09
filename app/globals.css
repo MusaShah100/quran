@@ -1,0 +1,267 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-amiri: 'Amiri', serif;
+  --font-noto-arabic: 'Noto Sans Arabic', sans-serif;
+  --font-noto-nastaliq: 'Noto Nastaliq Urdu', serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 13% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 18%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 25 95% 53%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 142 76% 36%;
+    --accent-foreground: 355 7% 97%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 199 89% 48%;
+    --chart-1: 199 89% 48%;
+    --chart-2: 25 95% 53%;
+    --chart-3: 43 89% 70%;
+    --chart-4: 280 100% 70%;
+    --chart-5: 339 82% 78%;
+    --radius: 0.75rem;
+
+    /* Tajweed colors - authentic Islamic learning colors */
+    --tajweed-ghunnah: 160 84% 39%;
+    --tajweed-idgham: 217 91% 60%;
+    --tajweed-iqlab: 248 53% 58%;
+    --tajweed-qalqalah: 32 95% 44%;
+    --tajweed-madd: 0 84% 60%;
+    --tajweed-ikhfa: 188 78% 41%;
+  }
+
+  .dark {
+    --background: 220 13% 9%;
+    --foreground: 210 40% 98%;
+    --card: 220 13% 9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 13% 9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 220 13% 9%;
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 13% 18%;
+    --muted-foreground: 220 9% 65%;
+    --accent: 142 76% 36%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 18%;
+    --input: 220 13% 18%;
+    --ring: 199 89% 48%;
+    --chart-1: 199 89% 48%;
+    --chart-2: 25 95% 53%;
+    --chart-3: 43 89% 70%;
+    --chart-4: 280 100% 70%;
+    --chart-5: 339 82% 78%;
+
+    /* Tajweed colors for dark mode - slightly muted */
+    --tajweed-ghunnah: 160 84% 35%;
+    --tajweed-idgham: 217 91% 55%;
+    --tajweed-iqlab: 248 53% 53%;
+    --tajweed-qalqalah: 32 95% 40%;
+    --tajweed-madd: 0 84% 55%;
+    --tajweed-ikhfa: 188 78% 37%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* RTL Support - Enhanced Urdu Typography with Nastaliq */
+  [dir="rtl"] {
+    direction: rtl;
+    font-family: var(--font-noto-nastaliq), var(--font-noto-arabic), 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Jameel Noori Nastaleeq', 'Nafees Web Naskh', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'pnum' 1, 'tnum' 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-variant-ligatures: common-ligatures;
+  }
+
+  [dir="rtl"] body {
+    font-family: var(--font-noto-nastaliq), var(--font-noto-arabic), 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Jameel Noori Nastaleeq', 'Nafees Web Naskh', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    line-height: 1.85;
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    font-family: var(--font-noto-nastaliq), var(--font-noto-arabic), 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Jameel Noori Nastaleeq', 'Nafees Web Naskh', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.7;
+  }
+
+  [dir="rtl"] p,
+  [dir="rtl"] span,
+  [dir="rtl"] div:not(.arabic-text),
+  [dir="rtl"] li,
+  [dir="rtl"] a {
+    font-family: var(--font-noto-nastaliq), var(--font-noto-arabic), 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Jameel Noori Nastaleeq', 'Nafees Web Naskh', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    line-height: 1.9;
+    letter-spacing: 0.015em;
+    word-spacing: 0.08em;
+  }
+
+  [dir="rtl"] .arabic-text {
+    @apply text-right;
+    font-family: var(--font-amiri), var(--font-noto-nastaliq), 'Amiri', 'Noto Nastaliq Urdu', serif;
+  }
+
+  [dir="ltr"] {
+    direction: ltr;
+  }
+
+  [dir="ltr"] .arabic-text {
+    @apply text-left;
+  }
+}
+
+@layer components {
+  .arabic-text {
+    @apply font-amiri text-right;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    line-height: 2.2;
+    letter-spacing: 0.02em;
+  }
+
+  /* Enhanced Urdu Text Styling */
+  [dir="rtl"] .container,
+  [dir="rtl"] .card,
+  [dir="rtl"] .card-content,
+  [dir="rtl"] .card-header,
+  [dir="rtl"] .card-title,
+  [dir="rtl"] .card-description {
+    font-family: var(--font-noto-nastaliq), var(--font-noto-arabic), 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Jameel Noori Nastaleeq', 'Nafees Web Naskh', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', sans-serif;
+  }
+
+  [dir="rtl"] button,
+  [dir="rtl"] .btn,
+  [dir="rtl"] [role="button"],
+  [dir="rtl"] .button {
+    font-family: var(--font-noto-nastaliq), var(--font-noto-arabic), 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Jameel Noori Nastaleeq', 'Nafees Web Naskh', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+  }
+
+  /* Better spacing for Urdu text */
+  [dir="rtl"] .space-y-2 > * + *,
+  [dir="rtl"] .space-y-3 > * + *,
+  [dir="rtl"] .space-y-4 > * + * {
+    margin-top: 0.75rem;
+  }
+
+  /* Improved readability for Urdu paragraphs */
+  [dir="rtl"] p {
+    line-height: 2;
+    word-spacing: 0.1em;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  /* Better navigation styling for RTL */
+  [dir="rtl"] nav a,
+  [dir="rtl"] nav button {
+    font-family: var(--font-noto-nastaliq), var(--font-noto-arabic), 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Jameel Noori Nastaleeq', 'Nafees Web Naskh', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  /* Badge and label styling for Urdu */
+  [dir="rtl"] .badge,
+  [dir="rtl"] [class*="badge"],
+  [dir="rtl"] label {
+    font-family: var(--font-noto-nastaliq), var(--font-noto-arabic), 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Jameel Noori Nastaleeq', 'Nafees Web Naskh', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', sans-serif;
+  }
+
+  /* Improved form elements for Urdu */
+  [dir="rtl"] input,
+  [dir="rtl"] textarea,
+  [dir="rtl"] select {
+    font-family: var(--font-noto-nastaliq), var(--font-noto-arabic), 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Jameel Noori Nastaleeq', 'Nafees Web Naskh', 'Segoe UI', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    text-align: right;
+  }
+
+  .tajweed-ghunna {
+    background-color: hsl(var(--tajweed-ghunnah) / 0.3);
+    border-radius: 0.375rem;
+    border: 1px solid hsl(var(--tajweed-ghunnah) / 0.5);
+  }
+
+  .tajweed-idgham {
+    background-color: hsl(var(--tajweed-idgham) / 0.4);
+    border-radius: 0.375rem;
+    border: 1px solid hsl(var(--tajweed-idgham) / 0.6);
+  }
+
+  .tajweed-iqlab {
+    background-color: hsl(var(--tajweed-iqlab) / 0.4);
+    border-radius: 0.375rem;
+    border: 1px solid hsl(var(--tajweed-iqlab) / 0.6);
+  }
+
+  .tajweed-qalqala {
+    background-color: hsl(var(--tajweed-qalqala) / 0.4);
+    border-radius: 0.375rem;
+    border: 1px solid hsl(var(--tajweed-qalqala) / 0.6);
+  }
+
+  .tajweed-madd {
+    background-color: hsl(var(--tajweed-madd) / 0.4);
+    border-radius: 0.375rem;
+    border: 1px solid hsl(var(--tajweed-madd) / 0.6);
+  }
+
+  .tajweed-ikhfa {
+    background-color: hsl(var(--tajweed-ikhfa) / 0.4);
+    border-radius: 0.375rem;
+    border: 1px solid hsl(var(--tajweed-ikhfa) / 0.6);
+  }
+
+  .word-highlight {
+    @apply bg-primary/10 px-1 py-0.5 rounded-sm transition-all duration-200;
+  }
+
+  .word-highlight:hover {
+    @apply bg-primary/20 cursor-pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
