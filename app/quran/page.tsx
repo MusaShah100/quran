@@ -52,10 +52,8 @@ export default function QuranPage() {
   const [viewMode, setViewMode] = useState<'surah' | 'para'>('surah');
   const [quranType, setQuranType] = useState<'tajweed' | 'urdu' | 'english'>('english');
   const [translationLang, setTranslationLang] = useState<'english' | 'urdu'>('english');
-  const [nooraniLang, setNooraniLang] = useState<'english' | 'urdu'>('english');
+  const [nooraniLang, setNooraniLang] = useState<'english' | 'urdu' | 'tajweed'>('english');
   const [nooraniLoading, setNooraniLoading] = useState(true);
-  // const [showSurahList, setShowSurahList] = useState(false);
-  // const [showParaList, setShowParaList] = useState(false);
   const [surahQuery, setSurahQuery] = useState('');
   const [paraQuery, setParaQuery] = useState('');
   const [surahListState, setSurahListState] = useState<any[]>([]);
@@ -222,6 +220,12 @@ export default function QuranPage() {
     }
   }, [nooraniLang, primaryMode]);
 
+  useEffect(() => {
+    if (quranType === 'tajweed') {
+      setViewMode('para');
+    }
+  }, [quranType]);
+
 
   const handlePrevious = () => {
     if (viewMode === 'surah') {
@@ -298,76 +302,77 @@ export default function QuranPage() {
           </SheetTrigger>
           <SheetContent side="left" className="p-0">
             <div className="p-4 space-y-4">
-              <Tabs value={primaryMode} onValueChange={(value) => setPrimaryMode(value as any)}>
-                <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                  <TabsTrigger value="quran" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Qur'an</TabsTrigger>
-                  <TabsTrigger value="noorani" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-sm">Noorani</TabsTrigger>
-                </TabsList>
-              </Tabs>
+              <div className="flex items-center justify-between">
+                <Tabs value={primaryMode} onValueChange={(value) => setPrimaryMode(value as any)}>
+                  <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
+                    <TabsTrigger value="quran" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Qur'an</TabsTrigger>
+                    <TabsTrigger value="noorani" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-sm">Noorani</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={handleReset}>
+                  <RotateCcw className="h-4 w-4" />
+                </Button>
+              </div>
 
               {primaryMode === 'quran' ? (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <Tabs
-                    value={quranType === 'tajweed' ? 'tajweed' : 'translation'}
+                    value={quranType === 'tajweed' ? 'tajweed' : translationLang}
                     onValueChange={(value) => {
                       if (value === 'tajweed') {
                         setQuranType('tajweed');
                       } else {
-                        setQuranType(translationLang);
+                        setTranslationLang(value as any);
+                        setQuranType(value as any);
                       }
                     }}
                   >
-                    <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                      <TabsTrigger value="translation" className="text-xs rounded-full px-4 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">With Translation</TabsTrigger>
-                      <TabsTrigger value="tajweed" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Tajweed</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="translation" className="mt-2">
-                      <Tabs value={translationLang} onValueChange={(value) => { setTranslationLang(value as any); setQuranType(value as any); }}>
-                        <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                          <TabsTrigger value="english" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">English</TabsTrigger>
-                          <TabsTrigger value="urdu" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">Urdu</TabsTrigger>
-                        </TabsList>
-                      </Tabs>
-                    </TabsContent>
-                  </Tabs>
-
-                  <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)}>
-                    <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                      <TabsTrigger value="surah" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">Surah</TabsTrigger>
-                      <TabsTrigger value="para" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">Para</TabsTrigger>
+                    <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner w-full grid grid-cols-3">
+                      <TabsTrigger value="english" className="text-xs rounded-full h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">English</TabsTrigger>
+                      <TabsTrigger value="urdu" className="text-xs rounded-full h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Urdu</TabsTrigger>
+                      <TabsTrigger value="tajweed" className="text-xs rounded-full h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Tajweed</TabsTrigger>
                     </TabsList>
                   </Tabs>
 
-                  <div className="relative">
-                    <Search className="absolute left-2 top-2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      className="pl-8 h-9"
-                      type={viewMode === 'para' || viewMode === 'surah' ? 'number' : 'text'}
-                      inputMode={viewMode === 'para' || viewMode === 'surah' ? 'numeric' : undefined}
-                      min={viewMode === 'para' ? 1 : viewMode === 'surah' ? 1 : undefined}
-                      max={viewMode === 'para' ? 30 : viewMode === 'surah' ? 114 : undefined}
-                      placeholder={viewMode === 'surah' ? 'Enter Surah (1–114)' : 'Enter Para (1–30)'}
-                      value={viewMode === 'surah' ? surahQuery : paraQuery}
-                      onChange={(e) => (
-                        viewMode === 'surah'
-                          ? ((): void => {
-                            const raw = e.target.value;
-                            if (raw === '') { setSurahQuery(''); return; }
-                            const onlyDigits = raw.replace(/\D/g, '');
-                            if (onlyDigits === '') { setSurahQuery(''); return; }
-                            const num = Math.max(1, Math.min(114, Number(onlyDigits)));
-                            setSurahQuery(String(num));
-                          })()
-                          : ((): void => {
-                            const raw = e.target.value;
-                            if (raw === '') { setParaQuery(''); return; }
-                            const onlyDigits = raw.replace(/\D/g, '');
-                            if (onlyDigits === '') { setParaQuery(''); return; }
-                            const num = Math.max(1, Math.min(30, Number(onlyDigits)));
-                            setParaQuery(String(num));
-                          })()
-                      )}
-                    />
+                  <div className="flex gap-2">
+                    <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)} className="w-auto">
+                      <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
+                        <TabsTrigger value="surah" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40" disabled={quranType === 'tajweed'}>Surah</TabsTrigger>
+                        <TabsTrigger value="para" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Para</TabsTrigger>
+                      </TabsList>
+                    </Tabs>
+
+                    <div className="relative flex-1">
+                      <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        className="pl-8 h-9"
+                        type={viewMode === 'para' || viewMode === 'surah' ? 'number' : 'text'}
+                        inputMode={viewMode === 'para' || viewMode === 'surah' ? 'numeric' : undefined}
+                        min={viewMode === 'para' ? 1 : viewMode === 'surah' ? 1 : undefined}
+                        max={viewMode === 'para' ? 30 : viewMode === 'surah' ? 114 : undefined}
+                        placeholder={viewMode === 'surah' ? 'Search (1–114)' : 'Search (1–30)'}
+                        value={viewMode === 'surah' ? surahQuery : paraQuery}
+                        onChange={(e) => (
+                          viewMode === 'surah'
+                            ? ((): void => {
+                              const raw = e.target.value;
+                              if (raw === '') { setSurahQuery(''); return; }
+                              const onlyDigits = raw.replace(/\D/g, '');
+                              if (onlyDigits === '') { setSurahQuery(''); return; }
+                              const num = Math.max(1, Math.min(114, Number(onlyDigits)));
+                              setSurahQuery(String(num));
+                            })()
+                            : ((): void => {
+                              const raw = e.target.value;
+                              if (raw === '') { setParaQuery(''); return; }
+                              const onlyDigits = raw.replace(/\D/g, '');
+                              if (onlyDigits === '') { setParaQuery(''); return; }
+                              const num = Math.max(1, Math.min(30, Number(onlyDigits)));
+                              setParaQuery(String(num));
+                            })()
+                        )}
+                      />
+                    </div>
                   </div>
 
                   <div className="max-h-[70vh] overflow-y-auto rounded-md border">
@@ -498,17 +503,16 @@ export default function QuranPage() {
                     >
                       <ChevronRight className="h-3 w-3" />
                     </Button>
-                    <Button variant="ghost" size="sm" className="h-8 rounded-full" onClick={handleReset}>
-                      <RotateCcw className="h-3 w-3" />
-                    </Button>
+
                   </div>
                 </div>
               ) : (
                 <div className="space-y-4">
                   <Tabs value={nooraniLang} onValueChange={(value) => setNooraniLang(value as any)}>
                     <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                      <TabsTrigger value="english" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">English</TabsTrigger>
-                      <TabsTrigger value="urdu" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">Urdu</TabsTrigger>
+                      <TabsTrigger value="english" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">English</TabsTrigger>
+                      <TabsTrigger value="urdu" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Urdu</TabsTrigger>
+                      <TabsTrigger value="tajweed" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Tajweed</TabsTrigger>
                     </TabsList>
                   </Tabs>
                 </div>
@@ -522,76 +526,77 @@ export default function QuranPage() {
         <aside className="w-80 shrink-0 hidden md:block">
           <Card>
             <CardContent className="p-4 space-y-4">
-              <Tabs value={primaryMode} onValueChange={(value) => setPrimaryMode(value as any)}>
-                <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                  <TabsTrigger value="quran" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Qur'an</TabsTrigger>
-                  <TabsTrigger value="noorani" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-sm">Noorani</TabsTrigger>
-                </TabsList>
-              </Tabs>
+              <div className="flex items-center justify-between">
+                <Tabs value={primaryMode} onValueChange={(value) => setPrimaryMode(value as any)}>
+                  <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
+                    <TabsTrigger value="quran" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Qur'an</TabsTrigger>
+                    <TabsTrigger value="noorani" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-sm">Noorani</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={handleReset}>
+                  <RotateCcw className="h-4 w-4" />
+                </Button>
+              </div>
 
               {primaryMode === 'quran' ? (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <Tabs
-                    value={quranType === 'tajweed' ? 'tajweed' : 'translation'}
+                    value={quranType === 'tajweed' ? 'tajweed' : translationLang}
                     onValueChange={(value) => {
                       if (value === 'tajweed') {
                         setQuranType('tajweed');
                       } else {
-                        setQuranType(translationLang);
+                        setTranslationLang(value as any);
+                        setQuranType(value as any);
                       }
                     }}
                   >
-                    <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                      <TabsTrigger value="translation" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">With Translation</TabsTrigger>
-                      <TabsTrigger value="tajweed" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Tajweed</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="translation" className="mt-2">
-                      <Tabs value={translationLang} onValueChange={(value) => { setTranslationLang(value as any); setQuranType(value as any); }}>
-                        <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                          <TabsTrigger value="english" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">English</TabsTrigger>
-                          <TabsTrigger value="urdu" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">Urdu</TabsTrigger>
-                        </TabsList>
-                      </Tabs>
-                    </TabsContent>
-                  </Tabs>
-
-                  <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)}>
-                    <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                      <TabsTrigger value="surah" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">Surah</TabsTrigger>
-                      <TabsTrigger value="para" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">Para</TabsTrigger>
+                    <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner w-full grid grid-cols-3">
+                      <TabsTrigger value="english" className="text-xs rounded-full h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">English</TabsTrigger>
+                      <TabsTrigger value="urdu" className="text-xs rounded-full h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Urdu</TabsTrigger>
+                      <TabsTrigger value="tajweed" className="text-xs rounded-full h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Tajweed</TabsTrigger>
                     </TabsList>
                   </Tabs>
 
-                  <div className="relative">
-                    <Search className="absolute left-2 top-2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      className="pl-8 h-9"
-                      type={viewMode === 'para' || viewMode === 'surah' ? 'number' : 'text'}
-                      inputMode={viewMode === 'para' || viewMode === 'surah' ? 'numeric' : undefined}
-                      min={viewMode === 'para' ? 1 : viewMode === 'surah' ? 1 : undefined}
-                      max={viewMode === 'para' ? 30 : viewMode === 'surah' ? 114 : undefined}
-                      placeholder={viewMode === 'surah' ? 'Enter Surah (1–114)' : 'Enter Para (1–30)'}
-                      value={viewMode === 'surah' ? surahQuery : paraQuery}
-                      onChange={(e) => (
-                        viewMode === 'surah'
-                          ? ((): void => {
-                            const raw = e.target.value;
-                            if (raw === '') { setSurahQuery(''); return; }
-                            const onlyDigits = raw.replace(/\D/g, '');
-                            if (onlyDigits === '') { setSurahQuery(''); return; }
-                            const num = Math.max(1, Math.min(114, Number(onlyDigits)));
-                            setSurahQuery(String(num));
-                          })()
-                          : ((): void => {
-                            const raw = e.target.value;
-                            if (raw === '') { setParaQuery(''); return; }
-                            const onlyDigits = raw.replace(/\D/g, '');
-                            if (onlyDigits === '') { setParaQuery(''); return; }
-                            const num = Math.max(1, Math.min(30, Number(onlyDigits)));
-                            setParaQuery(String(num));
-                          })()
-                      )}
-                    />
+                  <div className="flex gap-2">
+                    <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)} className="w-auto">
+                      <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
+                        <TabsTrigger value="surah" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40" disabled={quranType === 'tajweed'}>Surah</TabsTrigger>
+                        <TabsTrigger value="para" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Para</TabsTrigger>
+                      </TabsList>
+                    </Tabs>
+
+                    <div className="relative flex-1">
+                      <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        className="pl-8 h-9"
+                        type={viewMode === 'para' || viewMode === 'surah' ? 'number' : 'text'}
+                        inputMode={viewMode === 'para' || viewMode === 'surah' ? 'numeric' : undefined}
+                        min={viewMode === 'para' ? 1 : viewMode === 'surah' ? 1 : undefined}
+                        max={viewMode === 'para' ? 30 : viewMode === 'surah' ? 114 : undefined}
+                        placeholder={viewMode === 'surah' ? 'Search (1–114)' : 'Search (1–30)'}
+                        value={viewMode === 'surah' ? surahQuery : paraQuery}
+                        onChange={(e) => (
+                          viewMode === 'surah'
+                            ? ((): void => {
+                              const raw = e.target.value;
+                              if (raw === '') { setSurahQuery(''); return; }
+                              const onlyDigits = raw.replace(/\D/g, '');
+                              if (onlyDigits === '') { setSurahQuery(''); return; }
+                              const num = Math.max(1, Math.min(114, Number(onlyDigits)));
+                              setSurahQuery(String(num));
+                            })()
+                            : ((): void => {
+                              const raw = e.target.value;
+                              if (raw === '') { setParaQuery(''); return; }
+                              const onlyDigits = raw.replace(/\D/g, '');
+                              if (onlyDigits === '') { setParaQuery(''); return; }
+                              const num = Math.max(1, Math.min(30, Number(onlyDigits)));
+                              setParaQuery(String(num));
+                            })()
+                        )}
+                      />
+                    </div>
                   </div>
 
                   <div className="max-h-[200px] overflow-y-auto rounded-md border">
@@ -704,17 +709,16 @@ export default function QuranPage() {
                         <TooltipContent>Last page</TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                    <Button variant="ghost" size="sm" className="h-8 rounded-full" onClick={handleReset}>
-                      <RotateCcw className="h-3 w-3" />
-                    </Button>
+
                   </div>
                 </div>
               ) : (
                 <div className="space-y-4">
                   <Tabs value={nooraniLang} onValueChange={(value) => setNooraniLang(value as any)}>
                     <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
-                      <TabsTrigger value="english" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">English</TabsTrigger>
-                      <TabsTrigger value="urdu" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/15 data-[state=active]:text-accent data-[state=active]:shadow-sm">Urdu</TabsTrigger>
+                      <TabsTrigger value="english" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">English</TabsTrigger>
+                      <TabsTrigger value="urdu" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Urdu</TabsTrigger>
+                      <TabsTrigger value="tajweed" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Tajweed</TabsTrigger>
                     </TabsList>
                   </Tabs>
                 </div>
@@ -744,7 +748,11 @@ export default function QuranPage() {
                   )}
                   <iframe
                     key={nooraniLang}
-                    src={nooraniLang === 'english' ? 'https://archive.org/embed/NooraniQaidaEnglish' : 'https://archive.org/embed/NooraniQaida_201701'}
+                    src={
+                      nooraniLang === 'english' ? 'https://archive.org/embed/NooraniQaidaEnglish' :
+                        nooraniLang === 'urdu' ? 'https://archive.org/embed/NooraniQaida_201701' :
+                          'https://archive.org/embed/noorani-qaida-color-tajweed-hammad-company'
+                    }
                     width="100%"
                     height="600"
                     className="border rounded-lg"
@@ -767,50 +775,100 @@ export default function QuranPage() {
                       <span className="text-secondary">{quranData?.surah.name}</span>
                     </CardTitle>
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="rounded-full">Page</Badge>
-                        <div className="inline-flex items-center h-8 rounded-full border px-2 bg-background">
-                          <Input
-                            type="text"
-                            inputMode="numeric"
-                            value={pageInput}
-                            onChange={(e) => {
-                              const raw = e.target.value;
-                              if (raw === '') { setPageInput(''); return; }
-                              const onlyDigits = raw.replace(/\D/g, '');
-                              if (onlyDigits === '') { setPageInput(''); return; }
-                              const num = Math.max(1, Math.min(getTotalPages(), Number(onlyDigits)));
-                              setPageInput(String(num));
-                              setCurrentPage(num);
-                            }}
-                            className="h-6 w-14 text-center border-0 shadow-none focus-visible:ring-0 px-0 placeholder:text-muted-foreground"
-                            placeholder={`1-${getTotalPages()}`}
-                          />
-                          <span className="px-2 text-sm text-muted-foreground">of {getTotalPages()}</span>
-                        </div>
-                      </div>
-                      <div className="flex gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                          disabled={currentPage === 1}
-                          className="h-8 rounded-full"
-                        >
-                          <ChevronLeft className="h-3 w-3 mr-1" />
-                          Prev
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setCurrentPage(Math.min(getTotalPages(), currentPage + 1))}
-                          disabled={currentPage === getTotalPages()}
-                          className="h-8 rounded-full"
-                        >
-                          Next
-                          <ChevronRight className="h-3 w-3 ml-1" />
-                        </Button>
-                      </div>
+                      {quranType === 'tajweed' && viewMode === 'para' ? (
+                        <>
+                          <div className="flex items-center gap-2">
+                            <Badge variant="secondary" className="rounded-full">Para</Badge>
+                            <div className="inline-flex items-center h-8 rounded-full border px-2 bg-background">
+                              <Input
+                                type="text"
+                                inputMode="numeric"
+                                value={currentPara}
+                                onChange={(e) => {
+                                  const raw = e.target.value;
+                                  if (raw === '') return;
+                                  const onlyDigits = raw.replace(/\D/g, '');
+                                  if (onlyDigits === '') return;
+                                  const num = Math.max(1, Math.min(30, Number(onlyDigits)));
+                                  setCurrentPara(num);
+                                }}
+                                className="h-6 w-14 text-center border-0 shadow-none focus-visible:ring-0 px-0 placeholder:text-muted-foreground"
+                                placeholder="1-30"
+                              />
+                              <span className="px-2 text-sm text-muted-foreground">of 30</span>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setCurrentPara(Math.max(1, currentPara - 1))}
+                              disabled={currentPara === 1}
+                              className="h-8 rounded-full"
+                            >
+                              <ChevronLeft className="h-3 w-3 mr-1" />
+                              Prev
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setCurrentPara(Math.min(30, currentPara + 1))}
+                              disabled={currentPara === 30}
+                              className="h-8 rounded-full"
+                            >
+                              Next
+                              <ChevronRight className="h-3 w-3 ml-1" />
+                            </Button>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="flex items-center gap-2">
+                            <Badge variant="secondary" className="rounded-full">Page</Badge>
+                            <div className="inline-flex items-center h-8 rounded-full border px-2 bg-background">
+                              <Input
+                                type="text"
+                                inputMode="numeric"
+                                value={pageInput}
+                                onChange={(e) => {
+                                  const raw = e.target.value;
+                                  if (raw === '') { setPageInput(''); return; }
+                                  const onlyDigits = raw.replace(/\D/g, '');
+                                  if (onlyDigits === '') { setPageInput(''); return; }
+                                  const num = Math.max(1, Math.min(getTotalPages(), Number(onlyDigits)));
+                                  setPageInput(String(num));
+                                  setCurrentPage(num);
+                                }}
+                                className="h-6 w-14 text-center border-0 shadow-none focus-visible:ring-0 px-0 placeholder:text-muted-foreground"
+                                placeholder={`1-${getTotalPages()}`}
+                              />
+                              <span className="px-2 text-sm text-muted-foreground">of {getTotalPages()}</span>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                              disabled={currentPage === 1}
+                              className="h-8 rounded-full"
+                            >
+                              <ChevronLeft className="h-3 w-3 mr-1" />
+                              Prev
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setCurrentPage(Math.min(getTotalPages(), currentPage + 1))}
+                              disabled={currentPage === getTotalPages()}
+                              className="h-8 rounded-full"
+                            >
+                              Next
+                              <ChevronRight className="h-3 w-3 ml-1" />
+                            </Button>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </CardHeader>
                 </Card>
@@ -823,14 +881,23 @@ export default function QuranPage() {
                     </div>
                   </div>
                 ) : (
-                  quranData && (
-                    <QuranReader
-                      surah={quranData.surah}
-                      fontSize={fontSize[0]}
-                      showTajweed={quranType === 'tajweed'}
-                      onWordClick={setSelectedWord}
-                      quranType={quranType}
+                  quranType === 'tajweed' && viewMode === 'para' ? (
+                    <iframe
+                      key={currentPara}
+                      src={`https://archive.org/download/ColourCodedQuranJuz30/Colour%20Coded%20Quran%20Juz%20${String(currentPara).padStart(2, '0')}.pdf`}
+                      className="w-full h-[800px] border rounded-lg"
+                      title={`Para ${currentPara} Tajweed`}
                     />
+                  ) : (
+                    quranData && (
+                      <QuranReader
+                        surah={quranData.surah}
+                        fontSize={fontSize[0]}
+                        showTajweed={quranType === 'tajweed'}
+                        onWordClick={setSelectedWord}
+                        quranType={quranType}
+                      />
+                    )
                   )
                 )}
               </div>
