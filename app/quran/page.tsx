@@ -52,7 +52,7 @@ export default function QuranPage() {
   const [viewMode, setViewMode] = useState<'surah' | 'para'>('surah');
   const [quranType, setQuranType] = useState<'tajweed' | 'urdu' | 'english'>('english');
   const [translationLang, setTranslationLang] = useState<'english' | 'urdu'>('english');
-  const [nooraniLang, setNooraniLang] = useState<'english' | 'urdu' | 'tajweed'>('english');
+  const [nooraniLang, setNooraniLang] = useState<'english' | 'urdu'>('english');
   const [nooraniLoading, setNooraniLoading] = useState(true);
   const [surahQuery, setSurahQuery] = useState('');
   const [paraQuery, setParaQuery] = useState('');
@@ -306,7 +306,7 @@ export default function QuranPage() {
                 <Tabs value={primaryMode} onValueChange={(value) => setPrimaryMode(value as any)}>
                   <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
                     <TabsTrigger value="quran" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Qur'an</TabsTrigger>
-                    <TabsTrigger value="noorani" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-sm">Noorani</TabsTrigger>
+                    <TabsTrigger value="noorani" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Noorani</TabsTrigger>
                   </TabsList>
                 </Tabs>
                 <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={handleReset}>
@@ -512,7 +512,6 @@ export default function QuranPage() {
                     <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
                       <TabsTrigger value="english" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">English</TabsTrigger>
                       <TabsTrigger value="urdu" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Urdu</TabsTrigger>
-                      <TabsTrigger value="tajweed" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Tajweed</TabsTrigger>
                     </TabsList>
                   </Tabs>
                 </div>
@@ -530,7 +529,7 @@ export default function QuranPage() {
                 <Tabs value={primaryMode} onValueChange={(value) => setPrimaryMode(value as any)}>
                   <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
                     <TabsTrigger value="quran" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Qur'an</TabsTrigger>
-                    <TabsTrigger value="noorani" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-sm">Noorani</TabsTrigger>
+                    <TabsTrigger value="noorani" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-primary/30 data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-primary/40">Noorani</TabsTrigger>
                   </TabsList>
                 </Tabs>
                 <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={handleReset}>
@@ -718,7 +717,6 @@ export default function QuranPage() {
                     <TabsList className="h-9 rounded-full bg-muted/30 p-1 gap-1 shadow-inner">
                       <TabsTrigger value="english" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">English</TabsTrigger>
                       <TabsTrigger value="urdu" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Urdu</TabsTrigger>
-                      <TabsTrigger value="tajweed" className="text-xs rounded-full px-3 h-7 data-[state=active]:bg-accent/30 data-[state=active]:text-accent data-[state=active]:shadow data-[state=active]:border data-[state=active]:border-accent/40">Tajweed</TabsTrigger>
                     </TabsList>
                   </Tabs>
                 </div>
@@ -749,9 +747,9 @@ export default function QuranPage() {
                   <iframe
                     key={nooraniLang}
                     src={
-                      nooraniLang === 'english' ? 'https://archive.org/embed/NooraniQaidaEnglish' :
-                        nooraniLang === 'urdu' ? 'https://archive.org/embed/NooraniQaida_201701' :
-                          'https://archive.org/embed/noorani-qaida-color-tajweed-hammad-company'
+                      nooraniLang === 'english'
+                        ? 'https://archive.org/embed/NooraniQaidaEnglish'
+                        : 'https://archive.org/embed/noorani-qaida-color-tajweed-hammad-company'
                     }
                     width="100%"
                     height="600"
@@ -776,98 +774,105 @@ export default function QuranPage() {
                     </CardTitle>
                     <div className="flex items-center justify-between">
                       {quranType === 'tajweed' && viewMode === 'para' ? (
-                        <>
-                          <div className="flex items-center gap-2">
-                            <Badge variant="secondary" className="rounded-full">Para</Badge>
-                            <div className="inline-flex items-center h-8 rounded-full border px-2 bg-background">
-                              <Input
-                                type="text"
-                                inputMode="numeric"
-                                value={currentPara}
-                                onChange={(e) => {
-                                  const raw = e.target.value;
-                                  if (raw === '') return;
-                                  const onlyDigits = raw.replace(/\D/g, '');
-                                  if (onlyDigits === '') return;
-                                  const num = Math.max(1, Math.min(30, Number(onlyDigits)));
-                                  setCurrentPara(num);
-                                }}
-                                className="h-6 w-14 text-center border-0 shadow-none focus-visible:ring-0 px-0 placeholder:text-muted-foreground"
-                                placeholder="1-30"
-                              />
-                              <span className="px-2 text-sm text-muted-foreground">of 30</span>
-                            </div>
-                          </div>
-                          <div className="flex gap-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setCurrentPara(Math.max(1, currentPara - 1))}
-                              disabled={currentPara === 1}
-                              className="h-8 rounded-full"
-                            >
-                              <ChevronLeft className="h-3 w-3 mr-1" />
-                              Prev
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setCurrentPara(Math.min(30, currentPara + 1))}
-                              disabled={currentPara === 30}
-                              className="h-8 rounded-full"
-                            >
-                              Next
-                              <ChevronRight className="h-3 w-3 ml-1" />
-                            </Button>
-                          </div>
-                        </>
+                        <div className="flex items-center gap-1">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-7 rounded-full px-3 gap-1"
+                            onClick={() => setCurrentPara(Math.max(1, currentPara - 1))}
+                            disabled={currentPara === 1}
+                            title="Previous para"
+                            aria-label="Previous para"
+                          >
+                            <ChevronLeft className="h-3 w-3" />
+                            <span className="text-[11px]">Prev</span>
+                          </Button>
+                          <Badge variant="secondary" className="text-xs rounded-full px-2 py-0.5">
+                            {currentPara}/30
+                          </Badge>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-7 rounded-full px-3 gap-1"
+                            onClick={() => setCurrentPara(Math.min(30, currentPara + 1))}
+                            disabled={currentPara === 30}
+                            title="Next para"
+                            aria-label="Next para"
+                          >
+                            <span className="text-[11px]">Next</span>
+                            <ChevronRight className="h-3 w-3" />
+                          </Button>
+                        </div>
                       ) : (
-                        <>
-                          <div className="flex items-center gap-2">
-                            <Badge variant="secondary" className="rounded-full">Page</Badge>
-                            <div className="inline-flex items-center h-8 rounded-full border px-2 bg-background">
-                              <Input
-                                type="text"
-                                inputMode="numeric"
-                                value={pageInput}
-                                onChange={(e) => {
-                                  const raw = e.target.value;
-                                  if (raw === '') { setPageInput(''); return; }
-                                  const onlyDigits = raw.replace(/\D/g, '');
-                                  if (onlyDigits === '') { setPageInput(''); return; }
-                                  const num = Math.max(1, Math.min(getTotalPages(), Number(onlyDigits)));
-                                  setPageInput(String(num));
-                                  setCurrentPage(num);
-                                }}
-                                className="h-6 w-14 text-center border-0 shadow-none focus-visible:ring-0 px-0 placeholder:text-muted-foreground"
-                                placeholder={`1-${getTotalPages()}`}
-                              />
-                              <span className="px-2 text-sm text-muted-foreground">of {getTotalPages()}</span>
-                            </div>
-                          </div>
-                          <div className="flex gap-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                              disabled={currentPage === 1}
-                              className="h-8 rounded-full"
-                            >
-                              <ChevronLeft className="h-3 w-3 mr-1" />
-                              Prev
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setCurrentPage(Math.min(getTotalPages(), currentPage + 1))}
-                              disabled={currentPage === getTotalPages()}
-                              className="h-8 rounded-full"
-                            >
-                              Next
-                              <ChevronRight className="h-3 w-3 ml-1" />
-                            </Button>
-                          </div>
-                        </>
+                        <div className="flex items-center gap-1">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-7 w-14 rounded-full justify-center"
+                            onClick={handlePrevious}
+                            disabled={viewMode === 'surah' ? currentSurah === 1 : currentPara === 1}
+                          >
+                            <ChevronLeft className="h-3 w-3" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-7 w-14 rounded-full justify-center"
+                            onClick={() => setCurrentPage(1)}
+                            disabled={currentPage === 1}
+                            aria-label="First page"
+                            title="First page"
+                          >
+                            <ChevronsLeft className="h-3 w-3" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-7 w-14 rounded-full gap-1"
+                            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                            disabled={currentPage === 1}
+                            title="Previous page"
+                            aria-label="Previous page"
+                          >
+                            <span className="text-[11px]">Pg</span>
+                            <ChevronLeft className="h-3 w-3 ml-1" />
+                          </Button>
+                          <Badge variant="secondary" className="text-xs rounded-full px-2 py-0.5">
+                            {currentPage}/{getTotalPages()}
+                          </Badge>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-7 w-14 rounded-full gap-1"
+                            onClick={() => setCurrentPage(Math.min(getTotalPages(), currentPage + 1))}
+                            disabled={currentPage === getTotalPages()}
+                            title="Next page"
+                            aria-label="Next page"
+                          >
+                            <ChevronRight className="h-3 w-3 mr-1" />
+                            <span className="text-[11px]">Pg</span>
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-7 w-14 rounded-full justify-center"
+                            onClick={() => setCurrentPage(getTotalPages())}
+                            disabled={currentPage === getTotalPages()}
+                            aria-label="Last page"
+                            title="Last page"
+                          >
+                            <ChevronsRight className="h-3 w-3" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-7 w-14 rounded-full justify-center"
+                            onClick={handleNext}
+                            disabled={viewMode === 'surah' ? currentSurah === 114 : currentPara === 30}
+                          >
+                            <ChevronRight className="h-3 w-3" />
+                          </Button>
+                        </div>
                       )}
                     </div>
                   </CardHeader>
