@@ -23,17 +23,22 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Gift, Calculator, Info, CheckCircle2, Home, Loader2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { useRouter } from 'next/navigation';
+import { 
+  PLANS, 
+  COURSES, 
+  AGE_RANGES, 
+  ENROLLMENT_LANGUAGES, 
+  INCOME_BASED_PERCENTAGE,
+  BASE_CURRENCY,
+  calculateIncomeBasedFee,
+  type PlanConfig,
+  type CourseConfig,
+  type AgeRange,
+  type Language
+} from '@/lib/config';
 
-// Age range options
-const ageRanges = [
-  'Under 10',
-  '10-20',
-  '20-30',
-  '30-40',
-  '40-50',
-  '50-60',
-  '60 and above',
-] as const;
+// Age range options (from config)
+const ageRanges = AGE_RANGES;
 
 // Validation schema for Step 1 — Personal Details
 const personalSchema = z.object({
@@ -41,24 +46,27 @@ const personalSchema = z.object({
   email: z.string().email('Enter valid email'),
   phone: z.string().regex(/^\+\d{1,3}\d{1,10}$/, 'Enter valid phone'),
   country: z.string().min(3, 'Select country'),
-  language: z.enum(['Urdu', 'English']),
+  language: z.enum(ENROLLMENT_LANGUAGES as [Language, ...Language[]]),
   age: z.enum(ageRanges, { required_error: 'Select age range' }),
 });
 
-// Step 2 — Course options displayed as cards
-const courseOptions: CourseOption[] = [
-  { id: 'quran-reading', title: "Qur'an Reading (Beginner)", summary: 'Foundation, pronunciation, basic Tajweed, guided 15 Paras', languages: ['Urdu', 'English'] },
-  { id: 'tajweed', title: 'Tajweed (Correct Recitation)', summary: 'Master rules, clarity and fluency', languages: ['Urdu', 'English'] },
-  { id: 'hifz', title: "Qur'an Memorization (Hifz)", summary: 'Structured memorization with reviews', languages: ['Urdu'] },
-  { id: 'kids', title: "Children’s Qur'an Learning", summary: 'Interactive basics and introductory Tajweed', languages: ['Urdu', 'English'] },
-];
+// Step 2 — Course options displayed as cards (from config)
+const courseOptions: CourseOption[] = COURSES.map(course => ({
+  id: course.id,
+  title: course.title,
+  summary: course.summary,
+  languages: course.languages,
+}));
 
-// Step 3 — Plans with fixed fee ranges
-const plans: PlanOption[] = [
-  { key: 'base', name: 'Base Plan', classesPerWeek: 2, durationMinutes: '45–50 mins', fixedRange: [20, 30] },
-  { key: 'intermediate', name: 'Intermediate Plan', classesPerWeek: 4, durationMinutes: '30–35 mins', fixedRange: [40, 60] },
-  { key: 'premium', name: 'Premium Plan', classesPerWeek: 5, durationMinutes: '30–35 mins', fixedRange: [50, 70] },
-];
+// Step 3 — Plans with fixed fee ranges (from config)
+// Note: This is derived from PLANS config, so changes to config.ts will be reflected here
+const plans: PlanOption[] = PLANS.map(plan => ({
+  key: plan.key,
+  name: plan.name,
+  classesPerWeek: plan.classesPerWeek,
+  durationMinutes: plan.durationMinutes,
+  fixedRange: plan.fixedRange,
+}));
 
 // Wizard orchestrates 4 steps and keeps data in context
 function Wizard() {
@@ -168,42 +176,51 @@ function Wizard() {
     setStep(2);
   };
 
-  // Compute monthly total in USD (fixed or 2.5% income) + charity
+  // Memoize selected plan to avoid repeated .find() calls
+  const selectedPlan = useMemo(() => state.plan ? plans.find(p => p.key === state.plan) : null, [state.plan]);
+
+  // Compute monthly total in USD (fixed or income-based percentage) + charity
   const totalMonthlyUSD = useMemo(() => {
     let base = 0;
     if (state.pricingType === 'income') {
-      base = state.monthlyIncome ? Math.round(convert(state.monthlyIncome, state.currency as CurrencyCode, 'USD') * 0.025 * 100) / 100 : 0;
+      if (state.monthlyIncome && selectedPlan) {
+        const usdAmount = convert(state.monthlyIncome, state.currency as CurrencyCode, BASE_CURRENCY);
+        // Use plan-specific income percentage
+        const planFromConfig = PLANS.find(p => p.key === selectedPlan.key);
+        const percentage = planFromConfig?.incomePercentage ?? 0.025;
+        base = Math.round(calculateIncomeBasedFee(usdAmount, percentage) * 100) / 100;
+      }
     } else {
       base = state.fixedFee ?? 0;
     }
-    const charityUSD = state.charity ? convert(state.charity, state.currency as CurrencyCode, 'USD') : 0;
+    const charityUSD = state.charity ? convert(state.charity, state.currency as CurrencyCode, BASE_CURRENCY) : 0;
     return base + charityUSD;
-  }, [state.pricingType, state.fixedFee, state.monthlyIncome, state.charity, state.currency]);
+  }, [state.pricingType, state.fixedFee, state.monthlyIncome, state.charity, state.currency, selectedPlan]);
 
   // Convert total to selected currency (placeholder conversion)
-  const totalInCurrency = useMemo(() => convert(totalMonthlyUSD, 'USD', state.currency as CurrencyCode), [totalMonthlyUSD, state.currency]);
-
-  // Memoize selected plan to avoid repeated .find() calls
-  const selectedPlan = useMemo(() => state.plan ? plans.find(p => p.key === state.plan) : null, [state.plan]);
+  const totalInCurrency = useMemo(() => convert(totalMonthlyUSD, BASE_CURRENCY, state.currency as CurrencyCode), [totalMonthlyUSD, state.currency]);
   
   // Memoize selected course to avoid repeated .find() calls
   const selectedCourse = useMemo(() => state.selectedCourseId ? courseOptions.find(c => c.id === state.selectedCourseId) : null, [state.selectedCourseId]);
   
   // Memoize currency conversions for plan ranges
-  const planMinFee = useMemo(() => selectedPlan ? convert(selectedPlan.fixedRange[0], 'USD', state.currency as CurrencyCode) : 0, [selectedPlan, state.currency]);
-  const planMaxFee = useMemo(() => selectedPlan ? convert(selectedPlan.fixedRange[1], 'USD', state.currency as CurrencyCode) : 0, [selectedPlan, state.currency]);
+  const planMinFee = useMemo(() => selectedPlan ? convert(selectedPlan.fixedRange[0], BASE_CURRENCY, state.currency as CurrencyCode) : 0, [selectedPlan, state.currency]);
+  const planMaxFee = useMemo(() => selectedPlan ? convert(selectedPlan.fixedRange[1], BASE_CURRENCY, state.currency as CurrencyCode) : 0, [selectedPlan, state.currency]);
   const currentFeeDisplay = useMemo(() => {
     const fee = state.fixedFee ?? (selectedPlan ? selectedPlan.fixedRange[0] : 0);
-    return convert(fee, 'USD', state.currency as CurrencyCode);
+    return convert(fee, BASE_CURRENCY, state.currency as CurrencyCode);
   }, [state.fixedFee, selectedPlan, state.currency]);
   
   // Memoize calculated income fee
   const calculatedIncomeFee = useMemo(() => {
-    if (!state.monthlyIncome) return 0;
-    const usdAmount = convert(state.monthlyIncome, state.currency as CurrencyCode, 'USD');
-    const feeUSD = Math.round(usdAmount * 0.025 * 100) / 100;
-    return convert(feeUSD, 'USD', state.currency as CurrencyCode);
-  }, [state.monthlyIncome, state.currency]);
+    if (!state.monthlyIncome || !selectedPlan) return 0;
+    const usdAmount = convert(state.monthlyIncome, state.currency as CurrencyCode, BASE_CURRENCY);
+    // Use plan-specific income percentage
+    const planFromConfig = PLANS.find(p => p.key === selectedPlan.key);
+    const percentage = planFromConfig?.incomePercentage ?? 0.025;
+    const feeUSD = Math.round(calculateIncomeBasedFee(usdAmount, percentage) * 100) / 100;
+    return convert(feeUSD, BASE_CURRENCY, state.currency as CurrencyCode);
+  }, [state.monthlyIncome, state.currency, selectedPlan]);
 
   return (
     <div className="container max-w-7xl py-6">
@@ -453,7 +470,13 @@ function Wizard() {
                             const val = e.target.value;
                             setMonthlyIncome(val ? Number(val) : null);
                           }} className="h-10" />
-                          <p className="text-xs text-muted-foreground mt-1">2.5% applies automatically</p>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {selectedPlan ? (() => {
+                              const planFromConfig = PLANS.find(p => p.key === selectedPlan.key);
+                              const percentage = planFromConfig?.incomePercentage ?? 0.025;
+                              return `${(percentage * 100).toFixed(1)}%`;
+                            })() : '2.5%'} applies automatically
+                          </p>
                         </div>
                         <div className="flex items-center">
                           <div className="rounded-lg border bg-emerald-50 px-4 py-3 flex items-center justify-between w-full h-10">

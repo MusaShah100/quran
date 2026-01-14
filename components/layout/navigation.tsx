@@ -9,17 +9,23 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/language-switcher';
 import { useLanguage } from '@/contexts/language-context';
-import { 
-  Menu, 
-  BookOpen, 
-  Home, 
-  Users, 
-  MessageCircle, 
+import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
+import { COURSES } from '@/lib/config';
+
+import {
+  Menu,
+  BookOpen,
+  Home,
+  Users,
+  MessageCircle,
   Play,
   Gamepad2,
   GraduationCap,
   Bell,
-  Settings
+  Settings,
+  DollarSign,
+  Info,
+  ChevronDown
 } from 'lucide-react';
 
 export function Navigation() {
@@ -32,11 +38,11 @@ export function Navigation() {
     { name: t.nav.quran, href: '/quran', icon: BookOpen },
     { name: t.nav.games, href: '/games', icon: Gamepad2 },
     { name: t.nav.courses, href: '/courses', icon: GraduationCap },
-    { name: t.nav.videos, href: '/videos', icon: Play },
-    { name: t.nav.teachers, href: '/teachers', icon: Users },
+    // { name: t.nav.videos, href: '/videos', icon: Play },
+    // { name: t.nav.teachers, href: '/teachers', icon: Users },
+    { name: t.nav.pricing, href: '/pricing', icon: DollarSign },
+    { name: t.nav.about, href: '/about', icon: Info },
     { name: t.nav.contact, href: '/contact', icon: MessageCircle },
-    { name: t.nav.about, href: '/about', icon: Users },
-    { name: t.nav.updates, href: '/updates', icon: Bell },
     { name: t.nav.admin, href: '/admin', icon: Settings },
     { name: t.nav.teacherDashboard, href: '/teacher-dashboard', icon: Users },
   ];
@@ -55,26 +61,70 @@ export function Navigation() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          {navigation.slice(0, 7).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
-                pathname === item.href
-                  ? "text-primary"
-                  : "text-muted-foreground"
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navigation.slice(0, 7).map((item) => {
+            if (item.href === '/courses') {
+              return (
+                <HoverCard key={item.href}>
+                  <HoverCardTrigger asChild>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "text-sm font-medium transition-colors hover:text-primary",
+                        pathname === item.href ? "text-primary" : "text-muted-foreground"
+                      )}
+                    >
+                      <span className="inline-flex items-center gap-1">
+                        {item.name}
+                        <ChevronDown className="h-4 w-4" />
+                      </span>
+                    </Link>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="w-[28rem]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {COURSES.slice(0, 4).map((c) => (
+                        <Link key={c.id} href="/courses" className="rounded-md p-2 hover:bg-muted/40">
+                          <div className="text-sm font-medium">{c.title}</div>
+                          <div className="text-xs text-muted-foreground">{c.summary}</div>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="pt-3">
+                      <Button asChild variant="outline" className="w-full">
+                        <Link href="/courses">View All Courses</Link>
+                      </Button>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
+              );
+            }
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  pathname === item.href ? "text-primary" : "text-muted-foreground"
+                )}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
         </nav>
+
+        <div className="hidden md:flex items-center gap-3">
+          <Button asChild variant="outline" size="sm">
+            <Link href="/enroll">{t.nav.getFreeTrial}</Link>
+          </Button>
+          <Button asChild size="sm">
+            <Link href="/enroll">{t.nav.getRegistered}</Link>
+          </Button>
+        </div>
 
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
           <ThemeToggle />
-          
+
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
@@ -91,7 +141,7 @@ export function Navigation() {
                   </div>
                   <span className="font-bold text-lg">QuranLearn</span>
                 </Link>
-                
+
                 <nav className="flex flex-col gap-2">
                   {navigation.map((item) => {
                     const Icon = item.icon;
@@ -112,6 +162,20 @@ export function Navigation() {
                       </Link>
                     );
                   })}
+
+                  {/* CTA Buttons for Mobile */}
+                  <div className="flex flex-col gap-2 pt-2 border-t mt-2">
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href="/enroll" onClick={() => setIsOpen(false)}>
+                        {t.nav.getFreeTrial}
+                      </Link>
+                    </Button>
+                    <Button asChild className="w-full">
+                      <Link href="/enroll" onClick={() => setIsOpen(false)}>
+                        {t.nav.getRegistered}
+                      </Link>
+                    </Button>
+                  </div>
                 </nav>
               </div>
             </SheetContent>

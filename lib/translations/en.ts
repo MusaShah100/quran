@@ -7,11 +7,14 @@ export const en = {
     courses: "Courses",
     videos: "Videos",
     teachers: "Teachers",
-    contact: "Contact",
+    pricing: "Pricing",
     about: "About",
+    contact: "Contact",
     updates: "Updates",
     admin: "Admin",
     teacherDashboard: "Teacher Dashboard",
+    getFreeTrial: "Get Free Trial Class",
+    getRegistered: "Get Registered",
   },
   // Homepage
   home: {
@@ -269,6 +272,37 @@ export const en = {
       available: "Available",
       join: "Join",
       browse: "Browse",
+    },
+  },
+  // Pricing Page
+  pricing: {
+    title: "Pricing Plans",
+    description: "Choose the pricing model that works best for you. We offer both fixed pricing and income-based options to make Qur'an education accessible to everyone.",
+    fixedPricing: {
+      title: "Fixed Pricing",
+      subtitle: "Choose Your Plan",
+      description: "Select a plan that fits your learning schedule. All plans include access to our interactive tools and certified teachers.",
+      note: {
+        title: "Flexible Payment",
+        description: "You can choose any amount within the price range for your selected plan. Payment is monthly and can be adjusted based on your needs.",
+      },
+    },
+    incomeBased: {
+      title: "Income-Based",
+      subtitle: "Pay What You Can Afford",
+      description: "Our income-based pricing ensures that Qur'an education is accessible to everyone, regardless of financial circumstances. You pay 2.5% of your monthly family income.",
+      note: {
+        title: "Making Education Accessible",
+        description: "We believe that financial circumstances should not be a barrier to learning the Qur'an. Our income-based pricing model ensures that everyone can access quality Islamic education.",
+      },
+    },
+    courses: {
+      title: "Available Courses",
+      description: "All pricing plans apply to these courses:",
+    },
+    cta: {
+      title: "Ready to Start Learning?",
+      description: "Choose your pricing model and enroll in a course today. Our team will contact you within 24 hours to discuss class timings.",
     },
   },
   // Common

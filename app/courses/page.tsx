@@ -7,91 +7,15 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
-  BookOpen,
-  Users,
-  Clock,
-  Calendar,
-  Star,
-  Award,
-  Globe,
-  Heart,
-  GraduationCap,
   MessageCircle,
-  Play,
   CheckCircle,
   Gift,
   UserCheck,
   UsersIcon
 } from 'lucide-react';
+import { COURSES } from '@/lib/config';
+import { Award, Globe, Heart, BookOpen } from 'lucide-react';
 
-// Featured courses derived from provided content (concise, no SEO/target audience fields)
-const Courses = [
-  {
-    id: 'kids',
-    title: 'Children’s Qur\'an Learning',
-    languages: ['Urdu', 'English'],
-    badge: 'Children Only',
-    summary: 'Engaging and interactive learning for kids with basics, activities, and introductory Tajweed.',
-    topics: [
-      'Basic Islamic concepts',
-      'Fun, engaging activities',
-      'Intro to Tajweed & recitation'
-    ],
-    icon: Users
-  },
-  {
-    id: 'quran-reading',
-    title: 'Qur\'an Reading (Beginner)',
-    languages: ['Urdu', 'English'],
-    badge: 'All Ages',
-    summary: 'Build a strong foundation: alphabet, pronunciation, and basic Tajweed with guided reading of 15 Paras.',
-    topics: [
-      'Arabic alphabet & pronunciation',
-      'Basic Tajweed rules',
-      'Read 15 Paras with guidance'
-    ],
-    icon: BookOpen
-  },
-  {
-    id: 'tajweed',
-    title: 'Tajweed (Correct Recitation)',
-    languages: ['Urdu', 'English'],
-    badge: 'All Ages',
-    summary: 'Master correct recitation with detailed Tajweed rules, clarity, and fluency.',
-    topics: [
-      'Detailed Tajweed rules',
-      'Correct Arabic pronunciation',
-      'Fluency and clarity'
-    ],
-    icon: GraduationCap
-  },
-  {
-    id: 'hifz',
-    title: 'Qur\'an Memorization (Hifz)',
-    languages: ['Urdu'],
-    badge: 'All Ages',
-    summary: 'Structured memorization with personalized plans, repetition techniques, and regular reviews.',
-    topics: [
-      'Memorization techniques',
-      'Personalized Hifz plan',
-      'Regular reviews & retention'
-    ],
-    icon: Award
-  },
-  {
-    id: 'duas',
-    title: 'Islamic Duas & Supplications',
-    languages: ['Urdu', 'English'],
-    badge: 'All Ages',
-    summary: 'Learn common daily duas with meanings, significance, and proper etiquette.',
-    topics: [
-      'Daily duas & occasions',
-      'Meanings & significance',
-      'Pronunciation & etiquette'
-    ],
-    icon: Heart
-  }
-];
 
 export default function CoursesPage() {
   return (
@@ -108,12 +32,12 @@ export default function CoursesPage() {
       {/* Free Trial Banner */}
       <Card className="mb-8 bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
         <CardContent className="p-6">
-          <div className="flex items-center justify-center gap-4">
-            <Gift className="w-8 h-8 text-green-600" />
-            <div className="text-center">
-              <h2 className="text-xl font-bold text-green-800 mb-1">Free 3-Day Trial for All Courses!</h2>
-              <p className="text-green-700">Experience our teaching methodology with no payment required</p>
+          <div className="flex flex-col items-center gap-2 text-center">
+            <div className="inline-flex items-center gap-3">
+              <Gift className="w-7 h-7 text-green-600" />
+              <h2 className="text-xl font-bold text-green-800">Free 3-Day Trial for All Courses!</h2>
             </div>
+            <p className="text-green-700">Experience our teaching methodology with no payment required</p>
           </div>
         </CardContent>
       </Card>
@@ -122,7 +46,7 @@ export default function CoursesPage() {
       <div className="mb-10">
         <h2 className="text-2xl font-bold mb-4">Qur'an Courses</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Courses.map((course) => (
+          {COURSES.map((course) => (
             <Card key={course.id} className="transition-all hover:shadow-lg">
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
@@ -134,7 +58,11 @@ export default function CoursesPage() {
                       {course.badge}
                     </Badge>
                   </div>
-                  <course.icon className="w-5 h-5 text-primary" />
+                  {course.icon ? (
+                    <course.icon className="w-5 h-5 text-primary" />
+                  ) : (
+                    <BookOpen className="w-5 h-5 text-primary" />
+                  )}
                 </div>
                 <CardTitle className="text-lg leading-tight">{course.title}</CardTitle>
                 <CardDescription className="text-sm">{course.summary}</CardDescription>
@@ -142,7 +70,7 @@ export default function CoursesPage() {
               <CardContent>
                 <div className="space-y-3">
                   <div className="space-y-2">
-                    {course.topics.slice(0, 3).map((t, idx) => (
+                    {(course.topics ?? []).slice(0, 3).map((t, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-sm">
                         <CheckCircle className="w-4 h-4 text-green-500" />
                         <span>{t}</span>

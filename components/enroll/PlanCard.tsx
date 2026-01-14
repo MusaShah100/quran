@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Clock, Layers } from 'lucide-react';
 import { convert, type CurrencyCode } from '@/lib/currency';
+import { PLANS, BASE_CURRENCY } from '@/lib/config';
 
 export type PlanOption = {
   key: 'base' | 'intermediate' | 'premium';
@@ -15,6 +16,10 @@ export type PlanOption = {
 };
 
 export function PlanCard({ plan, selected, onSelect, currency }: { plan: PlanOption; selected: boolean; onSelect: (key: PlanOption['key']) => void; currency: CurrencyCode; }) {
+  // Get plan-specific income percentage from config
+  const planFromConfig = PLANS.find(p => p.key === plan.key);
+  const incomePercentage = planFromConfig?.incomePercentage ?? 0.025;
+  
   return (
     <Card
       onClick={() => onSelect(plan.key)}
@@ -39,8 +44,8 @@ export function PlanCard({ plan, selected, onSelect, currency }: { plan: PlanOpt
               <Clock className="h-4 w-4 text-muted-foreground" />
               <span>{plan.durationMinutes}</span>
             </div>
-            <p className="text-sm"><span className="font-semibold">Fixed:</span> {convert(plan.fixedRange[0], 'USD', currency)}–{convert(plan.fixedRange[1], 'USD', currency)} {currency} / mo</p>
-            <p className="text-xs text-muted-foreground">Income-based: 2.5% of monthly income</p>
+            <p className="text-sm"><span className="font-semibold">Fixed:</span> {convert(plan.fixedRange[0], BASE_CURRENCY, currency)}–{convert(plan.fixedRange[1], BASE_CURRENCY, currency)} {currency} / mo</p>
+            <p className="text-xs text-muted-foreground">Income-based: {(incomePercentage * 100).toFixed(1)}% of monthly income</p>
           </div>
           <div className={`px-3 py-2 rounded-md text-sm font-semibold ${selected ? 'bg-emerald-200 text-emerald-900' : 'bg-muted text-foreground'}`}>Select</div>
         </div>
