@@ -423,88 +423,7 @@ export default function QuranPage() {
                     <span className="text-xs text-muted-foreground font-mono">{fontSize[0]}px</span>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 w-16 rounded-full justify-center"
-                      onClick={handlePrevious}
-                      disabled={viewMode === 'surah' ? currentSurah === 1 : currentPara === 1}
-                    >
-                      <ChevronLeft className="h-3 w-3" />
-                    </Button>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-8 w-16 rounded-full justify-center"
-                            onClick={() => setCurrentPage(1)}
-                            disabled={currentPage === 1}
-                            aria-label="First page"
-                            title="First page"
-                          >
-                            <ChevronsLeft className="h-3 w-3" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>First page</TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 w-16 rounded-full gap-1"
-                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                      disabled={currentPage === 1}
-                      title="Previous page"
-                      aria-label="Previous page"
-                    >
-                      <span className="text-xs">Pg</span>
-                      <ChevronLeft className="h-3 w-3 ml-1" />
-                    </Button>
-                    <Badge variant="secondary" className="text-xs rounded-full">{currentPage}/{getTotalPages()}</Badge>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 w-16 rounded-full gap-1"
-                      onClick={() => setCurrentPage(Math.min(getTotalPages(), currentPage + 1))}
-                      disabled={currentPage === getTotalPages()}
-                      title="Next page"
-                      aria-label="Next page"
-                    >
-                      <ChevronRight className="h-3 w-3 mr-1" />
-                      <span className="text-xs">Pg</span>
-                    </Button>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-8 w-16 rounded-full justify-center"
-                            onClick={() => setCurrentPage(getTotalPages())}
-                            disabled={currentPage === getTotalPages()}
-                            aria-label="Last page"
-                            title="Last page"
-                          >
-                            <ChevronsRight className="h-3 w-3" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>Last page</TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 w-16 rounded-full justify-center"
-                      onClick={handleNext}
-                      disabled={viewMode === 'surah' ? currentSurah === 114 : currentPara === 30}
-                    >
-                      <ChevronRight className="h-3 w-3" />
-                    </Button>
 
-                  </div>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -646,70 +565,7 @@ export default function QuranPage() {
                     <span className="text-xs text-muted-foreground font-mono">{fontSize[0]}px</span>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-8 w-16 rounded-full justify-center"
-                            onClick={() => setCurrentPage(1)}
-                            disabled={currentPage === 1}
-                            aria-label="First page"
-                            title="First page"
-                          >
-                            <ChevronsLeft className="h-3 w-3" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>First page</TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 w-16 rounded-full gap-1"
-                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                      disabled={currentPage === 1}
-                      title="Previous page"
-                      aria-label="Previous page"
-                    >
-                      <span className="text-xs">Pg</span>
-                      <ChevronLeft className="h-3 w-3 ml-1" />
-                    </Button>
-                    <Badge variant="secondary" className="text-xs rounded-full">{currentPage}/{getTotalPages()}</Badge>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 w-16 rounded-full gap-1"
-                      onClick={() => setCurrentPage(Math.min(getTotalPages(), currentPage + 1))}
-                      disabled={currentPage === getTotalPages()}
-                      title="Next page"
-                      aria-label="Next page"
-                    >
-                      <ChevronRight className="h-3 w-3 mr-1" />
-                      <span className="text-xs">Pg</span>
-                    </Button>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-8 w-16 rounded-full justify-center"
-                            onClick={() => setCurrentPage(getTotalPages())}
-                            disabled={currentPage === getTotalPages()}
-                            aria-label="Last page"
-                            title="Last page"
-                          >
-                            <ChevronsRight className="h-3 w-3" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>Last page</TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
 
-                  </div>
                 </div>
               ) : (
                 <div className="space-y-4">

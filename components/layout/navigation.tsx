@@ -10,6 +10,12 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/language-switcher';
 import { useLanguage } from '@/contexts/language-context';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { COURSES } from '@/lib/config';
 
 import {
@@ -64,37 +70,37 @@ export function Navigation() {
           {navigation.slice(0, 7).map((item) => {
             if (item.href === '/courses') {
               return (
-                <HoverCard key={item.href}>
-                  <HoverCardTrigger asChild>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "text-sm font-medium transition-colors hover:text-primary",
-                        pathname === item.href ? "text-primary" : "text-muted-foreground"
-                      )}
-                    >
-                      <span className="inline-flex items-center gap-1">
-                        {item.name}
-                        <ChevronDown className="h-4 w-4" />
-                      </span>
-                    </Link>
-                  </HoverCardTrigger>
-                  <HoverCardContent className="w-[28rem]">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                      {COURSES.slice(0, 4).map((c) => (
-                        <Link key={c.id} href="/courses" className="rounded-md p-2 hover:bg-muted/40">
-                          <div className="text-sm font-medium">{c.title}</div>
-                          <div className="text-xs text-muted-foreground">{c.summary}</div>
-                        </Link>
+                <DropdownMenu key={item.href}>
+                  <DropdownMenuTrigger
+                    className={cn(
+                      "text-sm font-medium transition-colors hover:text-primary outline-none data-[state=open]:text-primary",
+                      pathname === item.href ? "text-primary" : "text-muted-foreground"
+                    )}
+                  >
+                    <span className="inline-flex items-center gap-1">
+                      {item.name}
+                      <ChevronDown className="h-4 w-4" />
+                    </span>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-[20rem]" align="start">
+                    <div className="flex flex-col gap-1 p-2">
+                      {COURSES.slice(0, 5).map((c) => (
+                        <DropdownMenuItem key={c.id} asChild>
+                          <Link href="/courses" className="w-full cursor-pointer">
+                            <span className="text-sm font-medium">{c.title}</span>
+                          </Link>
+                        </DropdownMenuItem>
                       ))}
                     </div>
-                    <div className="pt-3">
-                      <Button asChild variant="outline" className="w-full">
-                        <Link href="/courses">View All Courses</Link>
+                    <div className="p-2 border-t mt-1">
+                      <Button asChild className="w-full" size="sm">
+                        <Link href="/courses">
+                          View All Courses
+                        </Link>
                       </Button>
                     </div>
-                  </HoverCardContent>
-                </HoverCard>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               );
             }
             return (

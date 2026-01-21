@@ -27,7 +27,9 @@ import {
   Video,
   BookMarked,
   Building2,
-  Coins
+  Coins,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { COURSES } from '@/lib/config';
 import { useLanguage } from '@/contexts/language-context';
@@ -47,6 +49,20 @@ export default function HomePage() {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="flex flex-col">
@@ -289,41 +305,73 @@ export default function HomePage() {
               {t.home.popularCourses.description}
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {COURSES.filter(c => ['quran-reading', 'tajweed', 'kids', 'duas'].includes(c.id)).map((item) => (
-              <Card
-                key={item.id}
-                className="h-full flex flex-col border-primary/10 bg-white/80 backdrop-blur-sm shadow-lg shadow-primary/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
-              >
-                <CardHeader className="pb-0">
-                  <div className="flex items-center gap-3">
-                    <div className="p-3 rounded-2xl bg-primary/10">
-                      {item.icon && <item.icon className="h-5 w-5 text-primary" />}
+          <div className="relative group px-4 md:px-12">
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex h-10 w-10 rounded-full shadow-lg bg-background/80 backdrop-blur-sm hover:bg-background hover:text-primary"
+              onClick={scrollLeft}
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex h-10 w-10 rounded-full shadow-lg bg-background/80 backdrop-blur-sm hover:bg-background hover:text-primary"
+              onClick={scrollRight}
+            >
+              <ChevronRight className="h-5 w-5" />
+            </Button>
+            <div 
+              ref={scrollContainerRef}
+              className="flex overflow-x-auto pb-6 gap-6 lg:gap-8 snap-x snap-mandatory scrollbar-none"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {COURSES.map((item) => (
+              <div key={item.id} className="min-w-[280px] md:min-w-[320px] lg:min-w-[350px] snap-center">
+                <Card
+                  className="h-full flex flex-col border-primary/10 bg-white/80 backdrop-blur-sm shadow-lg shadow-primary/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
+                >
+                  <CardHeader className="pb-0">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 rounded-2xl bg-primary/10">
+                        {item.icon && <item.icon className="h-5 w-5 text-primary" />}
+                      </div>
+                      <CardTitle className="text-lg leading-snug">
+                        {t.coursesList[item.id as keyof typeof t.coursesList]?.title || item.title}
+                      </CardTitle>
                     </div>
-                    <CardTitle className="text-lg leading-snug">
-                      {t.coursesList[item.id as keyof typeof t.coursesList]?.title || item.title}
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="flex flex-col flex-1 gap-6 pt-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {(item.topics || []).slice(0, 3).map((topic, idx) =>
-                      t.coursesList[item.id as keyof typeof t.coursesList]?.topics?.[idx] || topic
-                    ).join(', ')}
-                  </p>
-                  <Button
-                    asChild
-                    size="sm"
-                    className="mt-auto w-full justify-center font-semibold shadow-md shadow-primary/30"
-                  >
-                    <Link href="/courses" className="flex items-center justify-center gap-2">
-                      <span>{t.home.popularCourses.viewDetails}</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+                  </CardHeader>
+                  <CardContent className="flex flex-col flex-1 gap-6 pt-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {(item.topics || []).slice(0, 3).map((topic, idx) =>
+                        t.coursesList[item.id as keyof typeof t.coursesList]?.topics?.[idx] || topic
+                      ).join(', ')}
+                    </p>
+                    <Button
+                      asChild
+                      size="sm"
+                      className="mt-auto w-full justify-center font-semibold shadow-md shadow-primary/30"
+                    >
+                      <Link href="/courses" className="flex items-center justify-center gap-2">
+                        <span>{t.home.popularCourses.viewDetails}</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
+            </div>
+          </div>
+
+          <div className="flex justify-center mt-6">
+            <Button asChild size="lg" className="rounded-full px-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+              <Link href="/courses">
+                Show All Courses
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
