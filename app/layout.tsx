@@ -8,7 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const amiri = Amiri({ 
+const amiri = Amiri({
   subsets: ['arabic', 'latin'],
   weight: ['400', '700'],
   variable: '--font-amiri'

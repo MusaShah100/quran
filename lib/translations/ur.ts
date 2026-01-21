@@ -19,114 +19,99 @@ export const ur = {
   // Homepage
   home: {
     hero: {
-      badge: "🎉 3 دن کی مفت آزمائش دستیاب",
-      title: "ماہر اساتذہ کے ساتھ",
-      titleHighlight: "قرآن میں مہارت حاصل کریں",
-      description: "سرٹیفائیڈ اساتذہ، انٹرایکٹو ٹولز، اور ذاتی رہنمائی کے ساتھ قرآن سیکھنے والے ہزاروں افراد میں شامل ہوں۔ اپنا روحانی سفر آج شروع کریں۔",
+      badge: "🎁 مفت آزمائشی کلاس دستیاب",
+      title: "قرآن صحیح طریقے سے سیکھیں",
+      titleHighlight: "ماہر اساتذہ کے ساتھ",
+      description: "سرٹیفائیڈ اساتذہ، ذاتی رہنمائی، اور بچوں اور بڑوں کے لیے صحیح تجوید پر بھرپور توجہ کے ساتھ منظم قرآن سیکھنا۔ ہم سستی سیکھنے کے اختیارات پیش کرتے ہیں، بشمول آمدنی پر مبنی قیمتیں، تاکہ اس بات کو یقینی بنایا جا سکے کہ قرآن کی تعلیم ہر کسی کے لیے قابل رسائی رہے۔",
       startTrial: "مفت آزمائش شروع کریں",
       viewCourses: "کورسز دیکھیں",
-      happyStudents: "خوش طلباء",
-      rating: "ریٹنگ",
-      reviews: "جائزے",
+      floatingCard: {
+        accessible: { title: "قابل رسائی قیمتیں", subtitle: "فکسڈ اور آمدنی پر مبنی اختیارات" },
+        tajweed: { title: "تجوید پر توجہ", subtitle: "صحیح تلفظ اور تلاوت" },
+        support: { title: "رہنمائی شدہ سپورٹ", subtitle: "ہر کلاس میں ذاتی فیڈبیک" }
+      }
     },
-    trust: {
-      activeStudents: "فعال طلباء",
-      expertTeachers: "ماہر اساتذہ",
-      studentRating: "طلباء کی ریٹنگ",
-      support: "سپورٹ",
+    values: {
+      title: "تدریسی تجربے پر مبنی",
+      description: "ہم تمام عمروں کے لیے صحیح تلاوت، صبر، اور تعاون کو ترجیح دیتے ہیں۔",
+      items: {
+        experience: { title: "Founded on Teaching Experience", desc: "Teachers with real online classroom exposure and years of prior teaching." },
+        recitation: { title: "Focused on Correct Recitation", desc: "Tajweed taught with care, precision, and proper pronunciation." },
+        allAges: { title: "Learning for All Ages", desc: "Children, beginners, and adults are all welcome." },
+        studentFirst: { title: "Student-First Approach", desc: "Personal guidance, patience, and continuous support in every class." }
+      }
     },
     howItWorks: {
       badge: "یہ کیسے کام کرتا ہے",
       title: "3 آسان مراحل میں سیکھنا شروع کریں",
       description: "ہمارے ثابت شدہ طریقہ کار کے ساتھ اپنا قرآن سیکھنے کا سفر شروع کریں",
-      step1: {
-        title: "اپنا کورس منتخب کریں",
-        description: "اپنی عمر اور سطح کے مطابق تجوید، حفظ، یا تفسیر کے کورسز میں سے منتخب کریں",
-      },
-      step2: {
-        title: "اپنے استاد سے ملیں",
-        description: "سرٹیفائیڈ اساتذہ کے ساتھ میچ ہوں اور اپنی مفت 3 دن کی آزمائش شروع کریں",
-      },
-      step3: {
-        title: "مہارت حاصل کریں",
-        description: "انٹرایکٹو ٹولز کے ساتھ مشق کریں اور مہارت تک اپنی پیشرفت کو ٹریک کریں",
-      },
-      cta: "آج اپنی مفت آزمائش شروع کریں",
+      steps: {
+        step1: { title: "Book a Free Trial", desc: "Fill out a simple form to schedule your first class." },
+        step2: { title: "Take the Trial Class", desc: "Meet your teacher and experience our teaching style." },
+        step3: { title: "Enroll & Learn", desc: "Choose a plan that suits you and start your journey." }
+      }
     },
     features: {
-      badge: "خصوصیات",
-      title: "کامیابی کے لیے آپ کو جو کچھ چاہیے",
-      description: "موثر قرآن سیکھنے کے لیے ڈیزائن کردہ جامع ٹولز اور خصوصیات",
-      interactiveReader: {
-        title: "انٹرایکٹو قرآن ریڈر",
-        description: "تین پڑھنے کے موڈ: تجوید کے رنگ، اردو ترجمہ، اور مستند ذرائع کے ساتھ انگریزی ترجمہ",
-      },
-      certifiedTeachers: {
-        title: "سرٹیفائیڈ اساتذہ",
-        description: "سالوں کے تجربے اور ثابت شدہ تدریسی طریقوں کے ساتھ اہل انسٹرکٹرز سے سیکھیں",
-      },
-      flexibleScheduling: {
-        title: "لچکدار شیڈولنگ",
-        description: "انفرادی یا گروپ کلاسیں جو تمام ٹائم زونز میں آپ کے شیڈول کے مطابق ہوں",
-      },
-      audioIntegration: {
-        title: "آڈیو انٹیگریشن",
-        description: "معروف قاریوں سے آیت بہ آیت پلے بیک کے ساتھ اعلیٰ معیار کی تلاوت",
-      },
-      progressTracking: {
-        title: "پیشرفت کی نگرانی",
-        description: "تفصیلی پیشرفت کی رپورٹس اور کامیابیوں کے ساتھ اپنے سیکھنے کے سفر کو مانیٹر کریں",
-      },
-      communitySupport: {
-        title: "کمیونٹی سپورٹ",
-        description: "24/7 مدد اور ہم مرتبہ تعامل کے ساتھ ایک معاون سیکھنے والی کمیونٹی میں شامل ہوں",
-      },
+      title: "کامیابی کے لیے سب کچھ",
+      description: "موثر قرآن سیکھنے کے لیے جامع ٹولز اور خصوصیات",
+      items: {
+        liveRecitation: { title: "Live Teacher Recitation", desc: "Correct your pronunciation through direct recitation and feedback during live classes." },
+        certifiedTeachers: { title: "Certified Teachers", desc: "Learn from qualified Qur’an teachers with real online teaching experience and a focus on correct Tajweed." },
+        flexibleScheduling: { title: "Flexible Scheduling", desc: "Class timings are arranged according to student availability across different time zones." },
+        guidedProgress: { title: "Guided Progress", desc: "Improve steadily through teacher feedback and structured lessons." },
+        supportiveEnvironment: { title: "Supportive Learning Environment", desc: "Receive continuous assistance and guidance from our team throughout your learning journey." }
+      }
     },
-    courses: {
-      badge: "ہمارے کورسز",
-      title: "اپنا سیکھنے کا راستہ منتخب کریں",
-      description: "مختلف عمر کے گروپس اور سیکھنے کے مقاصد کے لیے ڈیزائن کردہ منظم کورسز",
-      tajweed: {
-        title: "تجوید کورسز",
-        description: "تمام عمر کے گروپس کے لیے کامل تلفظ اور تلاوت کے قواعد",
-        ages: "عمر 4-7، 8-18، 19-25، 25+",
-        price: "$8/سیشن سے",
-      },
-      hifz: {
-        title: "حفظ پروگرام",
-        description: "ثابت شدہ تکنیکوں کے ساتھ مکمل قرآن حفظ",
-        ages: "انفرادی کلاسیں",
-        price: "$20/سیشن سے",
-      },
-      tafseer: {
-        title: "تفسیر کلاسیں",
-        description: "قرآنی معانی اور سیاق کی گہری سمجھ",
-        ages: "انفرادی اور گروپ",
-        price: "$14/سیشن سے",
-      },
-      startTrial: "مفت آزمائش شروع کریں",
+    popularCourses: {
+      badge: "مشہور کورسز",
+      title: "Choose Your Learning Path",
+      description: "Structured courses designed for different age groups, levels, and learning needs.",
+      viewDetails: "See Details"
+    },
+    institute: {
+      badge: "New Institute, Experienced Teachers",
+      title: "Our Institute Is New — Our Teachers Are Experienced",
+      description: "Our online Qur’an learning institute is newly established, but our teachers bring years of real online teaching experience. Before coming together as one institute, our instructors were already teaching Qur’an, Tajweed, and basic recitation to students across the world. By uniting as an institute, we now offer a more structured, supportive, and accessible Qur’an learning experience for children, adults, and families.",
+      stats: {
+        experience: { title: "Years of Teaching Experience", desc: "Teachers with real online Qur’an and Tajweed teaching background." },
+        regions: { title: "Students From Different Regions", desc: "Previously teaching learners across the world before joining this institute." },
+        structured: { title: "Structured, Supportive Learning", desc: "A focused environment with guided lessons for children, adults, and families." }
+      }
     },
     testimonials: {
-      badge: "شاہدات",
-      title: "ہمارے طلباء کی کامیابی کی کہانیاں",
-      description: "ان طلباء سے سنیں جنہوں نے ہمارے ساتھ اپنا قرآن سیکھنے کا سفر تبدیل کیا",
+      title: "What Our Early Learners Say",
+      description: "We are grateful to begin our journey with a small group of dedicated learners. Feedback shared by early learners during our initial phase.",
+      items: {
+        parentChild: { name: "Parent of a Child Student", quote: "“The teacher is professional and explains Tajweed gently. My child enjoys the classes and is improving day by day, Alhamdulillah.”" },
+        adultBeginner: { name: "Adult Beginner", quote: "“I was nervous to start Qur’an learning, but the teacher made it comfortable and structured. I feel encouraged to continue.”" },
+        parent: { name: "Parent", quote: "“We appreciate the respectful teaching style. The institute feels sincere and focused on learning.”" }
+      },
+      footer: "You may also visit our social media pages to view additional testimonials."
     },
-    cta: {
-      badge: "🎉 محدود وقت کی پیشکش",
-      title: "آج اپنی مفت 3 دن کی آزمائش شروع کریں",
-      description: "سرٹیفائیڈ اساتذہ، انٹرایکٹو ٹولز، اور ذاتی سیکھنے کے ساتھ فرق محسوس کریں۔ آپ کی آزمائش کی مدت کے لیے کوئی ادائیگی درکار نہیں۔",
-      startTrial: "ابھی مفت آزمائش شروع کریں",
-      talkToTeacher: "استاد سے بات کریں",
-      noCreditCard: "کریڈٹ کارڈ کی ضرورت نہیں",
-      cancelAnytime: "کسی بھی وقت منسوخ کریں",
-      support247: "24/7 سپورٹ",
+    faq: {
+      badge: "عام سوالات",
+      title: "Frequently Asked Questions",
+      description: "Find answers to common questions about our courses, pricing, and learning process.",
+      items: {
+        trial: { q: "How does the free trial class work?", a: "After you register, our team contacts you to schedule a free trial class with a suitable teacher. No payment is required for the trial." },
+        pricing: { q: "What pricing options do you offer?", a: "We offer Fixed Pricing plans as well as Income-Based Pricing, where fees are calculated as a percentage of monthly family income." },
+        incomeBased: { q: "What is Income-Based Pricing?", a: "It allows families to pay according to what they earn. Lower income means lower fees, ensuring equal access to Qur’anic education." },
+        liveRecorded: { q: "Are classes live or recorded?", a: "All classes are live with teachers. Students learn through direct recitation, listening, and feedback." },
+        whoCanJoin: { q: "Who can join these courses?", a: "Children, beginners, adults, and families are all welcome. Courses are adjusted according to age and learning level." },
+        priorKnowledge: { q: "Do I need prior knowledge to start?", a: "No. Beginners are fully supported, starting from Arabic letters and basic pronunciation." }
+      }
     },
-    contactCta: {
-      title: "سوالات ہیں؟ ہم یہاں مدد کے لیے ہیں!",
-      description: "واٹس ایپ کے ذریعے ہماری سپورٹ ٹیم سے فوری جوابات حاصل کریں یا ہمارے تعلیمی مشیروں کے ساتھ کال شیڈول کریں۔",
-      whatsapp: "واٹس ایپ",
-      contactUs: "ہم سے رابطہ کریں",
-    },
+    finalCta: {
+      title: "Start Your Free Trial Class Today",
+      description: "Experience Qur’an learning with experienced teachers, structured lessons, and personalized guidance.",
+      features: {
+        noCreditCard: "No Credit Card Required",
+        cancelAnytime: "Cancel Anytime",
+        guidedSupport: "Guided Support Throughout"
+      },
+      startTrial: "Start Free Trial Now",
+      talkToTeam: "Talk to Our Team"
+    }
   },
   // Footer
   footer: {
@@ -277,9 +262,21 @@ export const ur = {
   // Pricing Page
   pricing: {
     title: "قیمتیں",
-    description: "اپنے لیے بہترین قیمتی ماڈل منتخب کریں۔ ہم قرآن کی تعلیم کو سب کے لیے قابل رسائی بنانے کے لیے فکسڈ قیمتیں اور آمدنی پر مبنی اختیارات دونوں پیش کرتے ہیں۔",
+    headerTitle: "ہر خاندان کے لیے سستی اور لچکدار قرآن کی تعلیم",
+    headerDescription: "ہمارا ماننا ہے کہ قرآن کی تعلیم قابل رسائی، منصفانہ، اور تناؤ سے پاک ہونی چاہیے۔ اسی لیے ہم دو لچکدار قیمتوں کے اختیارات پیش کرتے ہیں تاکہ خاندان وہ منتخب کر سکیں جو ان کے لیے بہترین ہو — تدریس کے معیار پر سمجھوتہ کیے بغیر۔",
+    sameQuality: {
+      title: "وہی معیار، مختلف قیمتیں",
+      teachers: "وہی اساتذہ",
+      liveClasses: "وہی لائیو کلاسیں",
+      quality: "وہی سیکھنے کا معیار",
+      method: "صرف قیمت کا طریقہ مختلف ہے"
+    },
+    tabs: {
+      fixed: "آپشن 1: فکسڈ قیمتیں",
+      income: "آپشن 2: آمدنی پر مبنی"
+    },
     fixedPricing: {
-      title: "فکسڈ قیمتیں",
+      title: "آپشن 1: فکسڈ قیمتیں",
       subtitle: "اپنا پلان منتخب کریں",
       description: "اپنے سیکھنے کے شیڈول کے مطابق ایک پلان منتخب کریں۔ تمام منصوبوں میں ہمارے انٹرایکٹو ٹولز اور سرٹیفائیڈ اساتذہ تک رسائی شامل ہے۔",
       note: {
@@ -288,7 +285,7 @@ export const ur = {
       },
     },
     incomeBased: {
-      title: "آمدنی پر مبنی",
+      title: "آپشن 2: آمدنی پر مبنی",
       subtitle: "آپ جو برداشت کر سکتے ہیں وہ ادا کریں",
       description: "ہماری آمدنی پر مبنی قیمتیں یقینی بناتی ہیں کہ مالی حالات سے قطع نظر قرآن کی تعلیم سب کے لیے قابل رسائی ہے۔ آپ اپنی ماہانہ خاندانی آمدنی کا 2.5% ادا کرتے ہیں۔",
       note: {
@@ -310,5 +307,61 @@ export const ur = {
     loading: "لوڈ ہو رہا ہے…",
     toggleMenu: "مینو کو ٹوگل کریں",
   },
+  coursesPage: {
+    title: "ہمارے کورسز",
+    subtitle: "انفرادی اور گروہی اختیارات کے ساتھ منظم اسلامی تعلیمی پروگرام۔ تمام کورسز میں 3 دن کی مفت آزمائش کی مدت شامل ہے۔",
+    freeTrial: {
+      title: "تمام کورسز کے لیے 3 دن کی مفت آزمائش!",
+      description: "بغیر کسی ادائیگی کے ہمارے تدریسی طریقہ کار کا تجربہ کریں"
+    },
+    quranCoursesTitle: "قرآن کورسز",
+    enrollButton: "اندراج / مفت آزمائش",
+    features: {
+      title: "ہمارے قرآن کورسز کی اہم خصوصیات",
+      expertTutors: { title: "ماہر اساتذہ", desc: "اہل، تجربہ کار اساتذہ" },
+      flexibleLearning: { title: "لچکدار سیکھنا", desc: "اردو اور انگریزی موڈز" },
+      interactive: { title: "انٹرایکٹو اور دلچسپ", desc: "حوصلہ افزا، طالب علم پر مبنی طریقے" },
+      curriculum: { title: "جامع نصاب", desc: "پڑھنا، تجوید، حفظ، دعائیں" },
+      progress: { title: "پیشرفت کی نگرانی", desc: "امتحانات اور فیڈبیک" }
+    },
+    cta: {
+      title: "اپنا اسلامی سیکھنے کا سفر شروع کرنے کے لیے تیار ہیں؟",
+      description: "ہمارے سرٹیفائیڈ اساتذہ کے ساتھ سیکھنے والے ہزاروں طلباء میں شامل ہوں۔ ہماری 3 دن کی مفت آزمائش کے ساتھ شروع کریں - کوئی ادائیگی ضروری نہیں!",
+      startTrial: "مفت آزمائش شروع کریں",
+      askQuestions: "سوالات پوچھیں"
+    }
+  },
+  coursesList: {
+    "quran-reading": {
+      title: "قرآن پڑھنا (ابتدائی)",
+      summary: "بنیاد، تلفظ، بنیادی تجوید، رہنمائی کے ساتھ 15 سپارے",
+      badge: "تمام عمریں",
+      topics: ["عربی حروف تہجی اور تلفظ", "بنیادی تجوید کے قواعد", "رہنمائی کے ساتھ قرآن پڑھیں"]
+    },
+    "tajweed": {
+      title: "تجوید (صحیح تلاوت)",
+      summary: "قواعد میں مہارت، وضاحت اور روانی",
+      badge: "تمام عمریں",
+      topics: ["تفصیلی تجوید کے قواعد", "صحیح عربی تلفظ", "روانی اور وضاحت"]
+    },
+    "kids": {
+      title: "بچوں کا قرآن سیکھنا",
+      summary: "انٹرایکٹو بنیادی باتیں اور ابتدائی تجوید",
+      badge: "صرف بچے",
+      topics: ["بنیادی اسلامی تصورات", "تفریحی، دلچسپ سرگرمیاں", "تجوید اور تلاوت کا تعارف"]
+    },
+    "hifz": {
+      title: "قرآن حفظ (حفظ)",
+      summary: "جائزوں کے ساتھ منظم حفظ",
+      badge: "تمام عمریں",
+      topics: ["حفظ کی تکنیک", "ذاتی حفظ کا منصوبہ", "باقاعدہ جائزے اور برقرار رکھنا"]
+    },
+    "duas": {
+      title: "اسلامی دعائیں اور مناجات",
+      summary: "معانی، اہمیت اور آداب کے ساتھ روزانہ کی دعائیں سیکھیں",
+      badge: "تمام عمریں",
+      topics: ["روزانہ کی دعائیں اور مواقع", "معانی اور اہمیت", "تلفظ اور آداب"]
+    }
+  }
 };
 

@@ -96,7 +96,7 @@ export const COURSES: CourseConfig[] = [
     summary: 'Foundation, pronunciation, basic Tajweed, guided 15 Paras',
     languages: ['Urdu', 'English'],
     badge: 'All Ages',
-    topics: ['Arabic alphabet & pronunciation', 'Basic Tajweed rules', 'Read 15 Paras with guidance'],
+    topics: ['Arabic alphabet & pronunciation', 'Basic Tajweed rules', 'Read quran with guidance'],
     icon: BookOpen,
   },
   {
@@ -109,15 +109,6 @@ export const COURSES: CourseConfig[] = [
     icon: GraduationCap,
   },
   {
-    id: 'hifz',
-    title: "Qur'an Memorization (Hifz)",
-    summary: 'Structured memorization with reviews',
-    languages: ['Urdu'],
-    badge: 'All Ages',
-    topics: ['Memorization techniques', 'Personalized Hifz plan', 'Regular reviews & retention'],
-    icon: Award,
-  },
-  {
     id: 'kids',
     title: "Children's Qur'an Learning",
     summary: 'Interactive basics and introductory Tajweed',
@@ -125,6 +116,15 @@ export const COURSES: CourseConfig[] = [
     badge: 'Children Only',
     topics: ['Basic Islamic concepts', 'Fun, engaging activities', 'Intro to Tajweed & recitation'],
     icon: Users,
+  },
+  {
+    id: 'hifz',
+    title: "Qur'an Memorization (Hifz)",
+    summary: 'Structured memorization with reviews',
+    languages: ['Urdu'],
+    badge: 'All Ages',
+    topics: ['Memorization techniques', 'Personalized Hifz plan', 'Regular reviews & retention'],
+    icon: Award,
   },
   {
     id: 'duas',

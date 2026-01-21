@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/language-context';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -18,14 +19,15 @@ import { Award, Globe, Heart, BookOpen } from 'lucide-react';
 
 
 export default function CoursesPage() {
+  const { t, language } = useLanguage();
+
   return (
     <div className="container py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4">Our Courses</h1>
+        <h1 className="text-4xl font-bold mb-4">{t.coursesPage.title}</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Structured Islamic education programs with individual and group options.
-          All courses include a free 3-day trial period.
+          {t.coursesPage.subtitle}
         </p>
       </div>
 
@@ -35,19 +37,19 @@ export default function CoursesPage() {
           <div className="flex flex-col items-center gap-2 text-center">
             <div className="inline-flex items-center gap-3">
               <Gift className="w-7 h-7 text-green-600" />
-              <h2 className="text-xl font-bold text-green-800">Free 3-Day Trial for All Courses!</h2>
+              <h2 className="text-xl font-bold text-green-800">{t.coursesPage.freeTrial.title}</h2>
             </div>
-            <p className="text-green-700">Experience our teaching methodology with no payment required</p>
+            <p className="text-green-700">{t.coursesPage.freeTrial.description}</p>
           </div>
         </CardContent>
       </Card>
 
       {/* Featured Courses (concise cards) */}
       <div className="mb-10">
-        <h2 className="text-2xl font-bold mb-4">Qur'an Courses</h2>
+        <h2 className="text-2xl font-bold mb-4">{t.coursesPage.quranCoursesTitle}</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {COURSES.map((course) => (
-            <Card key={course.id} className="transition-all hover:shadow-lg">
+            <Card key={course.id} className="transition-all hover:shadow-lg flex flex-col h-full">
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex flex-wrap items-center gap-2">
@@ -55,7 +57,7 @@ export default function CoursesPage() {
                       <Badge key={lang} variant="outline" className="text-xs">{lang}</Badge>
                     ))}
                     <Badge variant={course.badge === 'Children Only' ? "default" : "secondary"} className="text-xs">
-                      {course.badge}
+                      {t.coursesList[course.id as keyof typeof t.coursesList]?.badge || course.badge}
                     </Badge>
                   </div>
                   {course.icon ? (
@@ -64,32 +66,35 @@ export default function CoursesPage() {
                     <BookOpen className="w-5 h-5 text-primary" />
                   )}
                 </div>
-                <CardTitle className="text-lg leading-tight">{course.title}</CardTitle>
-                <CardDescription className="text-sm">{course.summary}</CardDescription>
+                <CardTitle className="text-lg leading-tight">
+                  {t.coursesList[course.id as keyof typeof t.coursesList]?.title || course.title}
+                </CardTitle>
+                <CardDescription className="text-sm">
+                  {t.coursesList[course.id as keyof typeof t.coursesList]?.summary || course.summary}
+                </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="space-y-2">
-                    {(course.topics ?? []).slice(0, 3).map((t, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span>{t}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex justify-between items-center pt-2 border-t">
-                    <Button size="sm" asChild>
-                      <Link href={`/enroll?course=${course.id}`}>
-                        <Gift className="w-4 h-4 mr-2" />
-                        Enroll / Free Trial
-                      </Link>
-                    </Button>
-                    {/* <Button size="sm" variant="outline" asChild>
-                      <a href="/teachers">Meet Tutors</a>
-                    </Button> */}
-                  </div>
+              <CardContent className="flex-1">
+                <div className="space-y-2">
+                  {(course.topics ?? []).slice(0, 3).map((topic, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                      <span>
+                        {t.coursesList[course.id as keyof typeof t.coursesList]?.topics?.[idx] || topic}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </CardContent>
+              <CardFooter>
+                <div className="w-full flex justify-between items-center pt-2 border-t">
+                  <Button size="sm" asChild>
+                    <Link href={`/enroll?course=${course.id}`}>
+                      <Gift className="w-4 h-4 mr-2" />
+                      {t.coursesPage.enrollButton}
+                    </Link>
+                  </Button>
+                </div>
+              </CardFooter>
             </Card>
           ))}
         </div>
@@ -98,41 +103,41 @@ export default function CoursesPage() {
       {/* Key Features of Our Quran Courses */}
       <Card className="mb-8 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 border-primary/20">
         <CardContent className="p-6">
-          <h3 className="text-xl font-bold mb-4">Key Features of Our Qur'an Courses</h3>
+          <h3 className="text-xl font-bold mb-4">{t.coursesPage.features.title}</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="flex items-start gap-3 p-3 bg-muted/20 rounded">
               <Award className="w-5 h-5 text-primary" />
               <div>
-                <p className="font-medium">Expert Tutors</p>
-                <p className="text-sm text-muted-foreground">Qualified, experienced instructors</p>
+                <p className="font-medium">{t.coursesPage.features.expertTutors.title}</p>
+                <p className="text-sm text-muted-foreground">{t.coursesPage.features.expertTutors.desc}</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 bg-muted/20 rounded">
               <Globe className="w-5 h-5 text-primary" />
               <div>
-                <p className="font-medium">Flexible Learning</p>
-                <p className="text-sm text-muted-foreground">Urdu and English modes</p>
+                <p className="font-medium">{t.coursesPage.features.flexibleLearning.title}</p>
+                <p className="text-sm text-muted-foreground">{t.coursesPage.features.flexibleLearning.desc}</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 bg-muted/20 rounded">
               <Heart className="w-5 h-5 text-primary" />
               <div>
-                <p className="font-medium">Interactive & Engaging</p>
-                <p className="text-sm text-muted-foreground">Motivating, student-centered methods</p>
+                <p className="font-medium">{t.coursesPage.features.interactive.title}</p>
+                <p className="text-sm text-muted-foreground">{t.coursesPage.features.interactive.desc}</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 bg-muted/20 rounded">
               <BookOpen className="w-5 h-5 text-primary" />
               <div>
-                <p className="font-medium">Comprehensive Curriculum</p>
-                <p className="text-sm text-muted-foreground">Reading, Tajweed, Hifz, Duas</p>
+                <p className="font-medium">{t.coursesPage.features.curriculum.title}</p>
+                <p className="text-sm text-muted-foreground">{t.coursesPage.features.curriculum.desc}</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 bg-muted/20 rounded">
               <UserCheck className="w-5 h-5 text-primary" />
               <div>
-                <p className="font-medium">Progress Tracking</p>
-                <p className="text-sm text-muted-foreground">Assessments and feedback</p>
+                <p className="font-medium">{t.coursesPage.features.progress.title}</p>
+                <p className="text-sm text-muted-foreground">{t.coursesPage.features.progress.desc}</p>
               </div>
             </div>
           </div>
@@ -142,19 +147,18 @@ export default function CoursesPage() {
       {/* Call to Action */}
       <Card className="mt-12">
         <CardContent className="p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to Begin Your Islamic Learning Journey?</h2>
+          <h2 className="text-2xl font-bold mb-4">{t.coursesPage.cta.title}</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Join thousands of students learning with our certified instructors.
-            Start with our free 3-day trial - no payment required!
+            {t.coursesPage.cta.description}
           </p>
           <div className="flex gap-4 justify-center">
             <Button size="lg">
               <Gift className="w-4 h-4 mr-2" />
-              Start Free Trial
+              {t.coursesPage.cta.startTrial}
             </Button>
             <Button variant="outline" size="lg">
               <MessageCircle className="w-4 h-4 mr-2" />
-              Ask Questions
+              {t.coursesPage.cta.askQuestions}
             </Button>
           </div>
         </CardContent>

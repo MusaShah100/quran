@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
-import { 
-  Play, 
-  ExternalLink, 
+import {
+  Play,
+  ExternalLink,
   Search,
   Filter,
   Clock,
@@ -136,10 +136,10 @@ export default function VideosPage() {
 
   const filteredLectures = lectureVideos.filter(video => {
     const matchesSearch = video.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         video.description.toLowerCase().includes(searchTerm.toLowerCase());
+      video.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || video.category === selectedCategory;
     const matchesLevel = selectedLevel === 'All' || video.level === selectedLevel;
-    
+
     return matchesSearch && matchesCategory && matchesLevel;
   });
 
@@ -173,7 +173,7 @@ export default function VideosPage() {
                 className="pl-10"
               />
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <select
                 value={selectedCategory}
@@ -185,7 +185,7 @@ export default function VideosPage() {
                   <option key={category} value={category}>{category}</option>
                 ))}
               </select>
-              
+
               <select
                 value={selectedLevel}
                 onChange={(e) => setSelectedLevel(e.target.value)}
@@ -241,7 +241,7 @@ export default function VideosPage() {
                     {video.duration}
                   </div>
                 </div>
-                
+
                 <CardHeader className="pb-2">
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex gap-2">
@@ -252,7 +252,7 @@ export default function VideosPage() {
                   <CardTitle className="text-lg leading-tight line-clamp-2">{video.title}</CardTitle>
                   <CardDescription className="text-sm line-clamp-2">{video.description}</CardDescription>
                 </CardHeader>
-                
+
                 <CardContent className="pt-0">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-sm text-muted-foreground">
@@ -262,7 +262,7 @@ export default function VideosPage() {
                       </div>
                       <span>By {video.instructor}</span>
                     </div>
-                    
+
                     <div className="flex gap-2">
                       <Button size="sm" className="flex-1" asChild>
                         <a href={`https://youtube.com/watch?v=${video.youtubeId}`} target="_blank" rel="noopener noreferrer">
@@ -281,7 +281,7 @@ export default function VideosPage() {
               </Card>
             ))}
           </div>
-          
+
           {filteredLectures.length === 0 && (
             <div className="text-center py-12">
               <BookOpen className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
@@ -312,7 +312,7 @@ export default function VideosPage() {
                     Age {video.studentAge}
                   </div>
                 </div>
-                
+
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-2 mb-2">
                     <Badge variant="secondary" className="text-xs">{video.course}</Badge>
@@ -321,7 +321,7 @@ export default function VideosPage() {
                   <CardTitle className="text-lg leading-tight line-clamp-2">{video.title}</CardTitle>
                   <CardDescription className="text-sm line-clamp-2">{video.description}</CardDescription>
                 </CardHeader>
-                
+
                 <CardContent className="pt-0">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-sm text-muted-foreground">
@@ -334,7 +334,7 @@ export default function VideosPage() {
                         <span>Inspiring</span>
                       </div>
                     </div>
-                    
+
                     <div className="flex gap-2">
                       <Button size="sm" variant="secondary" className="flex-1" asChild>
                         <a href={`https://youtube.com/watch?v=${video.youtubeId}`} target="_blank" rel="noopener noreferrer">
@@ -351,7 +351,7 @@ export default function VideosPage() {
               </Card>
             ))}
           </div>
-          
+
           {filteredStudentVideos.length === 0 && (
             <div className="text-center py-12">
               <Users className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
@@ -372,7 +372,7 @@ export default function VideosPage() {
             <h2 className="text-2xl font-bold text-red-800">Visit Our YouTube Channel</h2>
           </div>
           <p className="text-red-700 mb-6 max-w-2xl mx-auto">
-            Subscribe to our YouTube channel for weekly uploads of new lectures, student progress videos, 
+            Subscribe to our YouTube channel for weekly uploads of new lectures, student progress videos,
             and interactive learning sessions. Join our growing community of learners!
           </p>
           <div className="flex gap-4 justify-center">
@@ -397,7 +397,7 @@ export default function VideosPage() {
             Ready to Start Your Own Success Story?
           </h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Join our students and experience the same amazing progress. Start with our free 3-day trial 
+            Join our students and experience the same amazing progress. Start with our free 3-day trial
             and see the difference personalized instruction makes!
           </p>
           <div className="flex gap-4 justify-center">

@@ -10,11 +10,11 @@ import Link from 'next/link';
 import { useLanguage } from '@/contexts/language-context';
 import { CurrencySelector } from '@/components/enroll/CurrencySelector';
 import { convert, type CurrencyCode } from '@/lib/currency';
-import { 
-  DollarSign, 
-  Calculator, 
-  CheckCircle2, 
-  Clock, 
+import {
+  DollarSign,
+  Calculator,
+  CheckCircle2,
+  Clock,
   Layers,
   Gift,
   Info,
@@ -24,9 +24,9 @@ import {
   HelpCircle,
   Sparkles
 } from 'lucide-react';
-import { 
-  PLANS, 
-  COURSES, 
+import {
+  PLANS,
+  COURSES,
   BASE_CURRENCY,
   calculateIncomeBasedFee
 } from '@/lib/config';
@@ -46,33 +46,33 @@ export default function PricingPage() {
           We believe Qur'anic education should be accessible, fair, and stress-free. That's why we offer two flexible pricing options so families can choose what suits them best — without compromising on teaching quality.
         </p>
 
-           {/* Same Quality Guarantee */}
-           <Card className="bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 mb-12">
-        <CardContent className="pt-6">
-          <div className="flex items-center gap-3 mb-4">
-            <Scale className="h-6 w-6 text-green-600" />
-            <h3 className="text-xl font-semibold text-green-900">Same Quality, Different Pricing</h3>
-          </div>
-          <div className="grid md:grid-cols-4 gap-4">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
-              <span className="text-sm font-medium">Same teachers</span>
+        {/* Same Quality Guarantee */}
+        <Card className="bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 mb-12">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-3 mb-4">
+              <Scale className="h-6 w-6 text-green-600" />
+              <h3 className="text-xl font-semibold text-green-900">Same Quality, Different Pricing</h3>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
-              <span className="text-sm font-medium">Same live classes</span>
+            <div className="grid md:grid-cols-4 gap-4">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                <span className="text-sm font-medium">Same teachers</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                <span className="text-sm font-medium">Same live classes</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                <span className="text-sm font-medium">Same learning quality</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                <span className="text-sm font-medium">Only the pricing method differs</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
-              <span className="text-sm font-medium">Same learning quality</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
-              <span className="text-sm font-medium">Only the pricing method differs</span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
 
         <div className="mt-6 flex justify-center">

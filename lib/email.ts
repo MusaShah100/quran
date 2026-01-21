@@ -5,11 +5,11 @@ import nodemailer from 'nodemailer';
 const createTransporter = () => {
   // For development, you can use Gmail, SendGrid, Mailgun, or any SMTP service
   // For production, use a proper email service like SendGrid, AWS SES, etc.
-  
+
   const host = process.env.SMTP_HOST || 'smtp.gmail.com';
   const port = parseInt(process.env.SMTP_PORT || '587');
   const secure = process.env.SMTP_SECURE === 'true'; // true for 465, false for other ports
-  
+
   return nodemailer.createTransport({
     host,
     port,
@@ -44,6 +44,7 @@ export interface EnrollmentData {
   totalMonthlyUSD: number;
   totalInCurrency: number;
   bonusDuaIncluded: boolean;
+  isTrial?: boolean;
 }
 
 const courseNames: Record<string, string> = {
@@ -64,7 +65,7 @@ const getUserConfirmationEmail = (data: EnrollmentData): { subject: string; html
   const courseName = courseNames[data.courseId] || data.courseId;
   const planName = planNames[data.plan] || data.plan;
   const feeType = data.pricingType === 'fixed' ? 'Fixed Price' : 'Income-Based';
-  const monthlyFee = data.pricingType === 'fixed' 
+  const monthlyFee = data.pricingType === 'fixed'
     ? `${data.fixedFee} ${data.currency}`
     : `${data.monthlyIncome ? (data.monthlyIncome * 0.025).toFixed(2) : 0} ${data.currency}`;
   const charityAmount = data.charity ? `${data.charity} ${data.currency}` : 'None';
@@ -189,14 +190,15 @@ const getAdminNotificationEmail = (data: EnrollmentData): { subject: string; htm
   const courseName = courseNames[data.courseId] || data.courseId;
   const planName = planNames[data.plan] || data.plan;
   const feeType = data.pricingType === 'fixed' ? 'Fixed Price' : 'Income-Based';
-  const monthlyFee = data.pricingType === 'fixed' 
+  const monthlyFee = data.pricingType === 'fixed'
     ? `${data.fixedFee} ${data.currency}`
     : `${data.monthlyIncome ? (data.monthlyIncome * 0.025).toFixed(2) : 0} ${data.currency}`;
   const charityAmount = data.charity ? `${data.charity} ${data.currency}` : 'None';
   const totalAmount = `${data.totalInCurrency} ${data.currency}`;
+  const subjectPrefix = data.isTrial ? '[FREE TRIAL REQUEST] ' : '';
 
   return {
-    subject: `New Enrollment: ${data.personal.fullName} - ${courseName}`,
+    subject: `${subjectPrefix}New Enrollment: ${data.personal.fullName} - ${courseName}`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -207,10 +209,18 @@ const getAdminNotificationEmail = (data: EnrollmentData): { subject: string; htm
         </head>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
-            <h1 style="color: white; margin: 0;">New Enrollment Received</h1>
+            <h1 style="color: white; margin: 0;">${data.isTrial ? 'Free Trial Request' : 'New Enrollment Received'}</h1>
           </div>
           
           <div style="background: #f9fafb; padding: 30px; border-radius: 0 0 10px 10px; border: 1px solid #e5e7eb;">
+            ${data.isTrial ? `
+            <div style="background: #dbeafe; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #2563eb;">
+              <p style="margin: 0; color: #1e40af; font-weight: bold; font-size: 16px;">
+                🎯 This user has requested a Free Trial Class.
+              </p>
+            </div>
+            ` : ''}
+            
             <p style="font-size: 16px; margin-bottom: 20px;">
               A new enrollment has been submitted. Please review the details below:
             </p>
@@ -339,9 +349,9 @@ export async function sendEnrollmentEmails(data: EnrollmentData): Promise<{ succ
     return { success: true };
   } catch (error) {
     console.error('Error sending emails:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Unknown error occurred' 
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred'
     };
   }
 }

@@ -19,114 +19,99 @@ export const en = {
   // Homepage
   home: {
     hero: {
-      badge: "🎉 Free 3-Day Trial Available",
-      title: "Master the Qur'an with",
+      badge: "� Free Trial Class Available",
+      title: "Learn the Qur’an Correctly with",
       titleHighlight: "Expert Teachers",
-      description: "Join thousands learning Qur'an with certified teachers, interactive tools, and personalized guidance. Start your spiritual journey today.",
-      startTrial: "Start Free Trial",
+      description: "Structured Qur’an learning with certified teachers, personalized guidance, and a strong focus on correct Tajweed for children and adults. We offer affordable learning options, including income-based pricing, to ensure Qur’anic education remains accessible for everyone.",
+      startTrial: "Get Free Trial Class",
       viewCourses: "View Courses",
-      happyStudents: "Happy Students",
-      rating: "rating",
-      reviews: "reviews",
+      floatingCard: {
+        accessible: { title: "Accessible Pricing", subtitle: "Fixed & Income-Based Options" },
+        tajweed: { title: "Focus on Tajweed", subtitle: "Correct Pronunciation & Recitation" },
+        support: { title: "Guided Support", subtitle: "Personalized feedback in every class" }
+      }
     },
-    trust: {
-      activeStudents: "Active Students",
-      expertTeachers: "Expert Teachers",
-      studentRating: "Student Rating",
-      support: "Support",
+    values: {
+      title: "Founded on Teaching Experience",
+      description: "We prioritize correct recitation, patience, and support for all ages.",
+      items: {
+        experience: { title: "Founded on Teaching Experience", desc: "Teachers with real online classroom exposure and years of prior teaching." },
+        recitation: { title: "Focused on Correct Recitation", desc: "Tajweed taught with care, precision, and proper pronunciation." },
+        allAges: { title: "Learning for All Ages", desc: "Children, beginners, and adults are all welcome." },
+        studentFirst: { title: "Student-First Approach", desc: "Personal guidance, patience, and continuous support in every class." }
+      }
     },
     howItWorks: {
       badge: "How It Works",
       title: "Start Learning in 3 Simple Steps",
       description: "Begin your Qur'an learning journey with our proven methodology",
-      step1: {
-        title: "Choose Your Course",
-        description: "Select from Tajweed, Hifz, or Tafseer courses tailored to your age and level",
-      },
-      step2: {
-        title: "Meet Your Teacher",
-        description: "Get matched with certified teachers and start your free 3-day trial",
-      },
-      step3: {
-        title: "Master & Excel",
-        description: "Practice with interactive tools and track your progress to mastery",
-      },
-      cta: "Start Your Free Trial Today",
+      steps: {
+        step1: { title: "Book a Free Trial", desc: "Fill out a simple form to schedule your first class." },
+        step2: { title: "Take the Trial Class", desc: "Meet your teacher and experience our teaching style." },
+        step3: { title: "Enroll & Learn", desc: "Choose a plan that suits you and start your journey." }
+      }
     },
     features: {
-      badge: "Features",
-      title: "Everything You Need to Excel",
-      description: "Comprehensive tools and features designed for effective Qur'an learning",
-      interactiveReader: {
-        title: "Interactive Qur'an Reader",
-        description: "Three reading modes: Tajweed colors, Urdu translation, and English translation with authentic sources",
-      },
-      certifiedTeachers: {
-        title: "Certified Teachers",
-        description: "Learn from qualified instructors with years of experience and proven teaching methods",
-      },
-      flexibleScheduling: {
-        title: "Flexible Scheduling",
-        description: "Individual or group classes with timing that fits your schedule across all time zones",
-      },
-      audioIntegration: {
-        title: "Audio Integration",
-        description: "High-quality recitation with verse-by-verse playback from renowned Qaris",
-      },
-      progressTracking: {
-        title: "Progress Tracking",
-        description: "Monitor your learning journey with detailed progress reports and achievements",
-      },
-      communitySupport: {
-        title: "Community Support",
-        description: "Join a supportive learning community with 24/7 assistance and peer interaction",
-      },
+      title: "Everything You Need to Learn Effectively",
+      description: "Guidance and support designed for meaningful Qur’an learning.",
+      items: {
+        liveRecitation: { title: "Live Teacher Recitation", desc: "Correct your pronunciation through direct recitation and feedback during live classes." },
+        certifiedTeachers: { title: "Certified Teachers", desc: "Learn from qualified Qur’an teachers with real online teaching experience and a focus on correct Tajweed." },
+        flexibleScheduling: { title: "Flexible Scheduling", desc: "Class timings are arranged according to student availability across different time zones." },
+        guidedProgress: { title: "Guided Progress", desc: "Improve steadily through teacher feedback and structured lessons." },
+        supportiveEnvironment: { title: "Supportive Learning Environment", desc: "Receive continuous assistance and guidance from our team throughout your learning journey." }
+      }
     },
-    courses: {
-      badge: "Our Courses",
+    popularCourses: {
+      badge: "Popular Courses",
       title: "Choose Your Learning Path",
-      description: "Structured courses designed for different age groups and learning objectives",
-      tajweed: {
-        title: "Tajweed Courses",
-        description: "Perfect pronunciation and recitation rules for all age groups",
-        ages: "Ages 4-7, 8-18, 19-25, 25+",
-        price: "From $8/session",
-      },
-      hifz: {
-        title: "Hifz Program",
-        description: "Complete Qur'an memorization with proven techniques",
-        ages: "Individual classes",
-        price: "From $20/session",
-      },
-      tafseer: {
-        title: "Tafseer Classes",
-        description: "Deep understanding of Qur'anic meanings and context",
-        ages: "Individual & Group",
-        price: "From $14/session",
-      },
-      startTrial: "Start Free Trial",
+      description: "Structured courses designed for different age groups, levels, and learning needs.",
+      viewDetails: "See Details"
+    },
+    institute: {
+      badge: "New Institute, Experienced Teachers",
+      title: "Our Institute Is New — Our Teachers Are Experienced",
+      description: "Our online Qur’an learning institute is newly established, but our teachers bring years of real online teaching experience. Before coming together as one institute, our instructors were already teaching Qur’an, Tajweed, and basic recitation to students across the world. By uniting as an institute, we now offer a more structured, supportive, and accessible Qur’an learning experience for children, adults, and families.",
+      stats: {
+        experience: { title: "Years of Teaching Experience", desc: "Teachers with real online Qur’an and Tajweed teaching background." },
+        regions: { title: "Students From Different Regions", desc: "Previously teaching learners across the world before joining this institute." },
+        structured: { title: "Structured, Supportive Learning", desc: "A focused environment with guided lessons for children, adults, and families." }
+      }
     },
     testimonials: {
-      badge: "Testimonials",
-      title: "Success Stories from Our Students",
-      description: "Hear from students who transformed their Qur'an learning journey with us",
+      title: "What Our Early Learners Say",
+      description: "We are grateful to begin our journey with a small group of dedicated learners. Feedback shared by early learners during our initial phase.",
+      items: {
+        parentChild: { name: "Parent of a Child Student", quote: "“The teacher is professional and explains Tajweed gently. My child enjoys the classes and is improving day by day, Alhamdulillah.”" },
+        adultBeginner: { name: "Adult Beginner", quote: "“I was nervous to start Qur’an learning, but the teacher made it comfortable and structured. I feel encouraged to continue.”" },
+        parent: { name: "Parent", quote: "“We appreciate the respectful teaching style. The institute feels sincere and focused on learning.”" }
+      },
+      footer: "You may also visit our social media pages to view additional testimonials."
     },
-    cta: {
-      badge: "🎉 Limited Time Offer",
-      title: "Start Your Free 3-Day Trial Today",
-      description: "Experience the difference with certified teachers, interactive tools, and personalized learning. No payment required for your trial period.",
+    faq: {
+      badge: "Get Answers",
+      title: "Frequently Asked Questions",
+      description: "Find answers to common questions about our courses, pricing, and learning process.",
+      items: {
+        trial: { q: "How does the free trial class work?", a: "After you register, our team contacts you to schedule a free trial class with a suitable teacher. No payment is required for the trial." },
+        pricing: { q: "What pricing options do you offer?", a: "We offer Fixed Pricing plans as well as Income-Based Pricing, where fees are calculated as a percentage of monthly family income." },
+        incomeBased: { q: "What is Income-Based Pricing?", a: "It allows families to pay according to what they earn. Lower income means lower fees, ensuring equal access to Qur’anic education." },
+        liveRecorded: { q: "Are classes live or recorded?", a: "All classes are live with teachers. Students learn through direct recitation, listening, and feedback." },
+        whoCanJoin: { q: "Who can join these courses?", a: "Children, beginners, adults, and families are all welcome. Courses are adjusted according to age and learning level." },
+        priorKnowledge: { q: "Do I need prior knowledge to start?", a: "No. Beginners are fully supported, starting from Arabic letters and basic pronunciation." }
+      }
+    },
+    finalCta: {
+      title: "Start Your Free Trial Class Today",
+      description: "Experience Qur’an learning with experienced teachers, structured lessons, and personalized guidance.",
+      features: {
+        noCreditCard: "No Credit Card Required",
+        cancelAnytime: "Cancel Anytime",
+        guidedSupport: "Guided Support Throughout"
+      },
       startTrial: "Start Free Trial Now",
-      talkToTeacher: "Talk to a Teacher",
-      noCreditCard: "No Credit Card Required",
-      cancelAnytime: "Cancel Anytime",
-      support247: "24/7 Support",
-    },
-    contactCta: {
-      title: "Have Questions? We're Here to Help!",
-      description: "Get instant answers from our support team via WhatsApp or schedule a call with our education consultants.",
-      whatsapp: "WhatsApp",
-      contactUs: "Contact Us",
-    },
+      talkToTeam: "Talk to Our Team"
+    }
   },
   // Footer
   footer: {
@@ -277,9 +262,21 @@ export const en = {
   // Pricing Page
   pricing: {
     title: "Pricing Plans",
-    description: "Choose the pricing model that works best for you. We offer both fixed pricing and income-based options to make Qur'an education accessible to everyone.",
+    headerTitle: "Affordable & Flexible Qur'an Learning for Every Family",
+    headerDescription: "We believe Qur'anic education should be accessible, fair, and stress-free. That's why we offer two flexible pricing options so families can choose what suits them best — without compromising on teaching quality.",
+    sameQuality: {
+      title: "Same Quality, Different Pricing",
+      teachers: "Same teachers",
+      liveClasses: "Same live classes",
+      quality: "Same learning quality",
+      method: "Only the pricing method differs"
+    },
+    tabs: {
+      fixed: "Option 1: Fixed Pricing",
+      income: "Option 2: Income-Based"
+    },
     fixedPricing: {
-      title: "Fixed Pricing",
+      title: "OPTION 1: FIXED PRICING",
       subtitle: "Choose Your Plan",
       description: "Select a plan that fits your learning schedule. All plans include access to our interactive tools and certified teachers.",
       note: {
@@ -288,7 +285,7 @@ export const en = {
       },
     },
     incomeBased: {
-      title: "Income-Based",
+      title: "OPTION 2: INCOME-BASED",
       subtitle: "Pay What You Can Afford",
       description: "Our income-based pricing ensures that Qur'an education is accessible to everyone, regardless of financial circumstances. You pay 2.5% of your monthly family income.",
       note: {
@@ -310,5 +307,61 @@ export const en = {
     loading: "Loading…",
     toggleMenu: "Toggle menu",
   },
+  coursesPage: {
+    title: "Our Courses",
+    subtitle: "Structured Islamic education programs with individual and group options. All courses include a free 3-day trial period.",
+    freeTrial: {
+      title: "Free 3-Day Trial for All Courses!",
+      description: "Experience our teaching methodology with no payment required"
+    },
+    quranCoursesTitle: "Qur'an Courses",
+    enrollButton: "Enroll / Free Trial",
+    features: {
+      title: "Key Features of Our Qur'an Courses",
+      expertTutors: { title: "Expert Tutors", desc: "Qualified, experienced instructors" },
+      flexibleLearning: { title: "Flexible Learning", desc: "Urdu and English modes" },
+      interactive: { title: "Interactive & Engaging", desc: "Motivating, student-centered methods" },
+      curriculum: { title: "Comprehensive Curriculum", desc: "Reading, Tajweed, Hifz, Duas" },
+      progress: { title: "Progress Tracking", desc: "Assessments and feedback" }
+    },
+    cta: {
+      title: "Ready to Begin Your Islamic Learning Journey?",
+      description: "Join thousands of students learning with our certified instructors. Start with our free 3-day trial - no payment required!",
+      startTrial: "Start Free Trial",
+      askQuestions: "Ask Questions"
+    }
+  },
+  coursesList: {
+    "quran-reading": {
+      title: "Qur'an Reading (Beginner)",
+      summary: "Foundation, pronunciation, basic Tajweed, guided 15 Paras",
+      badge: "All Ages",
+      topics: ["Arabic alphabet & pronunciation", "Basic Tajweed rules", "Read quran with guidance"]
+    },
+    "tajweed": {
+      title: "Tajweed (Correct Recitation)",
+      summary: "Master rules, clarity and fluency",
+      badge: "All Ages",
+      topics: ["Detailed Tajweed rules", "Correct Arabic pronunciation", "Fluency and clarity"]
+    },
+    "kids": {
+      title: "Children's Qur'an Learning",
+      summary: "Interactive basics and introductory Tajweed",
+      badge: "Children Only",
+      topics: ["Basic Islamic concepts", "Fun, engaging activities", "Intro to Tajweed & recitation"]
+    },
+    "hifz": {
+      title: "Qur'an Memorization (Hifz)",
+      summary: "Structured memorization with reviews",
+      badge: "All Ages",
+      topics: ["Memorization techniques", "Personalized Hifz plan", "Regular reviews & retention"]
+    },
+    "duas": {
+      title: "Islamic Duas & Supplications",
+      summary: "Learn daily duas with meanings, significance, and etiquette",
+      badge: "All Ages",
+      topics: ["Daily duas & occasions", "Meanings & significance", "Pronunciation & etiquette"]
+    }
+  }
 };
 

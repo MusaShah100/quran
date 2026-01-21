@@ -23,11 +23,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Gift, Calculator, Info, CheckCircle2, Home, Loader2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { useRouter } from 'next/navigation';
-import { 
-  PLANS, 
-  COURSES, 
-  AGE_RANGES, 
-  ENROLLMENT_LANGUAGES, 
+import {
+  PLANS,
+  COURSES,
+  AGE_RANGES,
+  ENROLLMENT_LANGUAGES,
   INCOME_BASED_PERCENTAGE,
   BASE_CURRENCY,
   calculateIncomeBasedFee,
@@ -72,6 +72,8 @@ const plans: PlanOption[] = PLANS.map(plan => ({
 function Wizard() {
   const { state, setStep, setPersonal, setCourse, setPlan, setPricingType, setFixedFee, setMonthlyIncome, setCharity, setCurrency, reset } = useEnrollment();
   const router = useRouter();
+  const params = useSearchParams();
+  const isTrial = params.get('type') === 'trial';
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showLoadingModal, setShowLoadingModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -199,10 +201,10 @@ function Wizard() {
 
   // Convert total to selected currency (placeholder conversion)
   const totalInCurrency = useMemo(() => convert(totalMonthlyUSD, BASE_CURRENCY, state.currency as CurrencyCode), [totalMonthlyUSD, state.currency]);
-  
+
   // Memoize selected course to avoid repeated .find() calls
   const selectedCourse = useMemo(() => state.selectedCourseId ? courseOptions.find(c => c.id === state.selectedCourseId) : null, [state.selectedCourseId]);
-  
+
   // Memoize currency conversions for plan ranges
   const planMinFee = useMemo(() => selectedPlan ? convert(selectedPlan.fixedRange[0], BASE_CURRENCY, state.currency as CurrencyCode) : 0, [selectedPlan, state.currency]);
   const planMaxFee = useMemo(() => selectedPlan ? convert(selectedPlan.fixedRange[1], BASE_CURRENCY, state.currency as CurrencyCode) : 0, [selectedPlan, state.currency]);
@@ -210,7 +212,7 @@ function Wizard() {
     const fee = state.fixedFee ?? (selectedPlan ? selectedPlan.fixedRange[0] : 0);
     return convert(fee, BASE_CURRENCY, state.currency as CurrencyCode);
   }, [state.fixedFee, selectedPlan, state.currency]);
-  
+
   // Memoize calculated income fee
   const calculatedIncomeFee = useMemo(() => {
     if (!state.monthlyIncome || !selectedPlan) return 0;
@@ -226,7 +228,7 @@ function Wizard() {
     <div className="container max-w-7xl py-6">
       <Card className="w-full max-w-6xl mx-auto shadow-lg">
         <CardHeader>
-          <CardTitle className="text-2xl">Course Enrollment</CardTitle>
+          <CardTitle className="text-2xl">{isTrial ? 'Free Trial Class Registration' : 'Course Enrollment'}</CardTitle>
         </CardHeader>
         <CardContent>
           <StepperHeader step={state.step} />
@@ -539,11 +541,11 @@ function Wizard() {
               />
               <div className="flex justify-between">
                 <Button variant="outline" onClick={() => setStep(3)}>Back</Button>
-                <Button 
+                <Button
                   onClick={async () => {
                     setIsSubmitting(true);
                     setShowLoadingModal(true);
-                    
+
                     const payload = {
                       personal: state.personal,
                       courseId: state.selectedCourseId,
@@ -556,6 +558,7 @@ function Wizard() {
                       totalMonthlyUSD,
                       totalInCurrency,
                       bonusDuaIncluded: state.bonusDuaIncluded,
+                      isTrial: isTrial,
                     };
                     try {
                       const res = await fetch('/api/enroll', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
@@ -600,9 +603,9 @@ function Wizard() {
       </Card>
 
       {/* Loading/Submitting Modal */}
-      <Dialog open={showLoadingModal} onOpenChange={() => {}}>
-        <DialogContent 
-          className="sm:max-w-[450px]" 
+      <Dialog open={showLoadingModal} onOpenChange={() => { }}>
+        <DialogContent
+          className="sm:max-w-[450px]"
           onInteractOutside={(e) => e.preventDefault()}
           onEscapeKeyDown={(e) => e.preventDefault()}
         >

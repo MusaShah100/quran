@@ -114,7 +114,7 @@ export function Navigation() {
 
         <div className="hidden md:flex items-center gap-3">
           <Button asChild variant="outline" size="sm">
-            <Link href="/enroll">{t.nav.getFreeTrial}</Link>
+            <Link href="/enroll?type=trial">{t.nav.getFreeTrial}</Link>
           </Button>
           <Button asChild size="sm">
             <Link href="/enroll">{t.nav.getRegistered}</Link>
@@ -166,7 +166,7 @@ export function Navigation() {
                   {/* CTA Buttons for Mobile */}
                   <div className="flex flex-col gap-2 pt-2 border-t mt-2">
                     <Button asChild variant="outline" className="w-full">
-                      <Link href="/enroll" onClick={() => setIsOpen(false)}>
+                      <Link href="/enroll?type=trial" onClick={() => setIsOpen(false)}>
                         {t.nav.getFreeTrial}
                       </Link>
                     </Button>
