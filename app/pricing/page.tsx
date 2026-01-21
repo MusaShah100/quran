@@ -275,9 +275,7 @@ export default function PricingPage() {
                   </Card>
                 ))}
               </div>
-
-
-
+              {/* Nothing */}
               <div className="grid md:grid-cols-2 gap-6">
                 <Card className="bg-emerald-50/50 border-emerald-100">
                   <CardContent className="pt-6">
