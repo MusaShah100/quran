@@ -62,11 +62,11 @@ export default function PricingPage() {
           Affordable & Flexible <br className="hidden md:block" />
           <span className="text-primary relative inline-block">
             Qur'an Learning
-            <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+            <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10 pr-3" viewBox="0 0 100 10" preserveAspectRatio="none">
               <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
             </svg>
           </span> 
-          for Every Family
+            for Every Family
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
@@ -130,7 +130,7 @@ export default function PricingPage() {
       {/* Pricing Tabs */}
       <Tabs value={pricingMode} onValueChange={setPricingMode} className="mb-12">
         <div className="flex flex-col items-center justify-center relative mb-8 gap-4">
-          <div className="flex items-center gap-2 bg-white p-1.5 pl-3 rounded-lg border shadow-sm md:absolute md:right-0 z-10">
+          <div className="flex items-center gap-2 bg-card p-1.5 pl-3 rounded-lg border shadow-sm md:absolute md:right-0 z-10">
             <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">Currency:</span>
             <div className="w-[100px]">
               <CurrencySelector value={currency} onChange={setCurrency} />
@@ -338,126 +338,111 @@ export default function PricingPage() {
         </div>
       </Tabs>
 
-      {/* FAQ & Quality Assurance Section */}
-      <div className="max-w-5xl mx-auto mb-16">
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          
-          {/* Quality Assurance (Left Side) */}
-          <div className="bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl p-6 border border-blue-100 dark:border-blue-900/20 h-full">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="bg-blue-100 dark:bg-blue-900/40 p-2.5 rounded-full">
-                <Scale className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-              </div>
-              <div>
-                <h3 className="font-bold text-lg text-blue-900 dark:text-blue-100 leading-tight">Same Quality Guarantee</h3>
-                <p className="text-xs text-blue-600/80 dark:text-blue-300">Regardless of the price plan</p>
-              </div>
-            </div>
-            
-            <ul className="space-y-4 mb-6">
-              {[
-                { icon: GraduationCap, text: "Same experienced teachers" },
-                { icon: Video, text: "Same live classes" },
-                { icon: BookOpen, text: "Same focus on correct Tajweed" },
-                { icon: Headphones, text: "Same student support" }
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 bg-white dark:bg-background/50 p-2.5 rounded-xl border border-blue-50 dark:border-blue-900/10 shadow-sm">
-                  <div className="bg-blue-50 dark:bg-blue-900/20 p-1.5 rounded-full shrink-0">
-                    <item.icon className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground">{item.text}</span>
-                </li>
-              ))}
-            </ul>
-            
-            <div className="mt-auto pt-4 border-t border-blue-100 dark:border-blue-900/20">
-               <p className="text-xs font-medium text-blue-700 dark:text-blue-300 text-center flex items-center justify-center gap-2">
-                <Info className="h-3 w-3" />
-                Only the fee calculation changes — not the learning.
-               </p>
-            </div>
+      {/* Quality Assurance Section */}
+      <div className="max-w-6xl mx-auto mb-24">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-full mb-6">
+            <Scale className="h-8 w-8 text-blue-600 dark:text-blue-400" />
           </div>
-
-          {/* FAQ (Right Side) */}
-          <div className="bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl p-6 border border-blue-100 dark:border-blue-900/20 h-full">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="bg-blue-100 dark:bg-blue-900/40 p-2.5 rounded-full">
-                <HelpCircle className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-              </div>
-              <div>
-                <h3 className="font-bold text-lg text-blue-900 dark:text-blue-100 leading-tight">Quick Questions</h3>
-                <p className="text-xs text-blue-600/80 dark:text-blue-300">Common concerns clarified</p>
-              </div>
-            </div>
-            
-            <Accordion type="single" collapsible className="w-full space-y-3">
-              <AccordionItem value="compulsory" className="border-none">
-                <div className="bg-white dark:bg-background/50 border border-blue-50 dark:border-blue-900/10 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200">
-                  <AccordionTrigger className="px-5 py-3.5 hover:no-underline hover:bg-muted/30 transition-colors">
-                    <span className="text-sm font-semibold">Is Income-Based Pricing compulsory?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-5 pb-4 pt-0 text-muted-foreground text-sm leading-relaxed">
-                    No. You may choose Fixed Pricing if you prefer.
-                  </AccordionContent>
-                </div>
-              </AccordionItem>
-              
-              <AccordionItem value="proof" className="border-none">
-                 <div className="bg-white dark:bg-background/50 border border-blue-50 dark:border-blue-900/10 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200">
-                  <AccordionTrigger className="px-5 py-3.5 hover:no-underline hover:bg-muted/30 transition-colors">
-                    <span className="text-sm font-semibold">Do I need to show income proof?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-5 pb-4 pt-0 text-muted-foreground text-sm leading-relaxed">
-                    No. We rely on honesty and transparency.
-                  </AccordionContent>
-                 </div>
-              </AccordionItem>
-              
-              <AccordionItem value="change" className="border-none">
-                 <div className="bg-white dark:bg-background/50 border border-blue-50 dark:border-blue-900/10 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200">
-                  <AccordionTrigger className="px-5 py-3.5 hover:no-underline hover:bg-muted/30 transition-colors">
-                    <span className="text-sm font-semibold">Can I change my plan later?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-5 pb-4 pt-0 text-muted-foreground text-sm leading-relaxed">
-                    Yes. Simply contact our team.
-                  </AccordionContent>
-                 </div>
-              </AccordionItem>
-
-              <AccordionItem value="contract" className="border-none">
-                 <div className="bg-white dark:bg-background/50 border border-blue-50 dark:border-blue-900/10 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200">
-                  <AccordionTrigger className="px-5 py-3.5 hover:no-underline hover:bg-muted/30 transition-colors">
-                    <span className="text-sm font-semibold">Is there a long-term contract?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-5 pb-4 pt-0 text-muted-foreground text-sm leading-relaxed">
-                    No. All plans are month-to-month. You can cancel anytime.
-                  </AccordionContent>
-                 </div>
-              </AccordionItem>
-
-              <AccordionItem value="siblings" className="border-none">
-                 <div className="bg-white dark:bg-background/50 border border-blue-50 dark:border-blue-900/10 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200">
-                  <AccordionTrigger className="px-5 py-3.5 hover:no-underline hover:bg-muted/30 transition-colors">
-                    <span className="text-sm font-semibold">Can I enroll multiple children?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-5 pb-4 pt-0 text-muted-foreground text-sm leading-relaxed">
-                    Yes! You can easily manage multiple students under one parent account.
-                  </AccordionContent>
-                 </div>
-              </AccordionItem>
-            </Accordion>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Same Quality Guarantee</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Regardless of the price plan, every student receives the same high standard of education.
+          </p>
         </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { icon: GraduationCap, title: "Expert Teachers", text: "Same experienced & qualified teachers for all students" },
+            { icon: Video, title: "Live Classes", text: "Same interactive one-on-one sessions via video call" },
+            { icon: BookOpen, title: "Tajweed Focus", text: "Same rigorous focus on correct pronunciation & rules" },
+            { icon: Headphones, title: "Student Support", text: "Same dedicated 24/7 support for parents & students" }
+          ].map((item, i) => (
+            <div key={i} className="flex flex-col items-center text-center p-6 rounded-2xl bg-white dark:bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-2xl mb-5 text-blue-600 dark:text-blue-400">
+                <item.icon className="h-8 w-8" />
+              </div>
+              <h3 className="font-bold text-lg mb-3">{item.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-10 text-center">
+           <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/10 px-5 py-2.5 rounded-full border border-blue-100 dark:border-blue-900/20">
+            <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+            <span className="text-sm font-medium text-blue-800 dark:text-blue-200">Only the fee calculation changes — not the learning experience.</span>
+           </div>
+        </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="bg-slate-50 dark:bg-slate-900/50 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto mb-24 border border-slate-100 dark:border-slate-800">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center p-3 bg-white dark:bg-slate-800 rounded-full mb-6 shadow-sm border border-slate-100 dark:border-slate-700">
+            <HelpCircle className="h-8 w-8 text-slate-600 dark:text-slate-400" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Quick Questions</h2>
+          <p className="text-lg text-muted-foreground">
+            Everything you need to know about our pricing and policies
+          </p>
+        </div>
+
+        <Accordion type="single" collapsible className="w-full space-y-4">
+          <AccordionItem value="compulsory" className="bg-white dark:bg-card border border-border/50 rounded-xl px-2 shadow-sm transition-all duration-200 hover:shadow-md data-[state=open]:ring-2 data-[state=open]:ring-primary/20">
+            <AccordionTrigger className="px-4 py-5 hover:no-underline">
+              <span className="text-base font-semibold text-left text-foreground/90">Is Income-Based Pricing compulsory?</span>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-5 pt-0 text-muted-foreground text-base leading-relaxed">
+              No. You may choose Fixed Pricing if you prefer. We offer both options to ensure every family can find a plan that works for them.
+            </AccordionContent>
+          </AccordionItem>
+          
+          <AccordionItem value="proof" className="bg-white dark:bg-card border border-border/50 rounded-xl px-2 shadow-sm transition-all duration-200 hover:shadow-md data-[state=open]:ring-2 data-[state=open]:ring-primary/20">
+            <AccordionTrigger className="px-4 py-5 hover:no-underline">
+              <span className="text-base font-semibold text-left text-foreground/90">Do I need to show income proof?</span>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-5 pt-0 text-muted-foreground text-base leading-relaxed">
+              No. We rely on honesty and transparency (Amanah). We trust our community to choose the plan that truthfully reflects their financial situation.
+            </AccordionContent>
+          </AccordionItem>
+          
+          <AccordionItem value="change" className="bg-white dark:bg-card border border-border/50 rounded-xl px-2 shadow-sm transition-all duration-200 hover:shadow-md data-[state=open]:ring-2 data-[state=open]:ring-primary/20">
+            <AccordionTrigger className="px-4 py-5 hover:no-underline">
+              <span className="text-base font-semibold text-left text-foreground/90">Can I change my plan later?</span>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-5 pt-0 text-muted-foreground text-base leading-relaxed">
+              Yes. Simply contact our support team, and we will adjust your plan for the upcoming month. There are no penalties for switching plans.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="contract" className="bg-white dark:bg-card border border-border/50 rounded-xl px-2 shadow-sm transition-all duration-200 hover:shadow-md data-[state=open]:ring-2 data-[state=open]:ring-primary/20">
+            <AccordionTrigger className="px-4 py-5 hover:no-underline">
+              <span className="text-base font-semibold text-left text-foreground/90">Is there a long-term contract?</span>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-5 pt-0 text-muted-foreground text-base leading-relaxed">
+              No. All plans are month-to-month. You can cancel anytime without any cancellation fees.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="siblings" className="bg-white dark:bg-card border border-border/50 rounded-xl px-2 shadow-sm transition-all duration-200 hover:shadow-md data-[state=open]:ring-2 data-[state=open]:ring-primary/20">
+            <AccordionTrigger className="px-4 py-5 hover:no-underline">
+              <span className="text-base font-semibold text-left text-foreground/90">Can I enroll multiple children?</span>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-5 pt-0 text-muted-foreground text-base leading-relaxed">
+              Yes! You can easily manage multiple students under one parent account. Each child can even be on a different schedule or plan if needed.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
 
       {/* Free Trial & Promise Grid */}
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 mb-12">
         {/* Start with Free Trial */}
-        <div className="bg-gradient-to-br from-primary/5 to-blue-50/50 rounded-2xl border border-primary/10 overflow-hidden relative">
+        <div className="bg-gradient-to-br from-primary/5 to-blue-50/50 dark:to-primary/10 rounded-2xl border border-primary/10 overflow-hidden relative">
           <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-10 -mt-10"></div>
           
           <div className="p-8 h-full flex flex-col items-center text-center">
-            <div className="bg-white p-3 rounded-full shadow-sm mb-6 relative z-10">
+            <div className="bg-white dark:bg-card p-3 rounded-full shadow-sm mb-6 relative z-10">
               <Rocket className="h-8 w-8 text-primary" />
             </div>
             
@@ -468,20 +453,20 @@ export default function PricingPage() {
             
             <div className="space-y-3 mb-8 w-full max-w-xs text-left">
               <div className="flex items-center gap-3">
-                <div className="bg-green-100 p-1 rounded-full">
-                  <Check className="h-3 w-3 text-green-700" />
+                <div className="bg-green-100 dark:bg-green-900/30 p-1 rounded-full">
+                  <Check className="h-3 w-3 text-green-700 dark:text-green-400" />
                 </div>
                 <span className="text-sm font-medium">No payment required</span>
               </div>
               <div className="flex items-center gap-3">
-                 <div className="bg-green-100 p-1 rounded-full">
-                  <Check className="h-3 w-3 text-green-700" />
+                 <div className="bg-green-100 dark:bg-green-900/30 p-1 rounded-full">
+                  <Check className="h-3 w-3 text-green-700 dark:text-green-400" />
                 </div>
                 <span className="text-sm font-medium">Meet your teacher</span>
               </div>
               <div className="flex items-center gap-3">
-                 <div className="bg-green-100 p-1 rounded-full">
-                  <Check className="h-3 w-3 text-green-700" />
+                 <div className="bg-green-100 dark:bg-green-900/30 p-1 rounded-full">
+                  <Check className="h-3 w-3 text-green-700 dark:text-green-400" />
                 </div>
                 <span className="text-sm font-medium">Experience the method</span>
               </div>
@@ -494,7 +479,7 @@ export default function PricingPage() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="w-full bg-white/50" size="lg">
+              <Button asChild variant="outline" className="w-full bg-white/50 dark:bg-card/50" size="lg">
                 <Link href="/enroll">
                   Get Registered
                 </Link>
@@ -504,19 +489,19 @@ export default function PricingPage() {
         </div>
 
         {/* Our Promise */}
-        <div className="bg-gradient-to-br from-emerald-50 to-green-50/30 rounded-2xl border border-emerald-100 overflow-hidden relative">
+        <div className="bg-gradient-to-br from-emerald-50 to-green-50/30 dark:from-emerald-950/20 dark:to-green-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/30 overflow-hidden relative">
           <div className="absolute top-0 left-0 w-full h-1 bg-emerald-500/20"></div>
           
           <div className="p-8 h-full flex flex-col items-center text-center justify-center">
-             <div className="bg-white p-3 rounded-full shadow-sm mb-6 border border-emerald-50">
-              <HeartHandshake className="h-8 w-8 text-emerald-600" />
+             <div className="bg-white dark:bg-card p-3 rounded-full shadow-sm mb-6 border border-emerald-50 dark:border-emerald-900/30">
+              <HeartHandshake className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
             </div>
             
-            <h2 className="text-2xl font-bold text-emerald-900 mb-4">Our Promise</h2>
+            <h2 className="text-2xl font-bold text-emerald-900 dark:text-emerald-100 mb-4">Our Promise</h2>
             
-            <div className="bg-white/60 p-6 rounded-xl border border-emerald-100/50 shadow-sm">
+            <div className="bg-white/60 dark:bg-card/60 p-6 rounded-xl border border-emerald-100/50 dark:border-emerald-900/30 shadow-sm">
               <p className="text-muted-foreground text-lg leading-relaxed font-medium">
-                "Our pricing model is built on <span className="text-emerald-700">fairness</span>, <span className="text-emerald-700">transparency</span>, and <span className="text-emerald-700">care</span> — so every student can learn the Qur'an with confidence and dignity."
+                "Our pricing model is built on <span className="text-emerald-700 dark:text-emerald-400">fairness</span>, <span className="text-emerald-700 dark:text-emerald-400">transparency</span>, and <span className="text-emerald-700 dark:text-emerald-400">care</span> — so every student can learn the Qur'an with confidence and dignity."
               </p>
             </div>
           </div>

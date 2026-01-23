@@ -231,7 +231,7 @@ export default function GamesPage() {
           </p>
           <div className="flex gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link href="/courses">
+              <Link href="/enroll?type=trial">
                 Start Free Trial
               </Link>
             </Button>

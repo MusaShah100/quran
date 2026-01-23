@@ -152,13 +152,17 @@ export default function CoursesPage() {
             {t.coursesPage.cta.description}
           </p>
           <div className="flex gap-4 justify-center">
-            <Button size="lg">
-              <Gift className="w-4 h-4 mr-2" />
-              {t.coursesPage.cta.startTrial}
+            <Button size="lg" asChild>
+              <Link href="/enroll?type=trial">
+                <Gift className="w-4 h-4 mr-2" />
+                {t.coursesPage.cta.startTrial}
+              </Link>
             </Button>
-            <Button variant="outline" size="lg">
-              <MessageCircle className="w-4 h-4 mr-2" />
-              {t.coursesPage.cta.askQuestions}
+            <Button variant="outline" size="lg" asChild>
+              <Link href="/contact">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                {t.coursesPage.cta.askQuestions}
+              </Link>
             </Button>
           </div>
         </CardContent>

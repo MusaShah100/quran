@@ -96,7 +96,7 @@ export const COURSES: CourseConfig[] = [
     summary: 'Foundation, pronunciation, basic Tajweed, guided 15 Paras',
     languages: ['Urdu', 'English'],
     badge: 'All Ages',
-    topics: ['Arabic alphabet & pronunciation', 'Basic Tajweed rules', 'Read quran with guidance'],
+    topics: ['Arabic alphabet & pronunciation', 'Basic Tajweed rules', 'Read Quran with guidance'],
     icon: BookOpen,
   },
   {

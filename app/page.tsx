@@ -128,7 +128,7 @@ export default function HomePage() {
             <Sparkles className="absolute -top-6 right-10 h-6 w-6 text-primary/60 animate-bounce pointer-events-none" />
             <Star className="absolute bottom-6 -left-6 h-6 w-6 text-secondary/60 animate-pulse pointer-events-none" />
             <Globe className="absolute top-24 -right-10 h-6 w-6 text-accent/60 animate-spin pointer-events-none" />
-            <div className="bg-white/80 backdrop-blur rounded-2xl shadow-2xl p-6 border flex flex-col gap-5 transition-transform duration-300 ease-out md:-translate-y-1 hover:-translate-y-2">
+            <div className="bg-card/80 backdrop-blur rounded-2xl shadow-2xl p-6 border flex flex-col gap-5 transition-transform duration-300 ease-out md:-translate-y-1 hover:-translate-y-2">
               {[
                 { icon: Heart, title: t.home.hero.floatingCard.accessible.title, subtitle: t.home.hero.floatingCard.accessible.subtitle },
                 { icon: Shield, title: t.home.hero.floatingCard.tajweed.title, subtitle: t.home.hero.floatingCard.tajweed.subtitle },
@@ -224,7 +224,7 @@ export default function HomePage() {
               ].map((item) => (
                 <Card
                   key={item.step}
-                  className="h-full relative overflow-hidden rounded-2xl border-2 border-primary/10 bg-white/90 backdrop-blur shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                  className="h-full relative overflow-hidden rounded-2xl border-2 border-primary/10 bg-card/90 backdrop-blur shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-primary/30 via-secondary/30 to-primary/30" />
                   <CardHeader className="pt-6">
@@ -330,7 +330,7 @@ export default function HomePage() {
               {COURSES.map((item) => (
               <div key={item.id} className="min-w-[280px] md:min-w-[320px] lg:min-w-[350px] snap-center">
                 <Card
-                  className="h-full flex flex-col border-primary/10 bg-white/80 backdrop-blur-sm shadow-lg shadow-primary/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
+                  className="h-full flex flex-col border-primary/10 bg-card/80 backdrop-blur-sm shadow-lg shadow-primary/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
                 >
                   <CardHeader className="pb-0">
                     <div className="flex items-center gap-3">
@@ -396,7 +396,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="space-y-4">
-              <div className="rounded-2xl bg-white/90 backdrop-blur shadow-xl border border-primary/10 p-6 flex flex-col gap-5">
+              <div className="rounded-2xl bg-card/90 backdrop-blur shadow-xl border border-primary/10 p-6 flex flex-col gap-5">
                 <div className="flex items-center gap-3">
                   <div className="p-3 rounded-xl bg-primary/10">
                     <GraduationCap className="h-5 w-5 text-primary" />
@@ -473,7 +473,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-12 md:py-20 bg-gradient-to-b from-white to-muted/30">
+      <section id="faq" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="container px-4 md:px-6 space-y-10 max-w-5xl mx-auto">
           <div className="space-y-4 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
@@ -527,7 +527,7 @@ export default function HomePage() {
               <AccordionItem
                 value={`item-${idx}`}
                 key={idx}
-                className="border rounded-lg px-4 bg-white hover:bg-muted/50 transition-colors"
+                className="border rounded-lg px-4 bg-card hover:bg-muted/50 transition-colors"
               >
                 <AccordionTrigger className="text-left hover:no-underline py-6">
                   <div className="flex items-center gap-4 flex-1">
@@ -566,7 +566,7 @@ export default function HomePage() {
           </div>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button asChild size="lg">
-              <Link href="/enroll">
+              <Link href="/enroll?type=trial">
                 {t.home.finalCta.startTrial}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

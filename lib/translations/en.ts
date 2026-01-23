@@ -133,76 +133,73 @@ export const en = {
   },
   // About Page
   about: {
-    title: "About QuranLearn",
-    description: "Empowering learners worldwide to connect with the Qur'an through innovative technology and traditional Islamic scholarship.",
+    title: "About Us",
     mission: {
       title: "Our Mission",
-      description: "To make Qur'an learning accessible, engaging, and effective for Muslims of all ages through interactive technology while preserving traditional Islamic teaching methodologies.",
+      description: "At QuranLearn, our mission is to provide affordable, high-quality Qur’anic education for everyone, regardless of financial background. We focus on correct Tajweed and personalized guidance to help students of all ages connect deeply with the Qur’an.",
     },
-    vision: {
-      title: "Our Vision",
-      description: "To become the world's leading platform for Qur'an education, creating a global community of learners connected through the sacred text.",
+    whoWeAre: {
+      title: "Who We Are",
+      description: "We are an online Qur’an teaching institute with experienced teachers who have been teaching Qur’an, Tajweed, and Hifz online for years. By coming together as one institute, we now offer a structured, supportive learning experience for children, adults, and families.",
     },
-    different: {
-      title: "What Makes Us Different",
-      description: "Combining cutting-edge technology with traditional Islamic scholarship",
-      interactive: {
-        title: "Interactive Learning",
-        description: "Word-by-word highlighting with instant translations, grammatical analysis, and Tajwīd guidance",
+    setsApart: {
+      title: "What Sets Us Apart",
+      expertTeachers: {
+        title: "Expert Teachers",
+        description: "Certified instructors with years of experience in online Qur’an teaching.",
       },
-      certified: {
-        title: "Certified Teachers",
-        description: "Learn from qualified scholars with Ijazah certifications and years of teaching experience",
+      flexiblePricing: {
+        title: "Flexible Pricing",
+        description: "Choose between Fixed Pricing or Income-Based Pricing, designed to make education accessible for all.",
       },
-      family: {
-        title: "Family-Friendly",
-        description: "Safe, age-appropriate content with parental controls and progress tracking for all family members",
+      structuredCourses: {
+        title: "Structured Courses",
+        description: "Courses tailored for different ages and learning levels, ensuring that every student progresses at their own pace.",
+      },
+      focusOnTajweed: {
+        title: "Focus on Tajweed",
+        description: "Learn the Qur’an with correct pronunciation and accurate recitation, taught by experienced teachers.",
       },
     },
-    journey: {
-      title: "Our Journey",
-      description: "Key milestones in our mission to enhance Qur'an education",
+    whyChooseUs: {
+      title: "Why Choose Us?",
+      experiencedTeachers: {
+        title: "Experienced Teachers",
+        description: "With years of teaching experience, our certified instructors are dedicated to your success.",
+      },
+      affordablePricing: {
+        title: "Affordable Pricing",
+        description: "Whether you choose Fixed Pricing or Income-Based Pricing, we ensure that Qur’anic education is within your reach.",
+      },
+      personalizedLearning: {
+        title: "Personalized Learning",
+        description: "We tailor our teaching methods to fit your needs, ensuring that you feel supported every step of the way.",
+      },
+      correctRecitation: {
+        title: "Focus on Correct Recitation",
+        description: "Our priority is teaching you the Qur’an with correct Tajweed so that every recitation is accurate and meaningful.",
+      },
     },
     values: {
-      title: "Our Core Values",
-      authenticity: {
-        title: "Authenticity",
-        description: "Staying true to traditional Islamic teachings and Qur'anic sciences",
+      title: "Our Values",
+      transparency: {
+        title: "Transparency & Fairness",
+        description: "We believe in clear, straightforward pricing with no hidden costs, ensuring everyone knows exactly what to expect.",
       },
-      accessibility: {
-        title: "Accessibility",
-        description: "Making quality Qur'an education available to everyone, everywhere",
+      supportive: {
+        title: "Supportive Environment",
+        description: "Our teachers offer continuous support and personalized feedback, helping you grow in your learning journey.",
       },
-      community: {
-        title: "Community",
-        description: "Building connections between learners, teachers, and families",
-      },
-      excellence: {
-        title: "Excellence",
-        description: "Continuous improvement in our educational methods and technology",
+      inclusive: {
+        title: "Inclusive Education",
+        description: "We believe Qur’anic education should be for everyone, from children learning their first words to adults seeking to deepen their connection with the Qur’an.",
       },
     },
-    team: {
-      title: "Meet Our Team",
-      description: "Dedicated educators and technologists working together to serve the Muslim community",
-      viewAll: "View All Teachers",
-    },
-    accreditation: {
-      title: "Recognition & Accreditation",
-      scholarlyReview: {
-        title: "Scholarly Review",
-        description: "Our curriculum and content are reviewed by a board of qualified Islamic scholars to ensure accuracy and authenticity.",
-      },
-      educationalStandards: {
-        title: "Educational Standards",
-        description: "We adhere to international standards for online education and child safety, with regular audits and updates.",
-      },
-    },
-    ready: {
-      title: "Ready to Begin Your Journey?",
-      description: "Join thousands of students learning the Qur'an with our interactive platform. Start with our free tools or explore our comprehensive courses.",
-      startReading: "Start Reading Now",
-      getInTouch: "Get in Touch",
+    cta: {
+      title: "Start Your Qur’anic Journey Today",
+      description: "We invite you to join us for a free trial class to experience firsthand the quality and support we offer. Take the first step towards a deeper connection with the Qur’an today.",
+      getFreeTrial: "Get Free Trial Class",
+      learnMore: "Learn More About Our Courses",
     },
   },
   // Contact Page

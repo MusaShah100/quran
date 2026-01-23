@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -54,6 +55,7 @@ export default function QuranPage() {
   const [translationLang, setTranslationLang] = useState<'english' | 'urdu'>('english');
   const [nooraniLang, setNooraniLang] = useState<'english' | 'urdu'>('english');
   const [nooraniLoading, setNooraniLoading] = useState(true);
+  const [tajweedLoading, setTajweedLoading] = useState(true);
   const [surahQuery, setSurahQuery] = useState('');
   const [paraQuery, setParaQuery] = useState('');
   const [surahListState, setSurahListState] = useState<any[]>([]);
@@ -219,6 +221,12 @@ export default function QuranPage() {
       setNooraniLoading(true);
     }
   }, [nooraniLang, primaryMode]);
+
+  useEffect(() => {
+    if (quranType === 'tajweed' && viewMode === 'para') {
+      setTajweedLoading(true);
+    }
+  }, [currentPara, quranType, viewMode]);
 
   useEffect(() => {
     if (quranType === 'tajweed') {
@@ -743,12 +751,23 @@ export default function QuranPage() {
                   </div>
                 ) : (
                   quranType === 'tajweed' && viewMode === 'para' ? (
-                    <iframe
-                      key={currentPara}
-                      src={`https://archive.org/download/ColourCodedQuranJuz30/Colour%20Coded%20Quran%20Juz%20${String(currentPara).padStart(2, '0')}.pdf`}
-                      className="w-full h-[800px] border rounded-lg"
-                      title={`Para ${currentPara} Tajweed`}
-                    />
+                    <div className="relative w-full h-[800px] bg-background border rounded-lg overflow-hidden">
+                      {tajweedLoading && (
+                        <div className="absolute inset-0 flex items-start justify-center bg-background z-10 pt-32">
+                          <div className="text-center">
+                            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary mx-auto mb-3"></div>
+                            <p className="text-muted-foreground text-sm">Loading PDF...</p>
+                          </div>
+                        </div>
+                      )}
+                      <iframe
+                        key={currentPara}
+                        src={`https://archive.org/download/ColourCodedQuranJuz30/Colour%20Coded%20Quran%20Juz%20${String(currentPara).padStart(2, '0')}.pdf`}
+                        className="w-full h-full"
+                        title={`Para ${currentPara} Tajweed`}
+                        onLoad={() => setTajweedLoading(false)}
+                      />
+                    </div>
                   ) : (
                     quranData && (
                       <QuranReader
@@ -781,14 +800,14 @@ export default function QuranPage() {
           </p>
           <div className="flex gap-4 justify-center">
             <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90" asChild>
-              <a href="/courses">
+              <Link href="/enroll?type=trial">
                 Start Free Trial
-              </a>
+              </Link>
             </Button>
             <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10" asChild>
-              <a href="/teachers">
+              <Link href="/teachers">
                 Meet Our Teachers
-              </a>
+              </Link>
             </Button>
           </div>
         </CardContent>

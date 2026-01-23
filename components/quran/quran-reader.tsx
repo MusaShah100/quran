@@ -103,7 +103,7 @@ export function QuranReader({
 
               <div className="flex-1 space-y-4">
                 <div
-                  className="arabic-text leading-loose text-right p-4 bg-white rounded-lg shadow-sm border border-muted/30"
+                  className="arabic-text leading-loose text-right p-4 bg-card rounded-lg shadow-sm border border-muted/30"
                   style={{ fontSize: `${fontSize}px` }}
                   dir="rtl"
                 >
@@ -141,9 +141,9 @@ export function QuranReader({
 
                         {/* Improved Tooltip */}
                         {hoveredWord === word.id && quranType !== 'tajweed' && (
-                          <div className="absolute z-20 bottom-full mb-2 p-3 bg-white border border-primary/30 rounded-md shadow-lg text-sm w-64 max-w-[70vw] left-1/2 -translate-x-1/2 overflow-hidden">
+                          <div className="absolute z-20 bottom-full mb-2 p-3 bg-popover border border-primary/30 rounded-md shadow-lg text-sm w-64 max-w-[70vw] left-1/2 -translate-x-1/2 overflow-hidden">
                             <div className="space-y-2 text-left whitespace-normal break-words" dir="ltr">
-                              <div className="font-semibold arabic-text text-lg text-center" dir="rtl">
+                              <div className="font-semibold arabic-text text-lg !text-center" dir="rtl">
                                 {word.arabic}
                               </div>
 
@@ -164,7 +164,7 @@ export function QuranReader({
                                 </div>
                               )}
                             </div>
-                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-b border-r border-primary/30 rotate-45"></div>
+                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-popover border-b border-r border-primary/30 rotate-45"></div>
                           </div>
                         )}
                       </span>
