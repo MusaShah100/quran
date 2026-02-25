@@ -491,19 +491,19 @@ export default function HomePage() {
                 q: t.home.faq.items.trial.q,
                 a: t.home.faq.items.trial.a,
                 icon: Sparkles,
-                color: 'text-yellow-600'
+                color: 'text-secondary'
               },
               {
                 q: t.home.faq.items.pricing.q,
                 a: t.home.faq.items.pricing.a,
                 icon: DollarSign,
-                color: 'text-green-600'
+                color: 'text-primary'
               },
               {
                 q: t.home.faq.items.incomeBased.q,
                 a: t.home.faq.items.incomeBased.a,
                 icon: Coins,
-                color: 'text-amber-600'
+                color: 'text-secondary'
               },
               {
                 q: t.home.faq.items.liveRecorded.q,
@@ -521,7 +521,7 @@ export default function HomePage() {
                 q: t.home.faq.items.priorKnowledge.q,
                 a: t.home.faq.items.priorKnowledge.a,
                 icon: BookMarked,
-                color: 'text-orange-600'
+                color: 'text-secondary'
               },
             ].map((item, idx) => (
               <AccordionItem
@@ -555,13 +555,13 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CheckCircle2 className="h-4 w-4 text-green-600" /> {t.home.finalCta.features.noCreditCard}
+              <CheckCircle2 className="h-4 w-4 text-primary" /> {t.home.finalCta.features.noCreditCard}
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CheckCircle2 className="h-4 w-4 text-green-600" /> {t.home.finalCta.features.cancelAnytime}
+              <CheckCircle2 className="h-4 w-4 text-primary" /> {t.home.finalCta.features.cancelAnytime}
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CheckCircle2 className="h-4 w-4 text-green-600" /> {t.home.finalCta.features.guidedSupport}
+              <CheckCircle2 className="h-4 w-4 text-primary" /> {t.home.finalCta.features.guidedSupport}
             </div>
           </div>
           <div className="flex flex-wrap gap-4 justify-center">

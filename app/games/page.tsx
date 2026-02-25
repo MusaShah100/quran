@@ -82,8 +82,8 @@ export default function GamesPage() {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'Beginner': return 'bg-green-500';
-      case 'Intermediate': return 'bg-yellow-500';
+      case 'Beginner': return 'bg-primary';
+      case 'Intermediate': return 'bg-secondary';
       case 'Advanced': return 'bg-red-500';
       default: return 'bg-gray-500';
     }

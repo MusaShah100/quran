@@ -83,6 +83,12 @@ const config: Config = {
         },
       },
       keyframes: {
+        blob: {
+          '0%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(20px, -24px) scale(1.06)' },
+          '66%': { transform: 'translate(-16px, 18px) scale(0.96)' },
+          '100%': { transform: 'translate(0px, 0px) scale(1)' },
+        },
         'accordion-down': {
           from: {
             height: '0',
@@ -101,6 +107,7 @@ const config: Config = {
         },
       },
       animation: {
+        blob: 'blob 12s ease-in-out infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },

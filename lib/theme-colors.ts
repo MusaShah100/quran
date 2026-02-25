@@ -4,32 +4,32 @@
 export const themeColors = {
   // Primary brand colors - main learning theme
   primary: {
-    50: '#f0f9ff',
-    100: '#e0f2fe', 
-    200: '#bae6fd',
-    300: '#7dd3fc',
-    400: '#38bdf8',
-    500: '#0ea5e9', // Main primary
-    600: '#0284c7',
-    700: '#0369a1',
-    800: '#075985',
-    900: '#0c4a6e',
-    950: '#082f49'
+    50: '#f0fdfa',
+    100: '#ccfbf1',
+    200: '#99f6e4',
+    300: '#5eead4',
+    400: '#2dd4bf',
+    500: '#14b8a6', // Main primary (teal matching logo green)
+    600: '#0d9488',
+    700: '#0f766e',
+    800: '#115e59',
+    900: '#134e4a',
+    950: '#042f2e'
   },
   
   // Secondary colors - warm accent for engagement
   secondary: {
-    50: '#fef7ee',
-    100: '#fdedd3',
-    200: '#fbd7a5',
-    300: '#f8bc6d',
-    400: '#f59832',
-    500: '#f37b1a', // Main secondary
-    600: '#e45d0f',
-    700: '#bd450f',
-    800: '#973714',
-    900: '#7a2e13',
-    950: '#431507'
+    50: '#FFF9E6',
+    100: '#FFF2CC',
+    200: '#FFE699',
+    300: '#FFD966',
+    400: '#FFCD33',
+    500: '#C9A227', // Main secondary (gold accent matching keys)
+    600: '#B38F1E',
+    700: '#8C6E14',
+    800: '#73590F',
+    900: '#5C470B',
+    950: '#3A2E06'
   },
   
   // Success colors - for achievements and progress

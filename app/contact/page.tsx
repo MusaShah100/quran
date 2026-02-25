@@ -36,8 +36,8 @@ export default function ContactPage() {
   return (
     <div className="container py-12 max-w-6xl">
       {/* Intro Section */}
-      <div className="text-center mb-16 space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-primary">We’re here to help!</h1>
+      <div className="text-center mb-12 space-y-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-primary">Get in Touch</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
           Whether you have questions about our courses, pricing, or anything else, feel free to get in touch with us. 
           Our team is ready to provide the information and support you need.
@@ -46,103 +46,84 @@ export default function ContactPage() {
 
       {/* Get in Touch Section */}
       <div className="mb-16">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have questions or need more details about our Qur’an courses, free trial class, or pricing options? 
-            We’d love to hear from you. You can reach us through the following channels:
-          </p>
+
+        <div className="grid md:grid-cols-2 gap-8 items-stretch">
+          <div className="flex flex-col gap-6 h-full">
+            <Card className="text-center hover:shadow-lg transition-shadow border-primary/10">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <Mail className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle>Email Us</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground mb-2">
+                  For general inquiries, support, or assistance, send us an email at:
+                </p>
+                <a href="mailto:quran.info.2025@gmail.com" className="text-primary font-medium hover:underline block">
+                  quran.info.2025@gmail.com
+                </a>
+                <p className="text-xs text-muted-foreground mt-4">
+                  We aim to respond to all emails within 24 hours.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover:shadow-lg transition-shadow border-primary/10">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <MessageCircle className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle>WhatsApp Us</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground mb-2">
+                  For quick responses, feel free to message us on WhatsApp at:
+                </p>
+                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline block">
+                  +92 (111) 123-4567
+                </a>
+                <p className="text-xs text-muted-foreground mt-4">
+                  We’re available to chat during working hours, Monday to Saturday.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover:shadow-lg transition-shadow border-blue-500/10">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mb-4">
+                  <Phone className="h-6 w-6 text-blue-600" />
+                </div>
+                <CardTitle>Call Us</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground mb-2">
+                  If you prefer to speak directly with someone, call us at:
+                </p>
+                <a href="tel:+921111234567" className="text-blue-600 font-medium hover:underline block">
+                  +92 (111) 123-4567
+                </a>
+                <p className="text-xs text-muted-foreground mt-4">
+                  Our team is ready to assist you with any questions you may have.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="h-full">
+            <Card className="overflow-hidden shadow-lg h-full">
+              <CardContent className="p-0">
+                <iframe
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSf6DqFQCzYmghum11P1NgwCGP-qSXxVj4Wd7lQzKJYVpvIbcw/viewform?embedded=true"
+                  width="100%"
+                  height="1000"
+                  className="border-0 w-full h-full min-h-[800px] dark:invert dark:hue-rotate-180 transition-all duration-300"
+                  title="Contact Form"
+                  onLoad={handleIframeLoad}
+                >
+                  Loading form...
+                </iframe>
+              </CardContent>
+            </Card>
+          </div>
         </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Email Card */}
-          <Card className="text-center hover:shadow-lg transition-shadow border-primary/10">
-            <CardHeader>
-              <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <Mail className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>Email Us</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <p className="text-sm text-muted-foreground mb-2">
-                For general inquiries, support, or assistance, send us an email at:
-              </p>
-              <a href="mailto:quran.info.2025@gmail.com" className="text-primary font-medium hover:underline block">
-                quran.info.2025@gmail.com
-              </a>
-              <p className="text-xs text-muted-foreground mt-4">
-                We aim to respond to all emails within 24 hours.
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* WhatsApp Card */}
-          <Card className="text-center hover:shadow-lg transition-shadow border-green-500/10">
-            <CardHeader>
-              <div className="mx-auto w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
-                <MessageCircle className="h-6 w-6 text-green-600" />
-              </div>
-              <CardTitle>WhatsApp Us</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <p className="text-sm text-muted-foreground mb-2">
-                For quick responses, feel free to message us on WhatsApp at:
-              </p>
-              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="text-green-600 font-medium hover:underline block">
-                +92 (111) 123-4567
-              </a>
-              <p className="text-xs text-muted-foreground mt-4">
-                We’re available to chat during working hours, Monday to Saturday.
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Phone Card */}
-          <Card className="text-center hover:shadow-lg transition-shadow border-blue-500/10">
-            <CardHeader>
-              <div className="mx-auto w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mb-4">
-                <Phone className="h-6 w-6 text-blue-600" />
-              </div>
-              <CardTitle>Call Us</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <p className="text-sm text-muted-foreground mb-2">
-                If you prefer to speak directly with someone, call us at:
-              </p>
-              <a href="tel:+921111234567" className="text-blue-600 font-medium hover:underline block">
-                +92 (111) 123-4567
-              </a>
-              <p className="text-xs text-muted-foreground mt-4">
-                Our team is ready to assist you with any questions you may have.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* Contact Form Section */}
-      <div className="mb-16 max-w-4xl mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Contact Form</h2>
-          <p className="text-muted-foreground">
-            Alternatively, you can use the form below to send us a message directly. We’ll get back to you as soon as possible.
-          </p>
-        </div>
-        
-        <Card className="overflow-hidden shadow-lg">
-          <CardContent className="p-0">
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSf6DqFQCzYmghum11P1NgwCGP-qSXxVj4Wd7lQzKJYVpvIbcw/viewform?embedded=true"
-              width="100%"
-              height="1000"
-              className="border-0 w-full min-h-[800px] dark:invert dark:hue-rotate-180 transition-all duration-300"
-              title="Contact Form"
-              onLoad={handleIframeLoad}
-            >
-              Loading form...
-            </iframe>
-          </CardContent>
-        </Card>
       </div>
 
       {/* Social Media Section */}
@@ -200,14 +181,14 @@ export default function ContactPage() {
         </div>
 
         {/* Quick Response Time */}
-        <div className="bg-orange-50 dark:bg-orange-950/20 p-8 rounded-2xl border border-transparent dark:border-orange-900/30">
+        <div className="bg-secondary/10 dark:bg-secondary/20 p-8 rounded-2xl border border-transparent dark:border-secondary/30">
           <div className="flex items-start gap-4">
-            <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-lg">
-              <Clock className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+            <div className="bg-secondary/20 dark:bg-secondary/30 p-3 rounded-lg">
+              <Clock className="h-6 w-6 text-secondary dark:text-secondary" />
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-2 text-orange-900 dark:text-orange-100">Quick Response Time</h3>
-              <p className="text-orange-800/80 dark:text-orange-200/80">
+              <h3 className="text-xl font-bold mb-2 text-secondary">Quick Response Time</h3>
+              <p className="text-secondary">
                 We strive to respond to all inquiries promptly to make your learning journey as smooth as possible. 
                 Whether it’s about signing up for a free trial, discussing your learning path, or asking for support, we’re just a message away!
               </p>

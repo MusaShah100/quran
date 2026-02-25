@@ -202,8 +202,8 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode, titl
 function CheckItem({ title, description }: { title: string, description: string }) {
   return (
     <div className="flex gap-4">
-      <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
-        <ShieldCheck className="w-5 h-5 text-green-600" />
+      <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+        <ShieldCheck className="w-5 h-5 text-primary" />
       </div>
       <div>
         <h3 className="text-xl font-semibold mb-2">{title}</h3>

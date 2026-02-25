@@ -25,7 +25,11 @@ export const metadata: Metadata = {
   title: 'Miftah Quran - Interactive Online Qur\'an Learning Platform',
   description: 'Learn the Qur\'an with interactive word-by-word highlighting, Tajwīd colors, educational games, and certified teachers.',
   icons: {
-    icon: '/images/logo.png',
+    icon: [
+      { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/logo.png', sizes: '16x16', type: 'image/png' },
+    ],
+    shortcut: '/images/logo.png',
     apple: '/images/logo.png',
   },
 };
