@@ -20,11 +20,11 @@ export function SettingsSection() {
                             <CardContent className="space-y-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="platform-name">Platform Name</Label>
-                                    <Input id="platform-name" defaultValue="QuranLearn" />
+                                    <Input id="platform-name" defaultValue="Miftah Quran" />
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="admin-email">Admin Email</Label>
-                                    <Input id="admin-email" type="email" defaultValue="admin@quranlearn.com" />
+                                    <Input id="admin-email" type="email" defaultValue="admin@miftahquran.com" />
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="support-phone">Support Phone</Label>

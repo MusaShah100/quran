@@ -174,8 +174,8 @@ const getUserConfirmationEmail = (data: EnrollmentData): { subject: string; html
             
             <p style="font-size: 14px; color: #6b7280; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
               Best regards,<br>
-              <strong>The QuranLearn Team</strong><br>
-              Email: support@quranlearn.com<br>
+              <strong>The Miftah Quran Team</strong><br>
+              Email: quran.info.2025@gmail.combr>
               Phone: +92 (111) 123-4567
             </p>
           </div>
@@ -325,13 +325,13 @@ export async function sendEnrollmentEmails(data: EnrollmentData): Promise<{ succ
     }
 
     const transporter = createTransporter();
-    const adminEmail = process.env.ADMIN_EMAIL || 'admin@quranlearn.com';
-    const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@quranlearn.com';
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@miftahquran.com';
+    const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@miftahquran.com';
 
     // Send confirmation email to user
     const userEmail = getUserConfirmationEmail(data);
     await transporter.sendMail({
-      from: `"QuranLearn" <${fromEmail}>`,
+      from: `"Miftah Quran" <${fromEmail}>`,
       to: data.personal.email,
       subject: userEmail.subject,
       html: userEmail.html,
@@ -340,7 +340,7 @@ export async function sendEnrollmentEmails(data: EnrollmentData): Promise<{ succ
     // Send notification email to admin
     const adminEmailContent = getAdminNotificationEmail(data);
     await transporter.sendMail({
-      from: `"QuranLearn Enrollment System" <${fromEmail}>`,
+      from: `"Miftah Quran Enrollment System" <${fromEmail}>`,
       to: adminEmail,
       subject: adminEmailContent.subject,
       html: adminEmailContent.html,

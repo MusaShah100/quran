@@ -126,7 +126,7 @@ export const en = {
     aboutUs: "About Us",
     faq: "FAQ",
     getInTouch: "Get in touch →",
-    copyright: "© 2024 QuranLearn. All rights reserved.",
+    copyright: "© 2024 Miftah Quran. All rights reserved.",
     privacy: "Privacy",
     terms: "Terms",
     accessibility: "Accessibility",
@@ -136,7 +136,7 @@ export const en = {
     title: "About Us",
     mission: {
       title: "Our Mission",
-      description: "At QuranLearn, our mission is to provide affordable, high-quality Qur’anic education for everyone, regardless of financial background. We focus on correct Tajweed and personalized guidance to help students of all ages connect deeply with the Qur’an.",
+      description: "At Miftah Quran, our mission is to provide affordable, high-quality Qur’anic education for everyone, regardless of financial background. We focus on correct Tajweed and personalized guidance to help students of all ages connect deeply with the Qur’an.",
     },
     whoWeAre: {
       title: "Who We Are",

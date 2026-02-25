@@ -50,7 +50,7 @@ export default function TeacherDashboard() {
   // Mock teacher data
   const teacherInfo = {
     name: 'Sister Fatima Rahman',
-    email: 'fatima@quranlearn.com',
+    email: 'fatima@miftahquran.com',
     phone: '+880 123 456 789',
     specialties: ['Tajweed', 'Arabic Grammar', 'Translation'],
     totalStudents: 32,

@@ -53,20 +53,9 @@ export default function PricingPage() {
     <div className="container py-8 max-w-7xl">
       {/* Hero Section */}
       <div className="text-center mb-16 pt-4">
-        <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 text-sm font-medium text-green-700 bg-green-50 rounded-full border border-green-100">
-          <Sparkles className="w-4 h-4 mr-2" />
-          Accessible Islamic Education
-        </div>
-        
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground">
-          Affordable & Flexible <br className="hidden md:block" />
-          <span className="text-primary relative inline-block">
-            Qur'an Learning
-            <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10 pr-3" viewBox="0 0 100 10" preserveAspectRatio="none">
-              <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-            </svg>
-          </span> 
-            for Every Family
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground leading-tight">
+          Affordable & Flexible <br />
+          Qur'an Learning for Every Family
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">

@@ -25,10 +25,10 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=your-email@gmail.com
 SMTP_PASSWORD=your-app-password-or-smtp-password
-SMTP_FROM=noreply@quranlearn.com
+SMTP_FROM=noreply@miftahquran.com
 
 # Admin Email - Where enrollment notifications will be sent
-ADMIN_EMAIL=admin@quranlearn.com
+ADMIN_EMAIL=admin@miftahquran.com
 ```
 
 ### 3. Gmail Setup (Recommended for Development)
@@ -39,7 +39,7 @@ If you're using Gmail:
 2. **Generate an App Password**:
    - Go to https://myaccount.google.com/apppasswords
    - Select "Mail" and "Other (Custom name)"
-   - Enter "QuranLearn" as the name
+   - Enter "Miftah Quran" as the name
    - Copy the generated 16-character password
 3. **Use the App Password** as your `SMTP_PASSWORD` (not your regular Gmail password)
 

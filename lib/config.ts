@@ -93,25 +93,37 @@ export const COURSES: CourseConfig[] = [
   {
     id: 'quran-reading',
     title: "Qur'an Reading (Beginner)",
-    summary: 'Foundation, pronunciation, basic Tajweed, guided 15 Paras',
+    summary:
+      'Build a strong foundation: alphabet, pronunciation, and basic Tajweed with guided reading of 15 Paras.',
     languages: ['Urdu', 'English'],
     badge: 'All Ages',
-    topics: ['Arabic alphabet & pronunciation', 'Basic Tajweed rules', 'Read Quran with guidance'],
+    topics: [
+      'Arabic alphabet & pronunciation',
+      'Basic Tajweed rules',
+      'Read 15 Paras with guidance',
+    ],
     icon: BookOpen,
   },
   {
     id: 'tajweed',
-    title: 'Tajweed (Correct Recitation)',
-    summary: 'Master rules, clarity and fluency',
+    title: 'Advanced Tajweed (Correct Recitation)',
+    summary:
+      'Master correct recitation with a focus on detailed Tajweed rules and precise pronunciation.',
     languages: ['Urdu', 'English'],
     badge: 'All Ages',
-    topics: ['Detailed Tajweed rules', 'Correct Arabic pronunciation', 'Fluency and clarity'],
+    topics: [
+      'Arabic alphabet & pronunciation',
+      'Rules of advanced Makharij (articulation points)',
+      'Other advanced Tajweed rules',
+      'Feedback on recorded recitations',
+    ],
     icon: GraduationCap,
   },
   {
     id: 'kids',
     title: "Children's Qur'an Learning",
-    summary: 'Interactive basics and introductory Tajweed',
+    summary:
+      "Engaging and interactive learning for kids with basics, activities, and introductory Tajweed.",
     languages: ['Urdu', 'English'],
     badge: 'Children Only',
     topics: ['Basic Islamic concepts', 'Fun, engaging activities', 'Intro to Tajweed & recitation'],
@@ -120,19 +132,24 @@ export const COURSES: CourseConfig[] = [
   {
     id: 'hifz',
     title: "Qur'an Memorization (Hifz)",
-    summary: 'Structured memorization with reviews',
+    summary:
+      'Structured memorization with personalized plans, repetition techniques, and revision classes.',
     languages: ['Urdu'],
     badge: 'All Ages',
-    topics: ['Memorization techniques', 'Personalized Hifz plan', 'Regular reviews & retention'],
+    topics: [
+      'Memorization techniques',
+      'Personalized Hifz plan',
+      'Revision classes with teacher listening to memorized Surahs',
+    ],
     icon: Award,
   },
   {
     id: 'duas',
     title: 'Islamic Duas & Supplications',
-    summary: 'Learn daily duas with meanings, significance, and etiquette',
+    summary: 'Learn common daily duas with meanings, significance, and proper etiquette.',
     languages: ['Urdu', 'English'],
     badge: 'All Ages',
-    topics: ['Daily duas & occasions', 'Meanings & significance', 'Pronunciation & etiquette'],
+    topics: ['Daily duas & occasions', 'Meanings & significance', 'Etiquette'],
     icon: Heart,
   },
 ];

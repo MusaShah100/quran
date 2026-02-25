@@ -61,7 +61,7 @@ const lectureVideos = [
   },
   {
     id: 4,
-    title: 'Children\'s Quran Learning - Fun with Arabic Letters',
+    title: 'Children\'s Miftah Quran Learning - Fun with Arabic Letters',
     description: 'Interactive session designed specifically for young learners aged 4-7 years.',
     youtubeId: 'dQw4w9WgXcQ',
     thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
@@ -377,7 +377,7 @@ export default function VideosPage() {
           </p>
           <div className="flex gap-4 justify-center">
             <Button size="lg" className="bg-red-600 hover:bg-red-700" asChild>
-              <a href="https://youtube.com/@quranlearn" target="_blank" rel="noopener noreferrer">
+              <a href="https://youtube.com/@miftahquran" target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-4 h-4 mr-2" />
                 Visit YouTube Channel
               </a>

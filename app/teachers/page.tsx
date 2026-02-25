@@ -45,7 +45,7 @@ const teachers = [
     achievements: ['PhD in Islamic Studies', 'Multiple Ijazah Certifications', 'Specialized in Modern Teaching Methods'],
     teachingStyle: 'Patient and methodical approach with emphasis on proper pronunciation and spiritual connection.',
     phone: '+20 123 456 789',
-    email: 'ahmed.mahmoud@quranlearn.com',
+    email: 'ahmed.mahmoud@miftahquran.com',
     ageGroups: ['4-7 years', '8-12 years', '12-18 years', '19-25 years', '25+ years'],
     courses: ['Tajweed', 'Hifz', 'Tarjama o Tafseer']
   },
@@ -69,7 +69,7 @@ const teachers = [
     achievements: ['MA Islamic Studies', 'Women\'s Education Specialist', 'Child-Friendly Teaching Methods'],
     teachingStyle: 'Nurturing and encouraging environment with focus on building confidence and love for the Qur\'an.',
     phone: '+880 123 456 789',
-    email: 'fatima.rahman@quranlearn.com',
+    email: 'fatima.rahman@miftahquran.com',
     ageGroups: ['4-7 years', '8-12 years', '12-18 years', '19-25 years'],
     courses: ['Tajweed', 'Tarjama o Tafseer']
   },
@@ -93,7 +93,7 @@ const teachers = [
     achievements: ['Madinah University Graduate', 'Multiple Qira\'at Mastery', 'Proven Hifz Success Methods'],
     teachingStyle: 'Structured and disciplined approach with emphasis on memorization techniques and spiritual development.',
     phone: '+33 123 456 789',
-    email: 'omar.hassan@quranlearn.com',
+    email: 'omar.hassan@miftahquran.com',
     ageGroups: ['8-12 years', '12-18 years', '19-25 years', '25+ years'],
     courses: ['Hifz', 'Tajweed']
   },
@@ -117,7 +117,7 @@ const teachers = [
     achievements: ['BA Islamic Education', 'Child Psychology Training', 'Interactive Learning Specialist'],
     teachingStyle: 'Fun and interactive methods with games, stories, and visual aids to keep children engaged.',
     phone: '+92 123 456 789',
-    email: 'aisha.malik@quranlearn.com',
+    email: 'aisha.malik@miftahquran.com',
     ageGroups: ['4-7 years', '8-12 years'],
     courses: ['Tajweed']
   },
@@ -141,7 +141,7 @@ const teachers = [
     achievements: ['MA Qur\'anic Studies', 'Multilingual Teaching', 'Tafseer Research Specialist'],
     teachingStyle: 'Scholarly and analytical approach with emphasis on understanding context and deeper meanings.',
     phone: '+86 123 456 789',
-    email: 'yusuf.chen@quranlearn.com',
+    email: 'yusuf.chen@miftahquran.com',
     ageGroups: ['12-18 years', '19-25 years', '25+ years'],
     courses: ['Tarjama o Tafseer', 'Tajweed']
   },
@@ -165,7 +165,7 @@ const teachers = [
     achievements: ['Bayyinah Institute Graduate', 'New Muslim Specialist', 'Community Support Leader'],
     teachingStyle: 'Compassionate and understanding approach with focus on building strong Islamic foundations.',
     phone: '+1 123 456 789',
-    email: 'khadijah.williams@quranlearn.com',
+    email: 'khadijah.williams@miftahquran.com',
     ageGroups: ['19-25 years', '25+ years'],
     courses: ['Tajweed', 'Tarjama o Tafseer']
   }

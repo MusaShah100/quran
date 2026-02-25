@@ -103,7 +103,7 @@ export default function AdminPanel() {
     {
       id: 1,
       name: 'Ustadh Ahmed Al-Mahmoud',
-      email: 'ahmed@quranlearn.com',
+      email: 'ahmed@miftahquran.com',
       specialties: ['Tajweed', 'Hifz'],
       students: 45,
       status: 'Active'
@@ -111,7 +111,7 @@ export default function AdminPanel() {
     {
       id: 2,
       name: 'Sister Fatima Rahman',
-      email: 'fatima@quranlearn.com',
+      email: 'fatima@miftahquran.com',
       specialties: ['Tajweed', 'Children'],
       students: 32,
       status: 'Active'

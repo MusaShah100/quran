@@ -67,8 +67,8 @@ export default function ContactPage() {
               <p className="text-sm text-muted-foreground mb-2">
                 For general inquiries, support, or assistance, send us an email at:
               </p>
-              <a href="mailto:support@quranlearn.com" className="text-primary font-medium hover:underline block">
-                support@quranlearn.com
+              <a href="mailto:quran.info.2025@gmail.com" className="text-primary font-medium hover:underline block">
+                quran.info.2025@gmail.com
               </a>
               <p className="text-xs text-muted-foreground mt-4">
                 We aim to respond to all emails within 24 hours.
@@ -221,7 +221,7 @@ export default function ContactPage() {
         <div ref={thankYouRef} className="text-center max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h2 className="text-2xl font-bold mb-4">Thank You for Reaching Out!</h2>
           <p className="text-muted-foreground">
-            We’re excited to help you begin your Qur’anic learning journey with us. Thank you for contacting QuranLearn.
+            We’re excited to help you begin your Qur’anic learning journey with us. Thank you for contacting Miftah Quran.
           </p>
         </div>
       )}

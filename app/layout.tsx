@@ -22,8 +22,12 @@ const notoSansArabic = Noto_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: 'QuranLearn - Interactive Online Qur\'an Learning Platform',
+  title: 'Miftah Quran - Interactive Online Qur\'an Learning Platform',
   description: 'Learn the Qur\'an with interactive word-by-word highlighting, Tajwīd colors, educational games, and certified teachers.',
+  icons: {
+    icon: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
 };
 
 export default function RootLayout({
