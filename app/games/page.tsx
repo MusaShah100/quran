@@ -223,19 +223,19 @@ export default function GamesPage() {
 
       {/* CTA Section */}
       <Card className="mt-8 bg-gradient-to-br from-primary/5 to-secondary/5">
-        <CardContent className="p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready for Structured Learning?</h2>
+        <CardContent className="p-6 md:p-8 text-center">
+          <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Ready for Structured Learning?</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             While games are fun, structured courses with certified teachers provide 
             comprehensive Qur'an education. Start your free 3-day trial today!
           </p>
-          <div className="flex gap-4 justify-center">
-            <Button size="lg" asChild>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" asChild className="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary text-white">
               <Link href="/enroll?type=trial">
                 Start Free Trial
               </Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
               <Link href="/teachers">
                 Meet Our Teachers
               </Link>

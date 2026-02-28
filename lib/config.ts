@@ -92,9 +92,9 @@ export interface CourseConfig {
 export const COURSES: CourseConfig[] = [
   {
     id: 'quran-reading',
-    title: "Qur'an Reading (Beginner)",
+    title: 'Beginner Tajweed (Foundations of Recitation)',
     summary:
-      'Build a strong foundation: alphabet, pronunciation, and basic Tajweed with guided reading of 15 Paras.',
+      'Focus on building a strong foundation with the Arabic alphabet, pronunciation, and the basics of Tajweed.',
     languages: ['Urdu', 'English'],
     badge: 'All Ages',
     topics: [

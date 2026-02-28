@@ -629,113 +629,125 @@ export default function QuranPage() {
             <div className="flex flex-col gap-6">
               <div className="flex-1">
                 <Card className="mb-6 border-2 border-primary/20">
-                  <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
-                    <CardTitle className="flex items-center gap-2">
+                  <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10 space-y-2">
+                    <CardTitle className="flex flex-wrap items-center gap-2 min-w-0">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span className="arabic-text text-primary">{quranData?.surah.nameArabic}</span>
+                      <span className="arabic-text text-primary break-words whitespace-normal min-w-0 max-w-full">
+                        {quranData?.surah.nameArabic}
+                      </span>
                       <span className="text-muted-foreground">-</span>
-                      <span className="text-secondary">{quranData?.surah.name}</span>
+                      <span className="text-secondary break-words whitespace-normal min-w-0 max-w-full">
+                        {quranData?.surah.name}
+                      </span>
                     </CardTitle>
-                    <div className="flex items-center justify-between">
+                    <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between gap-2">
                       {quranType === 'tajweed' && viewMode === 'para' ? (
-                        <div className="flex items-center gap-1">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 rounded-full px-3 gap-1"
-                            onClick={() => setCurrentPara(Math.max(1, currentPara - 1))}
-                            disabled={currentPara === 1}
-                            title="Previous para"
-                            aria-label="Previous para"
-                          >
-                            <ChevronLeft className="h-3 w-3" />
-                            <span className="text-[11px]">Prev</span>
-                          </Button>
-                          <Badge variant="secondary" className="text-xs rounded-full px-2 py-0.5">
-                            {currentPara}/30
-                          </Badge>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 rounded-full px-3 gap-1"
-                            onClick={() => setCurrentPara(Math.min(30, currentPara + 1))}
-                            disabled={currentPara === 30}
-                            title="Next para"
-                            aria-label="Next para"
-                          >
-                            <span className="text-[11px]">Next</span>
-                            <ChevronRight className="h-3 w-3" />
-                          </Button>
+                        <div className="flex flex-col md:flex-row gap-1">
+                          <div className="flex items-center gap-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 rounded-full px-3 gap-1"
+                              onClick={() => setCurrentPara(Math.max(1, currentPara - 1))}
+                              disabled={currentPara === 1}
+                              title="Previous para"
+                              aria-label="Previous para"
+                            >
+                              <ChevronLeft className="h-3 w-3" />
+                              <span className="text-[11px]">Prev</span>
+                            </Button>
+                            <Badge variant="secondary" className="text-xs rounded-full px-2 py-0.5">
+                              {currentPara}/30
+                            </Badge>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 rounded-full px-3 gap-1"
+                              onClick={() => setCurrentPara(Math.min(30, currentPara + 1))}
+                              disabled={currentPara === 30}
+                              title="Next para"
+                              aria-label="Next para"
+                            >
+                              <span className="text-[11px]">Next</span>
+                              <ChevronRight className="h-3 w-3" />
+                            </Button>
+                          </div>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-1">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 w-14 rounded-full justify-center"
-                            onClick={handlePrevious}
-                            disabled={viewMode === 'surah' ? currentSurah === 1 : currentPara === 1}
-                          >
-                            <ChevronLeft className="h-3 w-3" />
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 w-14 rounded-full justify-center"
-                            onClick={() => setCurrentPage(1)}
-                            disabled={currentPage === 1}
-                            aria-label="First page"
-                            title="First page"
-                          >
-                            <ChevronsLeft className="h-3 w-3" />
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 w-14 rounded-full gap-1"
-                            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                            disabled={currentPage === 1}
-                            title="Previous page"
-                            aria-label="Previous page"
-                          >
-                            <span className="text-[11px]">Pg</span>
-                            <ChevronLeft className="h-3 w-3 ml-1" />
-                          </Button>
-                          <Badge variant="secondary" className="text-xs rounded-full px-2 py-0.5">
-                            {currentPage}/{getTotalPages()}
-                          </Badge>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 w-14 rounded-full gap-1"
-                            onClick={() => setCurrentPage(Math.min(getTotalPages(), currentPage + 1))}
-                            disabled={currentPage === getTotalPages()}
-                            title="Next page"
-                            aria-label="Next page"
-                          >
-                            <ChevronRight className="h-3 w-3 mr-1" />
-                            <span className="text-[11px]">Pg</span>
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 w-14 rounded-full justify-center"
-                            onClick={() => setCurrentPage(getTotalPages())}
-                            disabled={currentPage === getTotalPages()}
-                            aria-label="Last page"
-                            title="Last page"
-                          >
-                            <ChevronsRight className="h-3 w-3" />
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 w-14 rounded-full justify-center"
-                            onClick={handleNext}
-                            disabled={viewMode === 'surah' ? currentSurah === 114 : currentPara === 30}
-                          >
-                            <ChevronRight className="h-3 w-3" />
-                          </Button>
+                        <div className="flex flex-col md:flex-row gap-1">
+                          <div className="flex items-center gap-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-14 rounded-full justify-center"
+                              onClick={handlePrevious}
+                              disabled={viewMode === 'surah' ? currentSurah === 1 : currentPara === 1}
+                            >
+                              <ChevronLeft className="h-3 w-3" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-14 rounded-full justify-center"
+                              onClick={() => setCurrentPage(1)}
+                              disabled={currentPage === 1}
+                              aria-label="First page"
+                              title="First page"
+                            >
+                              <ChevronsLeft className="h-3 w-3" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-14 rounded-full gap-1"
+                              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                              disabled={currentPage === 1}
+                              title="Previous page"
+                              aria-label="Previous page"
+                            >
+                              <span className="text-[11px]">Pg</span>
+                              <ChevronLeft className="h-3 w-3 ml-1" />
+                            </Button>
+                            <Badge variant="secondary" className="text-xs rounded-full px-2 py-0.5">
+                              {currentPage}/{getTotalPages()}
+                            </Badge>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-14 rounded-full gap-1"
+                              onClick={() => setCurrentPage(Math.min(getTotalPages(), currentPage + 1))}
+                              disabled={currentPage === getTotalPages()}
+                              title="Next page"
+                              aria-label="Next page"
+                            >
+                              <ChevronRight className="h-3 w-3 mr-1" />
+                              <span className="text-[11px]">Pg</span>
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-14 rounded-full justify-center"
+                              onClick={() => setCurrentPage(getTotalPages())}
+                              disabled={currentPage === getTotalPages()}
+                              aria-label="Last page"
+                              title="Last page"
+                            >
+                              <ChevronsRight className="h-3 w-3" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-14 rounded-full justify-center"
+                              onClick={handleNext}
+                              disabled={viewMode === 'surah' ? currentSurah === 114 : currentPara === 30}
+                            >
+                              <ChevronRight className="h-3 w-3" />
+                            </Button>
+                          </div>
                         </div>
                       )}
                     </div>

@@ -154,7 +154,9 @@ export function Navigation() {
                 </Link>
 
                 <nav className="flex flex-col gap-2">
-                  {navigation.map((item) => {
+                  {navigation
+                    .filter((item) => item.href !== '/admin' && item.href !== '/teacher-dashboard')
+                    .map((item) => {
                     const Icon = item.icon;
                     return (
                       <Link

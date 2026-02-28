@@ -329,14 +329,14 @@ export const en = {
     }
   },
   coursesList: {
-    "quran-reading": {
-      title: "Qur'an Reading (Beginner)",
-      summary: "Foundation, pronunciation, basic Tajweed, guided 15 Paras",
+"quran-reading": {
+      title: "Beginner Tajweed (Foundations of Recitation)",
+      summary: "Focus on Arabic alphabet, pronunciation, and basic Tajweed",
       badge: "All Ages",
-      topics: ["Arabic alphabet & pronunciation", "Basic Tajweed rules", "Read quran with guidance"]
+      topics: ["Arabic alphabet & pronunciation", "Basic Tajweed rules", "Read 15 Paras with guidance"]
     },
     "tajweed": {
-      title: "Tajweed (Correct Recitation)",
+      title: "Advanced Tajweed (Correct Recitation)",
       summary: "Master rules, clarity and fluency",
       badge: "All Ages",
       topics: ["Detailed Tajweed rules", "Correct Arabic pronunciation", "Fluency and clarity"]
@@ -361,4 +361,3 @@ export const en = {
     }
   }
 };
-

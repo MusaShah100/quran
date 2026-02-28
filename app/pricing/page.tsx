@@ -140,12 +140,12 @@ export default function PricingPage() {
 
           <div className="relative z-10">
             <div className="flex justify-center mb-8">
-               <TabsList className="grid w-full max-w-lg mx-auto grid-cols-2 h-auto p-1.5 bg-muted/30 rounded-full border border-border/50">
-                <TabsTrigger value="fixed" className="flex items-center justify-center gap-2.5 py-2.5 rounded-full data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md transition-all duration-300">
+               <TabsList className="grid w-full max-w-lg mx-auto grid-cols-1 sm:grid-cols-2 h-auto p-1.5 bg-muted/30 rounded-full border border-border/50">
+                <TabsTrigger value="fixed" className="flex items-center justify-center gap-2.5 py-2.5 rounded-full data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md transition-all duration-300 w-full text-center whitespace-normal break-words leading-snug">
                   <Tags className="h-4 w-4" />
                   <span className="font-semibold">Option 1: Fixed Pricing</span>
                 </TabsTrigger>
-                <TabsTrigger value="income" className="flex items-center justify-center gap-2.5 py-2.5 rounded-full data-[state=active]:bg-white data-[state=active]:text-emerald-600 data-[state=active]:shadow-md transition-all duration-300">
+                <TabsTrigger value="income" className="flex items-center justify-center gap-2.5 py-2.5 rounded-full data-[state=active]:bg-white data-[state=active]:text-emerald-600 data-[state=active]:shadow-md transition-all duration-300 w-full text-center whitespace-normal break-words leading-snug">
                   <HeartHandshake className="h-4 w-4" />
                   <span className="font-semibold">Option 2: Income-Based</span>
                 </TabsTrigger>

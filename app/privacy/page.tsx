@@ -50,7 +50,6 @@ import { Shield, Lock, Globe, Mail, User, Cookie, Database } from 'lucide-react'
                <li>Name, email, phone, country</li>
                <li>Enrollment preferences and selected courses</li>
                <li>Messages sent via contact or WhatsApp</li>
-               <li>Basic usage and device information for performance and security</li>
              </ul>
            </CardContent>
          </Card>
@@ -68,7 +67,6 @@ import { Shield, Lock, Globe, Mail, User, Cookie, Database } from 'lucide-react'
                <li>Scheduling classes and sending confirmations</li>
                <li>Providing support and responding to inquiries</li>
                <li>Improving course quality and platform experience</li>
-               <li>Legal compliance and fraud prevention</li>
              </ul>
            </CardContent>
          </Card>
@@ -85,19 +83,6 @@ import { Shield, Lock, Globe, Mail, User, Cookie, Database } from 'lucide-react'
          <CardContent className="text-sm text-muted-foreground space-y-2">
            <p>We may use essential cookies for authentication and session management, and basic analytics to understand site performance.</p>
            <p>You can control cookies via your browser settings. Disabling certain cookies may affect functionality.</p>
-         </CardContent>
-       </Card>
- 
-       <Card>
-         <CardHeader>
-           <div className="flex items-center gap-2">
-             <Mail className="h-5 w-5 text-primary" />
-             <CardTitle>Contact and Data Requests</CardTitle>
-           </div>
-         </CardHeader>
-         <CardContent className="text-sm text-muted-foreground space-y-2">
-           <p>To request access, correction, or deletion of your data, contact us at:</p>
-           <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">learn@miftahquran.com</Badge>
          </CardContent>
        </Card>
  
