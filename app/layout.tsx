@@ -22,8 +22,65 @@ const notoSansArabic = Noto_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: 'Miftah Quran - Interactive Online Qur\'an Learning Platform',
-  description: 'Learn the Qur\'an with interactive word-by-word highlighting, Tajwīd colors, educational games, and certified teachers.',
+  title: 'Learn Quran Online — Tajwīd, Kids & Adults | Miftah Quran',
+  description: 'Online Qur’an classes with certified teachers. Tajwīd, recitation, Hifz, Noorani Qaida, Arabic and Islamic studies. Free trial, flexible scheduling, income‑based pricing.',
+  applicationName: 'Miftah Quran',
+  keywords: [
+    'Online Quran classes',
+    'Learn Quran online',
+    'Quran teacher online',
+    'Tajweed classes online',
+    'Quran lessons for kids',
+    'Adult Quran classes',
+    'Hifz classes online',
+    'Quran memorization',
+    'Noorani Qaida',
+    'Arabic language course',
+    'Islamic studies online',
+    'Female Quran teacher',
+    'Certified Quran tutors',
+    'Free trial Quran class',
+    'Flexible scheduling',
+    'Income based pricing'
+  ],
+  alternates: {
+    canonical: '/'
+  },
+  metadataBase: new URL('https://miftahquran.com'),
+  openGraph: {
+    title: 'Learn Quran Online — Tajwīd, Kids & Adults | Miftah Quran',
+    description: 'Certified tutors for Tajwīd, Hifz, Noorani Qaida, Arabic and Islamic studies. Free trial and flexible schedules.',
+    url: 'https://miftahquran.com/',
+    siteName: 'Miftah Quran',
+    images: [{ url: '/images/logo.png', alt: 'Miftah Quran' }],
+    type: 'website',
+    locale: 'en_US'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Learn Quran Online — Tajwīd, Kids & Adults | Miftah Quran',
+    description: 'Certified tutors for Tajwīd, Hifz, Noorani Qaida, Arabic and Islamic studies. Free trial and flexible schedules.',
+    images: ['/images/logo.png']
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
+  },
+  category: 'Education',
+  creator: 'Miftah Quran',
+  publisher: 'Miftah Quran',
+  referrer: 'origin-when-cross-origin',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false
+  },
   icons: {
     icon: [
       { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
