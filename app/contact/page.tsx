@@ -79,7 +79,7 @@ export default function ContactPage() {
                 <p className="text-sm text-muted-foreground mb-2">
                   For quick responses, feel free to message us on WhatsApp at:
                 </p>
-                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline block">
+                <a href="https://wa.link/42vggs" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline block">
                   +92 (111) 123-4567
                 </a>
                 <p className="text-xs text-muted-foreground mt-4">
@@ -134,13 +134,13 @@ export default function ContactPage() {
         </p>
         <div className="flex justify-center gap-6 flex-wrap">
           <Button variant="outline" className="gap-2" asChild>
-            <Link href="#">
+            <Link href="https://www.facebook.com/share/1C2otKH44A/">
               <Facebook className="h-5 w-5 text-blue-600" />
               Facebook
             </Link>
           </Button>
           <Button variant="outline" className="gap-2" asChild>
-            <Link href="#">
+            <Link href="https://www.instagram.com/miftahquraninstitute?igsh=dHdlZDhpb3J1ZXZo">
               <Instagram className="h-5 w-5 text-pink-600" />
               Instagram
             </Link>

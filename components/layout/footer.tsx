@@ -13,7 +13,7 @@ export function Footer() {
       <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
         <div className="bg-primary hover:bg-primary/90 text-primary-foreground p-3 rounded-full shadow-lg cursor-pointer transition-all hover:scale-110">
           <a
-            href="https://wa.me/1234567890?text=Hello! I need help with Miftah Quran platform"
+            href="https://wa.link/42vggs"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center"
@@ -31,7 +31,7 @@ export function Footer() {
         </div>
         <div className="bg-secondary hover:bg-secondary/80 text-secondary-foreground p-3 rounded-full shadow-lg cursor-pointer transition-all hover:scale-110">
           <a
-            href="https://m.me/your-facebook-page"
+            href="https://www.facebook.com/share/1C2otKH44A/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center"
@@ -103,7 +103,7 @@ export function Footer() {
                   <path d="M12.004 2.002c-5.522 0-10 4.477-10 9.998 0 1.762.463 3.415 1.27 4.846l-1.349 4.932 5.043-1.322c1.394.762 2.99 1.199 4.664 1.199 5.522 0 9.998-4.477 9.998-9.998s-4.476-9.655-9.998-9.655zm0 18.31c-1.517 0-2.935-.45-4.121-1.225l-.295-.187-2.996.787.801-2.925-.193-.301c-.76-1.214-1.2-2.62-1.2-4.094 0-4.329 3.522-7.851 7.852-7.851 4.329 0 7.85 3.522 7.85 7.851 0 4.329-3.521 7.95-7.85 7.95z" />
                 </svg>
                 <a
-                  href="https://wa.me/1234567890?text=Hello! I need help with Miftah Quran platform"
+                  href="https://wa.link/42vggs"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary"
