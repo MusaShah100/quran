@@ -185,10 +185,6 @@ export default function GamesPage() {
                     <Clock className="h-4 w-4" />
                     <span>{game.estimatedTime}</span>
                   </div>
-                  <Button variant="ghost" size="sm" className="text-xs">
-                    <Upload className="h-3 w-3 mr-1" />
-                    Upload Thumbnail
-                  </Button>
                 </div>
                 
                 <Button 
