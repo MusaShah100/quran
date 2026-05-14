@@ -192,6 +192,9 @@ export const BONUS_DUA_INCLUDED = true;
  */
 export const DEFAULT_CURRENCY = 'USD' as const;
 
+export const SUPPORT_PHONE = '+92-311-9544049' as const;
+export const SUPPORT_PHONE_TEL = SUPPORT_PHONE.replace(/[^\d+]/g, '');
+
 /**
  * Helper function to calculate income-based fee
  * @param monthlyIncome - Monthly income in any currency

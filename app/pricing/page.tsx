@@ -10,6 +10,8 @@ import Link from 'next/link';
 import { useLanguage } from '@/contexts/language-context';
 import { CurrencySelector } from '@/components/enroll/CurrencySelector';
 import { convert, type CurrencyCode } from '@/lib/currency';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   DollarSign,
   Calculator,
@@ -48,70 +50,32 @@ export default function PricingPage() {
   const { t } = useLanguage();
   const [currency, setCurrency] = useState<CurrencyCode>('USD');
   const [pricingMode, setPricingMode] = useState('fixed');
+  const [incomeInput, setIncomeInput] = useState<number | ''>('');
+  const [selectedPercentage, setSelectedPercentage] = useState<number>(PLANS[0].incomePercentage);
+  const [calculatedFee, setCalculatedFee] = useState<number | null>(null);
+
+  const handleCalculateFee = () => {
+    const income = typeof incomeInput === 'number' ? incomeInput : Number(incomeInput || 0);
+    const incomeUSD = convert(income, currency as CurrencyCode, BASE_CURRENCY);
+    const feeUSD = Math.round(calculateIncomeBasedFee(incomeUSD, selectedPercentage) * 100) / 100;
+    const feeLocal = convert(feeUSD, BASE_CURRENCY, currency as CurrencyCode);
+    setCalculatedFee(feeLocal);
+  };
 
   return (
     <div className="container py-8 max-w-7xl">
       {/* Hero Section */}
       <div className="text-center mb-16 pt-4">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground leading-tight">
-          Affordable & Flexible <br />
-          Qur'an Learning for Every Family
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 leading-snug">
+          <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">Affordable & Flexible</span><br />
+          <span className="text-foreground">Qur'an Learning for Every Family</span>
         </h1>
+        <div className="mx-auto mt-2 h-1 w-24 rounded-full bg-gradient-to-r from-emerald-500 to-blue-500"></div>
         
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
+        <p className="text-sm md:text-base text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
           We believe Qur'anic education should be accessible, fair, and stress-free. 
           That's why we offer two flexible pricing options so families can choose what suits them best.
         </p>
-
-        {/* Same Quality Guarantee */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <div className="bg-white dark:bg-card rounded-2xl shadow-xl border border-border/50 p-1 relative overflow-hidden">
-             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-600 z-10"></div>
-             <div className="bg-green-50/50 dark:bg-green-900/10 rounded-xl p-6 md:p-8 border border-green-100 dark:border-green-900/20">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                
-                <div className="flex items-center gap-4 min-w-fit">
-                  <div className="bg-white dark:bg-background p-3 rounded-full shadow-sm border border-green-100 dark:border-green-900/20">
-                    <Scale className="h-6 w-6 text-green-600 dark:text-green-400" />
-                  </div>
-                  <div className="text-left">
-                    <h3 className="text-lg font-bold text-foreground">Fairness Guarantee</h3>
-                    <p className="text-sm text-muted-foreground">Same quality, different ways to pay</p>
-                  </div>
-                </div>
-
-                <div className="hidden md:block w-px h-12 bg-green-200/50 dark:bg-green-800/50"></div>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full">
-                  <div className="flex flex-col items-center justify-start gap-2 text-center group h-full">
-                    <div className="bg-white dark:bg-background p-2 rounded-lg group-hover:scale-110 transition-transform duration-200 shadow-sm border border-green-50 dark:border-green-900/20">
-                      <GraduationCap className="h-4 w-4 text-green-600 dark:text-green-400" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">Same Teachers</span>
-                  </div>
-                  <div className="flex flex-col items-center justify-start gap-2 text-center group h-full">
-                    <div className="bg-white dark:bg-background p-2 rounded-lg group-hover:scale-110 transition-transform duration-200 shadow-sm border border-green-50 dark:border-green-900/20">
-                      <Video className="h-4 w-4 text-green-600 dark:text-green-400" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">Same Live Classes</span>
-                  </div>
-                  <div className="flex flex-col items-center justify-start gap-2 text-center group h-full">
-                    <div className="bg-white dark:bg-background p-2 rounded-lg group-hover:scale-110 transition-transform duration-200 shadow-sm border border-green-50 dark:border-green-900/20">
-                      <Award className="h-4 w-4 text-green-600 dark:text-green-400" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">Same Quality</span>
-                  </div>
-                  <div className="flex flex-col items-center justify-start gap-2 text-center group h-full">
-                    <div className="bg-white dark:bg-background p-2 rounded-lg group-hover:scale-110 transition-transform duration-200 shadow-sm border border-green-50 dark:border-green-900/20">
-                      <Tags className="h-4 w-4 text-green-600 dark:text-green-400" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">Only Price Differs</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
 
@@ -140,12 +104,12 @@ export default function PricingPage() {
 
           <div className="relative z-10">
             <div className="flex justify-center mb-8">
-               <TabsList className="grid w-full max-w-lg mx-auto grid-cols-1 sm:grid-cols-2 h-auto p-1.5 bg-muted/30 rounded-full border border-border/50">
-                <TabsTrigger value="fixed" className="flex items-center justify-center gap-2.5 py-2.5 rounded-full data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md transition-all duration-300 w-full text-center whitespace-normal break-words leading-snug">
+              <TabsList className="grid w-full max-w-lg mx-auto grid-cols-1 sm:grid-cols-2 h-auto p-1.5 bg-muted/30 rounded-full border border-border/50">
+                <TabsTrigger value="fixed" className="flex items-center justify-center gap-2.5 py-2.5 rounded-full data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border data-[state=active]:border-blue-200 data-[state=active]:shadow-md transition-all duration-300 w-full text-center whitespace-normal break-words leading-snug">
                   <Tags className="h-4 w-4" />
                   <span className="font-semibold">Option 1: Fixed Pricing</span>
                 </TabsTrigger>
-                <TabsTrigger value="income" className="flex items-center justify-center gap-2.5 py-2.5 rounded-full data-[state=active]:bg-white data-[state=active]:text-emerald-600 data-[state=active]:shadow-md transition-all duration-300 w-full text-center whitespace-normal break-words leading-snug">
+                <TabsTrigger value="income" className="flex items-center justify-center gap-2.5 py-2.5 rounded-full data-[state=active]:bg-emerald-50 data-[state=active]:text-emerald-700 data-[state=active]:border data-[state=active]:border-emerald-200 data-[state=active]:shadow-md transition-all duration-300 w-full text-center whitespace-normal break-words leading-snug">
                   <HeartHandshake className="h-4 w-4" />
                   <span className="font-semibold">Option 2: Income-Based</span>
                 </TabsTrigger>
@@ -220,6 +184,82 @@ export default function PricingPage() {
                   </p>
                </div>
 
+               {/* How It Works - now shown before plans */}
+               <div className="mb-12">
+                 <Card className="border-emerald-100">
+                   <CardHeader className="pb-2">
+                     <div className="flex items-center gap-2">
+                       <TrendingUp className="h-5 w-5 text-emerald-600" />
+                       <CardTitle className="text-base">How it works</CardTitle>
+                     </div>
+                   </CardHeader>
+                   <CardContent>
+                     <div className="space-y-4">
+                       <div className="flex items-center gap-3">
+                         <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold flex-shrink-0">1</div>
+                         <p className="text-sm">Select a plan & enter family income</p>
+                       </div>
+                       <div className="flex items-center gap-3">
+                         <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold flex-shrink-0">2</div>
+                          <p className="text-sm">Fee is calculated automatically</p>
+                       </div>
+                       <div className="flex items-center gap-2 pt-2">
+                         <div className="w-50">
+                           <Select value={String(selectedPercentage)} onValueChange={(v) => setSelectedPercentage(parseFloat(v))}>
+                             <SelectTrigger className="h-8 text-xs">
+                               <SelectValue placeholder="Select %" />
+                             </SelectTrigger>
+                             <SelectContent>
+                               {PLANS.map((p) => (
+                                 <SelectItem key={p.key} value={String(p.incomePercentage)}>
+                                   {p.name} ({(p.incomePercentage * 100).toFixed(1)}%)
+                                 </SelectItem>
+                               ))}
+                             </SelectContent>
+                           </Select>
+                         </div>
+                         <div className="w-[100px] hidden sm:block">
+                           <CurrencySelector value={currency} onChange={setCurrency} size="sm" />
+                         </div>
+                         <div className="flex-1">
+                           <Input
+                             type="number"
+                             min={0}
+                             placeholder={`Enter income (${currency})`}
+                             value={incomeInput}
+                             onChange={(e) => {
+                               const val = e.target.value;
+                               setIncomeInput(val ? Number(val) : '');
+                             }}
+                             className="h-8 text-xs"
+                           />
+                         </div>
+                         <div className="w-36">
+                           <Button onClick={handleCalculateFee} size="sm" variant="outline" className="w-full text-xs h-8">
+                             Calculate Fee
+                           </Button>
+                         </div>
+                       </div>
+                       <div className="sm:hidden">
+                         <div className="mt-2">
+                           <CurrencySelector value={currency} onChange={setCurrency} size="sm" />
+                         </div>
+                       </div>
+                       
+                       {calculatedFee !== null ? (
+                         <div className="mt-2 p-2 bg-emerald-50/60 rounded text-xs text-emerald-800 border border-emerald-100">
+                           <span className="font-semibold">Result:</span> Income {currency} {incomeInput || 0} + Selected ({(selectedPercentage * 100).toFixed(1)}%) = {calculatedFee} {currency} fee.
+                         </div>
+                       ) : (
+                         <div className="mt-2 p-2 bg-muted/50 rounded text-xs text-muted-foreground">
+                           <span className="font-semibold">Example:</span> Income {currency} 1,000 + Base Plan (2%) = {convert(calculateIncomeBasedFee(1000, 0.02), BASE_CURRENCY, currency)} {currency} fee.
+                         </div>
+                       )}
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
+
               {/* Income-Based Plans */}
               <div className="grid md:grid-cols-3 gap-6 mb-12">
                 {PLANS.map((plan) => (
@@ -264,9 +304,8 @@ export default function PricingPage() {
                   </Card>
                 ))}
               </div>
-              {/* Nothing */}
               
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="mt-6">
                 <Card className="bg-emerald-50/50 border-emerald-100">
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-emerald-900 mb-4 flex items-center gap-2">
@@ -289,43 +328,60 @@ export default function PricingPage() {
                     </ul>
                   </CardContent>
                 </Card>
-
-                {/* How It Works Section */}
-                <Card className="border-emerald-100">
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center gap-2">
-                      <TrendingUp className="h-5 w-5 text-emerald-600" />
-                      <CardTitle className="text-base">How it works</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold flex-shrink-0">1</div>
-                        <p className="text-sm">Select a plan & enter family income</p>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold flex-shrink-0">2</div>
-                         <p className="text-sm">Fee is calculated automatically</p>
-                      </div>
-                      
-                      <div className="mt-2 p-2 bg-muted/50 rounded text-xs text-muted-foreground">
-                        <span className="font-semibold">Example:</span> Income {currency} 1,000 + Base Plan (2%) = {convert(calculateIncomeBasedFee(1000, 0.02), BASE_CURRENCY, currency)} {currency} fee.
-                      </div>
-
-                      <div className="flex gap-2 pt-2">
-                         <Button asChild size="sm" variant="outline" className="w-full text-xs h-8">
-                          <Link href="/enroll">Calculate Fee</Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
               </div>
             </TabsContent>
           </div>
         </div>
       </Tabs>
+
+      <div className="max-w-5xl mx-auto mb-16">
+        <div className="bg-white dark:bg-card rounded-2xl shadow-xl border border-border/50 p-1 relative overflow-hidden">
+           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-600 z-10"></div>
+           <div className="bg-green-50/50 dark:bg-green-900/10 rounded-xl p-6 md:p-8 border border-green-100 dark:border-green-900/20">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              
+              <div className="flex items-center gap-4 min-w-fit">
+                <div className="bg-white dark:bg-background p-3 rounded-full shadow-sm border border-green-100 dark:border-green-900/20">
+                  <Scale className="h-6 w-6 text-green-600 dark:text-green-400" />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-lg font-bold text-foreground">Fairness Guarantee</h3>
+                  <p className="text-sm text-muted-foreground">Same quality, different ways to pay</p>
+                </div>
+              </div>
+
+              <div className="hidden md:block w-px h-12 bg-green-200/50 dark:bg-green-800/50"></div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full">
+                <div className="flex flex-col items-center justify-start gap-2 text-center group h-full">
+                  <div className="bg-white dark:bg-background p-2 rounded-lg group-hover:scale-110 transition-transform duration-200 shadow-sm border border-green-50 dark:border-green-900/20">
+                    <GraduationCap className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground">Same Teachers</span>
+                </div>
+                <div className="flex flex-col items-center justify-start gap-2 text-center group h-full">
+                  <div className="bg-white dark:bg-background p-2 rounded-lg group-hover:scale-110 transition-transform duration-200 shadow-sm border border-green-50 dark:border-green-900/20">
+                    <Video className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground">Same Live Classes</span>
+                </div>
+                <div className="flex flex-col items-center justify-start gap-2 text-center group h-full">
+                  <div className="bg-white dark:bg-background p-2 rounded-lg group-hover:scale-110 transition-transform duration-200 shadow-sm border border-green-50 dark:border-green-900/20">
+                    <Award className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground">Same Quality</span>
+                </div>
+                <div className="flex flex-col items-center justify-start gap-2 text-center group h-full">
+                  <div className="bg-white dark:bg-background p-2 rounded-lg group-hover:scale-110 transition-transform duration-200 shadow-sm border border-green-50 dark:border-green-900/20">
+                    <Tags className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground">Only Price Differs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Quality Assurance Section */}
       <div className="max-w-6xl mx-auto mb-24">

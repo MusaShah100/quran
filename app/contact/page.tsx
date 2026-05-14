@@ -15,6 +15,7 @@ import {
   HelpCircle,
   Clock
 } from 'lucide-react';
+import { SUPPORT_PHONE, SUPPORT_PHONE_TEL } from '@/lib/config';
 
 export default function ContactPage() {
   const [showThankYou, setShowThankYou] = useState(false);
@@ -80,7 +81,7 @@ export default function ContactPage() {
                   For quick responses, feel free to message us on WhatsApp at:
                 </p>
                 <a href="https://wa.link/42vggs" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline block">
-                  +92 (111) 123-4567
+                  {SUPPORT_PHONE}
                 </a>
                 <p className="text-xs text-muted-foreground mt-4">
                   We’re available to chat during working hours, Monday to Saturday.
@@ -98,8 +99,8 @@ export default function ContactPage() {
                 <p className="text-sm text-muted-foreground mb-2">
                   If you prefer to speak directly with someone, call us at:
                 </p>
-                <a href="tel:+921111234567" className="text-blue-600 font-medium hover:underline block">
-                  +92 (111) 123-4567
+                <a href={`tel:${SUPPORT_PHONE_TEL}`} className="text-blue-600 font-medium hover:underline block">
+                  {SUPPORT_PHONE}
                 </a>
                 <p className="text-xs text-muted-foreground mt-4">
                   Our team is ready to assist you with any questions you may have.

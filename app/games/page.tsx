@@ -22,6 +22,17 @@ import {
 
 const games = [
   {
+    id: 'arabic-letter-match',
+    title: 'Arabic Letter Match',
+    description: 'A fun memory game to learn and match Arabic letters',
+    icon: Gamepad2,
+    difficulty: 'Beginner',
+    estimatedTime: '3-5 min',
+    thumbnail: null,
+    newTab: true,
+    href: '/games/arabic-letter-match'
+  },
+  {
     id: 'tajweed-color',
     title: 'Tajwīd Color Match',
     description: 'Match Tajwīd rules with their correct colors and learn pronunciation guidelines',
@@ -181,7 +192,13 @@ export default function GamesPage() {
                 </div>
                 
                 <Button 
-                  onClick={() => setSelectedGame(game.id)}
+                  onClick={() => {
+                    if (game.newTab && game.href) {
+                      window.open(game.href, '_blank');
+                    } else {
+                      setSelectedGame(game.id);
+                    }
+                  }}
                   className="w-full"
                 >
                   <Play className="h-4 w-4 mr-2" />
