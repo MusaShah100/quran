@@ -1,0 +1,1639 @@
+{
+  "title": "Global Minimum Wages — Monthly Equivalent",
+  "note": "All values converted to monthly. Hourly × 176 (8h × 22 days), Daily × 22, Weekly × 4.3333.",
+  "country_count": 102,
+  "data": [
+    {
+      "country": "Albania",
+      "currency": "ALL",
+      "data_period": "Dec/25",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 40000,
+        "previous": 40000
+      },
+      "minimum_wage_original": {
+        "current": 40000,
+        "previous": 40000,
+        "unit": "ALL/Month"
+      }
+    },
+    {
+      "country": "Algeria",
+      "currency": "DZD",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 24000,
+        "previous": 20000
+      },
+      "minimum_wage_original": {
+        "current": 24000,
+        "previous": 20000,
+        "unit": "DZD/Month"
+      }
+    },
+    {
+      "country": "Angola",
+      "currency": "AOA",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 32181,
+        "previous": 32181
+      },
+      "minimum_wage_original": {
+        "current": 32181,
+        "previous": 32181,
+        "unit": "AOA/Month"
+      }
+    },
+    {
+      "country": "Argentina",
+      "currency": "ARS",
+      "data_period": "Apr/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 357800,
+        "previous": 352400
+      },
+      "minimum_wage_original": {
+        "current": 357800,
+        "previous": 352400,
+        "unit": "ARS/Month"
+      }
+    },
+    {
+      "country": "Armenia",
+      "currency": "AMD",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 75000,
+        "previous": 75000
+      },
+      "minimum_wage_original": {
+        "current": 75000,
+        "previous": 75000,
+        "unit": "AMD/Month"
+      }
+    },
+    {
+      "country": "Australia",
+      "currency": "AUD",
+      "data_period": "Jul/25",
+      "original_period": "Week",
+      "conversion_applied": "× 4.3333 (52 weeks ÷ 12)",
+      "minimum_wage_monthly": {
+        "current": 4108.0,
+        "previous": 3969.33
+      },
+      "minimum_wage_original": {
+        "current": 948,
+        "previous": 916,
+        "unit": "AUD/Week"
+      }
+    },
+    {
+      "country": "Azerbaijan",
+      "currency": "AZN",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 400,
+        "previous": 400
+      },
+      "minimum_wage_original": {
+        "current": 400,
+        "previous": 400,
+        "unit": "AZN/Month"
+      }
+    },
+    {
+      "country": "Bangladesh",
+      "currency": "BDT",
+      "data_period": "Dec/25",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 12500,
+        "previous": 12500
+      },
+      "minimum_wage_original": {
+        "current": 12500,
+        "previous": 12500,
+        "unit": "BDT/Month"
+      }
+    },
+    {
+      "country": "Belarus",
+      "currency": "BYN",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 858,
+        "previous": 726
+      },
+      "minimum_wage_original": {
+        "current": 858,
+        "previous": 726,
+        "unit": "BYN/Month"
+      }
+    },
+    {
+      "country": "Belgium",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 2112,
+        "previous": 2112
+      },
+      "minimum_wage_original": {
+        "current": 2112,
+        "previous": 2112,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Benin",
+      "currency": "XOF",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 52000,
+        "previous": 52000
+      },
+      "minimum_wage_original": {
+        "current": 52000,
+        "previous": 52000,
+        "unit": "XOF/Month"
+      }
+    },
+    {
+      "country": "Bolivia",
+      "currency": "BOB",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 3300,
+        "previous": 2750
+      },
+      "minimum_wage_original": {
+        "current": 3300,
+        "previous": 2750,
+        "unit": "BOB/Month"
+      }
+    },
+    {
+      "country": "Bosnia and Herzegovina",
+      "currency": "BAM",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1027,
+        "previous": 1000
+      },
+      "minimum_wage_original": {
+        "current": 1027,
+        "previous": 1000,
+        "unit": "BAM/Month"
+      }
+    },
+    {
+      "country": "Botswana",
+      "currency": "BWP",
+      "data_period": "Jan/26",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 1594.56,
+        "previous": 1594.56
+      },
+      "minimum_wage_original": {
+        "current": 9.06,
+        "previous": 9.06,
+        "unit": "BWP/Hour"
+      }
+    },
+    {
+      "country": "Brazil",
+      "currency": "BRL",
+      "data_period": "Apr/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1621,
+        "previous": 1621
+      },
+      "minimum_wage_original": {
+        "current": 1621,
+        "previous": 1621,
+        "unit": "BRL/Month"
+      }
+    },
+    {
+      "country": "Bulgaria",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 620,
+        "previous": 551
+      },
+      "minimum_wage_original": {
+        "current": 620,
+        "previous": 551,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Cambodia",
+      "currency": "USD",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 210,
+        "previous": 208
+      },
+      "minimum_wage_original": {
+        "current": 210,
+        "previous": 208,
+        "unit": "USD/Month"
+      }
+    },
+    {
+      "country": "Canada",
+      "currency": "CAD",
+      "data_period": "Oct/25",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 3097.6,
+        "previous": 3027.2
+      },
+      "minimum_wage_original": {
+        "current": 17.6,
+        "previous": 17.2,
+        "unit": "CAD/Hour"
+      }
+    },
+    {
+      "country": "Cape Verde",
+      "currency": "CVE",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 13000,
+        "previous": 13000
+      },
+      "minimum_wage_original": {
+        "current": 13000,
+        "previous": 13000,
+        "unit": "CVE/Month"
+      }
+    },
+    {
+      "country": "Chile",
+      "currency": "CLP",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 539000,
+        "previous": 529000
+      },
+      "minimum_wage_original": {
+        "current": 539000,
+        "previous": 529000,
+        "unit": "CLP/Month"
+      }
+    },
+    {
+      "country": "China",
+      "currency": "CNY",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 2740,
+        "previous": 2740
+      },
+      "minimum_wage_original": {
+        "current": 2740,
+        "previous": 2740,
+        "unit": "CNY/Month"
+      }
+    },
+    {
+      "country": "Colombia",
+      "currency": "COP",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1750905,
+        "previous": 1423500
+      },
+      "minimum_wage_original": {
+        "current": 1750905,
+        "previous": 1423500,
+        "unit": "COP/Month"
+      }
+    },
+    {
+      "country": "Costa Rica",
+      "currency": "points",
+      "data_period": "Apr/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 6333,
+        "previous": 6333
+      },
+      "minimum_wage_original": {
+        "current": 6333,
+        "previous": 6333,
+        "unit": "points/Month"
+      }
+    },
+    {
+      "country": "Croatia",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1050,
+        "previous": 970
+      },
+      "minimum_wage_original": {
+        "current": 1050,
+        "previous": 970,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Czech Republic",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 924,
+        "previous": 841
+      },
+      "minimum_wage_original": {
+        "current": 924,
+        "previous": 841,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Dominican Republic",
+      "currency": "DOP",
+      "data_period": "Feb/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 16993,
+        "previous": 15860
+      },
+      "minimum_wage_original": {
+        "current": 16993,
+        "previous": 15860,
+        "unit": "DOP/Month"
+      }
+    },
+    {
+      "country": "Ecuador",
+      "currency": "USD",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 482,
+        "previous": 470
+      },
+      "minimum_wage_original": {
+        "current": 482,
+        "previous": 470,
+        "unit": "USD/Month"
+      }
+    },
+    {
+      "country": "Egypt",
+      "currency": "EGP",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 7000,
+        "previous": 7000
+      },
+      "minimum_wage_original": {
+        "current": 7000,
+        "previous": 7000,
+        "unit": "EGP/Month"
+      }
+    },
+    {
+      "country": "El Salvador",
+      "currency": "USD",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 409,
+        "previous": 409
+      },
+      "minimum_wage_original": {
+        "current": 409,
+        "previous": 409,
+        "unit": "USD/Month"
+      }
+    },
+    {
+      "country": "Estonia",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 886,
+        "previous": 886
+      },
+      "minimum_wage_original": {
+        "current": 886,
+        "previous": 886,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Ethiopia",
+      "currency": "ETB",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 420,
+        "previous": 420
+      },
+      "minimum_wage_original": {
+        "current": 420,
+        "previous": 420,
+        "unit": "ETB/Month"
+      }
+    },
+    {
+      "country": "France",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1823,
+        "previous": 1802
+      },
+      "minimum_wage_original": {
+        "current": 1823,
+        "previous": 1802,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Germany",
+      "currency": "EUR",
+      "data_period": "Jan/26",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 2446.4,
+        "previous": 2256.32
+      },
+      "minimum_wage_original": {
+        "current": 13.9,
+        "previous": 12.82,
+        "unit": "EUR/Hour"
+      }
+    },
+    {
+      "country": "Ghana",
+      "currency": "GHS",
+      "data_period": "Jan/26",
+      "original_period": "Day",
+      "conversion_applied": "× 22 working days",
+      "minimum_wage_monthly": {
+        "current": 478.94,
+        "previous": 439.34
+      },
+      "minimum_wage_original": {
+        "current": 21.77,
+        "previous": 19.97,
+        "unit": "GHS/Day"
+      }
+    },
+    {
+      "country": "Greece",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1027,
+        "previous": 1027
+      },
+      "minimum_wage_original": {
+        "current": 1027,
+        "previous": 1027,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Guatemala",
+      "currency": "GTQ",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 4002,
+        "previous": 3723
+      },
+      "minimum_wage_original": {
+        "current": 4002,
+        "previous": 3723,
+        "unit": "GTQ/Month"
+      }
+    },
+    {
+      "country": "Haiti",
+      "currency": "HTG",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 540,
+        "previous": 540
+      },
+      "minimum_wage_original": {
+        "current": 540,
+        "previous": 540,
+        "unit": "HTG/Month"
+      }
+    },
+    {
+      "country": "Honduras",
+      "currency": "HNL",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 9597,
+        "previous": 9053
+      },
+      "minimum_wage_original": {
+        "current": 9597,
+        "previous": 9053,
+        "unit": "HNL/Month"
+      }
+    },
+    {
+      "country": "Hong Kong",
+      "currency": "HKD",
+      "data_period": "May/26",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 7585.6,
+        "previous": 7409.6
+      },
+      "minimum_wage_original": {
+        "current": 43.1,
+        "previous": 42.1,
+        "unit": "HKD/Hour"
+      }
+    },
+    {
+      "country": "Hungary",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 838,
+        "previous": 727
+      },
+      "minimum_wage_original": {
+        "current": 838,
+        "previous": 727,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "India",
+      "currency": "INR",
+      "data_period": "Dec/26",
+      "original_period": "Day",
+      "conversion_applied": "× 22 working days",
+      "minimum_wage_monthly": {
+        "current": 3916,
+        "previous": 3916
+      },
+      "minimum_wage_original": {
+        "current": 178,
+        "previous": 178,
+        "unit": "INR/Day"
+      }
+    },
+    {
+      "country": "Indonesia",
+      "currency": "IDR Million",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 5.73,
+        "previous": 5.4
+      },
+      "minimum_wage_original": {
+        "current": 5.73,
+        "previous": 5.4,
+        "unit": "IDR Million/Month"
+      }
+    },
+    {
+      "country": "Ireland",
+      "currency": "EUR",
+      "data_period": "Jan/26",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 2490.4,
+        "previous": 2376.0
+      },
+      "minimum_wage_original": {
+        "current": 14.15,
+        "previous": 13.5,
+        "unit": "EUR/Hour"
+      }
+    },
+    {
+      "country": "Israel",
+      "currency": "ILS",
+      "data_period": "Apr/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 6248,
+        "previous": 6248
+      },
+      "minimum_wage_original": {
+        "current": 6248,
+        "previous": 6248,
+        "unit": "ILS/Month"
+      }
+    },
+    {
+      "country": "Japan",
+      "currency": "JPY",
+      "data_period": "Oct/26",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 187264,
+        "previous": 197296
+      },
+      "minimum_wage_original": {
+        "current": 1064,
+        "previous": 1121,
+        "unit": "JPY/Hour"
+      }
+    },
+    {
+      "country": "Jordan",
+      "currency": "JOD",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 290,
+        "previous": 290
+      },
+      "minimum_wage_original": {
+        "current": 290,
+        "previous": 290,
+        "unit": "JOD/Month"
+      }
+    },
+    {
+      "country": "Kazakhstan",
+      "currency": "KZT",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 85000,
+        "previous": 85000
+      },
+      "minimum_wage_original": {
+        "current": 85000,
+        "previous": 85000,
+        "unit": "KZT/Month"
+      }
+    },
+    {
+      "country": "Kenya",
+      "currency": "KES",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 16114,
+        "previous": 15202
+      },
+      "minimum_wage_original": {
+        "current": 16114,
+        "previous": 15202,
+        "unit": "KES/Month"
+      }
+    },
+    {
+      "country": "Kyrgyzstan",
+      "currency": "KGS",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 3280,
+        "previous": 2460
+      },
+      "minimum_wage_original": {
+        "current": 3280,
+        "previous": 2460,
+        "unit": "KGS/Month"
+      }
+    },
+    {
+      "country": "Laos",
+      "currency": "LAK",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 2500000,
+        "previous": 2500000
+      },
+      "minimum_wage_original": {
+        "current": 2500000,
+        "previous": 2500000,
+        "unit": "LAK/Month"
+      }
+    },
+    {
+      "country": "Latvia",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 780,
+        "previous": 740
+      },
+      "minimum_wage_original": {
+        "current": 780,
+        "previous": 740,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Lesotho",
+      "currency": "LSL",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 2242,
+        "previous": 2125
+      },
+      "minimum_wage_original": {
+        "current": 2242,
+        "previous": 2125,
+        "unit": "LSL/Month"
+      }
+    },
+    {
+      "country": "Lithuania",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1153,
+        "previous": 1038
+      },
+      "minimum_wage_original": {
+        "current": 1153,
+        "previous": 1038,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Luxembourg",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 2704,
+        "previous": 2704
+      },
+      "minimum_wage_original": {
+        "current": 2704,
+        "previous": 2704,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Macedonia",
+      "currency": "MKD",
+      "data_period": "Mar/25",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 36037,
+        "previous": 33352
+      },
+      "minimum_wage_original": {
+        "current": 36037,
+        "previous": 33352,
+        "unit": "MKD/Month"
+      }
+    },
+    {
+      "country": "Madagascar",
+      "currency": "MGA",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 262680,
+        "previous": 262680
+      },
+      "minimum_wage_original": {
+        "current": 262680,
+        "previous": 262680,
+        "unit": "MGA/Month"
+      }
+    },
+    {
+      "country": "Malaysia",
+      "currency": "MYR",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1700,
+        "previous": 1700
+      },
+      "minimum_wage_original": {
+        "current": 1700,
+        "previous": 1700,
+        "unit": "MYR/Month"
+      }
+    },
+    {
+      "country": "Malta",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 994,
+        "previous": 961
+      },
+      "minimum_wage_original": {
+        "current": 994,
+        "previous": 961,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Mauritius",
+      "currency": "MUR",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 17110,
+        "previous": 17110
+      },
+      "minimum_wage_original": {
+        "current": 17110,
+        "previous": 17110,
+        "unit": "MUR/Month"
+      }
+    },
+    {
+      "country": "Mexico",
+      "currency": "MXN",
+      "data_period": "Mar/26",
+      "original_period": "Day",
+      "conversion_applied": "× 22 working days",
+      "minimum_wage_monthly": {
+        "current": 6930,
+        "previous": 6930
+      },
+      "minimum_wage_original": {
+        "current": 315,
+        "previous": 315,
+        "unit": "MXN/Day"
+      }
+    },
+    {
+      "country": "Moldova",
+      "currency": "MDL",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 6300,
+        "previous": 5500
+      },
+      "minimum_wage_original": {
+        "current": 6300,
+        "previous": 5500,
+        "unit": "MDL/Month"
+      }
+    },
+    {
+      "country": "Mongolia",
+      "currency": "MNT",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 792000,
+        "previous": 792000
+      },
+      "minimum_wage_original": {
+        "current": 792000,
+        "previous": 792000,
+        "unit": "MNT/Month"
+      }
+    },
+    {
+      "country": "Montenegro",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 670,
+        "previous": 670
+      },
+      "minimum_wage_original": {
+        "current": 670,
+        "previous": 670,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Morocco",
+      "currency": "MAD",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 3423,
+        "previous": 3045
+      },
+      "minimum_wage_original": {
+        "current": 3423,
+        "previous": 3045,
+        "unit": "MAD/Month"
+      }
+    },
+    {
+      "country": "Mozambique",
+      "currency": "MZN",
+      "data_period": "Feb/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 6688,
+        "previous": 6688
+      },
+      "minimum_wage_original": {
+        "current": 6688,
+        "previous": 6688,
+        "unit": "MZN/Month"
+      }
+    },
+    {
+      "country": "Myanmar",
+      "currency": "MMK",
+      "data_period": "Dec/26",
+      "original_period": "Day",
+      "conversion_applied": "× 22 working days",
+      "minimum_wage_monthly": {
+        "current": 105600,
+        "previous": 105600
+      },
+      "minimum_wage_original": {
+        "current": 4800,
+        "previous": 4800,
+        "unit": "MMK/Day"
+      }
+    },
+    {
+      "country": "Netherlands",
+      "currency": "EUR",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 2545,
+        "previous": 2506
+      },
+      "minimum_wage_original": {
+        "current": 2545,
+        "previous": 2506,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "New Zealand",
+      "currency": "NZD",
+      "data_period": "Apr/26",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 4215.2,
+        "previous": 4136.0
+      },
+      "minimum_wage_original": {
+        "current": 23.95,
+        "previous": 23.5,
+        "unit": "NZD/Hour"
+      }
+    },
+    {
+      "country": "Nicaragua",
+      "currency": "NIO",
+      "data_period": "Mar/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 8320,
+        "previous": 8000
+      },
+      "minimum_wage_original": {
+        "current": 8320,
+        "previous": 8000,
+        "unit": "NIO/Month"
+      }
+    },
+    {
+      "country": "Nigeria",
+      "currency": "NGN",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 70000,
+        "previous": 70000
+      },
+      "minimum_wage_original": {
+        "current": 70000,
+        "previous": 70000,
+        "unit": "NGN/Month"
+      }
+    },
+    {
+      "country": "Oman",
+      "currency": "OMR",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 325,
+        "previous": 325
+      },
+      "minimum_wage_original": {
+        "current": 325,
+        "previous": 325,
+        "unit": "OMR/Month"
+      }
+    },
+    {
+      "country": "Pakistan",
+      "currency": "PKR",
+      "data_period": "Jul/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 40000,
+        "previous": 40000
+      },
+      "minimum_wage_original": {
+        "current": 40000,
+        "previous": 40000,
+        "unit": "PKR/Month"
+      }
+    },
+    {
+      "country": "Panama",
+      "currency": "PAB",
+      "data_period": "Jan/26",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 550.88,
+        "previous": 542.08
+      },
+      "minimum_wage_original": {
+        "current": 3.13,
+        "previous": 3.08,
+        "unit": "PAB/Hour"
+      }
+    },
+    {
+      "country": "Papua New Guinea",
+      "currency": "PGK",
+      "data_period": "Dec/25",
+      "original_period": "Week",
+      "conversion_applied": "× 4.3333 (52 weeks ÷ 12)",
+      "minimum_wage_monthly": {
+        "current": 611.0,
+        "previous": 611.0
+      },
+      "minimum_wage_original": {
+        "current": 141,
+        "previous": 141,
+        "unit": "PGK/Week"
+      }
+    },
+    {
+      "country": "Paraguay",
+      "currency": "PYG Thousand",
+      "data_period": "Mar/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 2899,
+        "previous": 2899
+      },
+      "minimum_wage_original": {
+        "current": 2899,
+        "previous": 2899,
+        "unit": "PYG Thousand/Month"
+      }
+    },
+    {
+      "country": "Peru",
+      "currency": "PEN",
+      "data_period": "Feb/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1130,
+        "previous": 1130
+      },
+      "minimum_wage_original": {
+        "current": 1130,
+        "previous": 1130,
+        "unit": "PEN/Month"
+      }
+    },
+    {
+      "country": "Philippines",
+      "currency": "PHP",
+      "data_period": "Dec/26",
+      "original_period": "Day",
+      "conversion_applied": "× 22 working days",
+      "minimum_wage_monthly": {
+        "current": 15290,
+        "previous": 15290
+      },
+      "minimum_wage_original": {
+        "current": 695,
+        "previous": 695,
+        "unit": "PHP/Day"
+      }
+    },
+    {
+      "country": "Poland",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1139,
+        "previous": 1100
+      },
+      "minimum_wage_original": {
+        "current": 1139,
+        "previous": 1100,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Portugal",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1073,
+        "previous": 1015
+      },
+      "minimum_wage_original": {
+        "current": 1073,
+        "previous": 1015,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Qatar",
+      "currency": "QAR",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1000,
+        "previous": 1000
+      },
+      "minimum_wage_original": {
+        "current": 1000,
+        "previous": 1000,
+        "unit": "QAR/Month"
+      }
+    },
+    {
+      "country": "Romania",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 795,
+        "previous": 797
+      },
+      "minimum_wage_original": {
+        "current": 795,
+        "previous": 797,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Russia",
+      "currency": "RUB",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 27093,
+        "previous": 22440
+      },
+      "minimum_wage_original": {
+        "current": 27093,
+        "previous": 22440,
+        "unit": "RUB/Month"
+      }
+    },
+    {
+      "country": "Serbia",
+      "currency": "EUR",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 744,
+        "previous": 744
+      },
+      "minimum_wage_original": {
+        "current": 744,
+        "previous": 744,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Slovakia",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 915,
+        "previous": 816
+      },
+      "minimum_wage_original": {
+        "current": 915,
+        "previous": 816,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Slovenia",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1278,
+        "previous": 1278
+      },
+      "minimum_wage_original": {
+        "current": 1278,
+        "previous": 1278,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "South Africa",
+      "currency": "ZAR",
+      "data_period": "Mar/25",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 5067.04,
+        "previous": 4854.08
+      },
+      "minimum_wage_original": {
+        "current": 28.79,
+        "previous": 27.58,
+        "unit": "ZAR/Hour"
+      }
+    },
+    {
+      "country": "South Korea",
+      "currency": "KRW",
+      "data_period": "Dec/26",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 1816320,
+        "previous": 1765280
+      },
+      "minimum_wage_original": {
+        "current": 10320,
+        "previous": 10030,
+        "unit": "KRW/Hour"
+      }
+    },
+    {
+      "country": "Spain",
+      "currency": "EUR",
+      "data_period": "Jun/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1381,
+        "previous": 1381
+      },
+      "minimum_wage_original": {
+        "current": 1381,
+        "previous": 1381,
+        "unit": "EUR/Month"
+      }
+    },
+    {
+      "country": "Sri Lanka",
+      "currency": "LKR",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 30000,
+        "previous": 27000
+      },
+      "minimum_wage_original": {
+        "current": 30000,
+        "previous": 27000,
+        "unit": "LKR/Month"
+      }
+    },
+    {
+      "country": "Taiwan",
+      "currency": "TWD",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 29500,
+        "previous": 28590
+      },
+      "minimum_wage_original": {
+        "current": 29500,
+        "previous": 28590,
+        "unit": "TWD/Month"
+      }
+    },
+    {
+      "country": "Tajikistan",
+      "currency": "TJS",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1000,
+        "previous": 800
+      },
+      "minimum_wage_original": {
+        "current": 1000,
+        "previous": 800,
+        "unit": "TJS/Month"
+      }
+    },
+    {
+      "country": "Tanzania",
+      "currency": "TZS",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 80000,
+        "previous": 60000
+      },
+      "minimum_wage_original": {
+        "current": 80000,
+        "previous": 60000,
+        "unit": "TZS/Month"
+      }
+    },
+    {
+      "country": "Thailand",
+      "currency": "THB",
+      "data_period": "Dec/26",
+      "original_period": "Day",
+      "conversion_applied": "× 22 working days",
+      "minimum_wage_monthly": {
+        "current": 8800,
+        "previous": 8800
+      },
+      "minimum_wage_original": {
+        "current": 400,
+        "previous": 400,
+        "unit": "THB/Day"
+      }
+    },
+    {
+      "country": "Tunisia",
+      "currency": "TND",
+      "data_period": "Feb/26",
+      "original_period": "Day",
+      "conversion_applied": "× 22 working days",
+      "minimum_wage_monthly": {
+        "current": 447.04,
+        "previous": 447.04
+      },
+      "minimum_wage_original": {
+        "current": 20.32,
+        "previous": 20.32,
+        "unit": "TND/Day"
+      }
+    },
+    {
+      "country": "Turkey",
+      "currency": "TRY",
+      "data_period": "Dec/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 33030,
+        "previous": 26006
+      },
+      "minimum_wage_original": {
+        "current": 33030,
+        "previous": 26006,
+        "unit": "TRY/Month"
+      }
+    },
+    {
+      "country": "Uganda",
+      "currency": "UGX",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 130000,
+        "previous": 130000
+      },
+      "minimum_wage_original": {
+        "current": 130000,
+        "previous": 130000,
+        "unit": "UGX/Month"
+      }
+    },
+    {
+      "country": "Ukraine",
+      "currency": "UAH",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 8647,
+        "previous": 8000
+      },
+      "minimum_wage_original": {
+        "current": 8647,
+        "previous": 8000,
+        "unit": "UAH/Month"
+      }
+    },
+    {
+      "country": "United Kingdom",
+      "currency": "GBP",
+      "data_period": "Apr/26",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 2236.96,
+        "previous": 2148.96
+      },
+      "minimum_wage_original": {
+        "current": 12.71,
+        "previous": 12.21,
+        "unit": "GBP/Hour"
+      }
+    },
+    {
+      "country": "United States",
+      "currency": "USD",
+      "data_period": "Dec/25",
+      "original_period": "Hour",
+      "conversion_applied": "× 176 (8 hrs/day × 22 days)",
+      "minimum_wage_monthly": {
+        "current": 1276.0,
+        "previous": 1276.0
+      },
+      "minimum_wage_original": {
+        "current": 7.25,
+        "previous": 7.25,
+        "unit": "USD/Hour"
+      }
+    },
+    {
+      "country": "Uzbekistan",
+      "currency": "UZS",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 1271000,
+        "previous": 1155000
+      },
+      "minimum_wage_original": {
+        "current": 1271000,
+        "previous": 1155000,
+        "unit": "UZS/Month"
+      }
+    },
+    {
+      "country": "Venezuela",
+      "currency": "VEF",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 13000000,
+        "previous": 13000000
+      },
+      "minimum_wage_original": {
+        "current": 13000000,
+        "previous": 13000000,
+        "unit": "VEF/Month"
+      }
+    },
+    {
+      "country": "Vietnam",
+      "currency": "VND Thousand",
+      "data_period": "Jan/26",
+      "original_period": "Month",
+      "conversion_applied": "no conversion needed",
+      "minimum_wage_monthly": {
+        "current": 5310,
+        "previous": 4960
+      },
+      "minimum_wage_original": {
+        "current": 5310,
+        "previous": 4960,
+        "unit": "VND Thousand/Month"
+      }
+    }
+  ]
+}

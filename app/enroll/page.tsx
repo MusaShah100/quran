@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useMemo, useEffect, useState, useCallback } from 'react';
+import React, { useMemo, useEffect, useState, useCallback, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -76,9 +77,26 @@ function Wizard() {
   const isTrial = params.get('type') === 'trial';
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showLoadingModal, setShowLoadingModal] = useState(false);
+  const [showIncomeConfirmation, setShowIncomeConfirmation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailsSent, setEmailsSent] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState<string>('');
+  const [salaries, setSalaries] = useState<any[]>([]);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  useEffect(() => {
+    const fetchSalaries = async () => {
+      try {
+        const res = await fetch('/salaries.json');
+        const data = await res.json();
+        setSalaries(data.data || []);
+      } catch (e) {
+        console.error('Failed to load salaries:', e);
+      }
+    };
+    fetchSalaries();
+  }, []);
 
   const form = useForm<z.infer<typeof personalSchema>>({
     resolver: zodResolver(personalSchema),
@@ -167,6 +185,20 @@ function Wizard() {
     const isValid = await form.trigger();
     if (!isValid) return;
     const values = form.getValues();
+
+    // Auto-select currency based on country
+    const countryData = salaries.find(s => s.country.toLowerCase() === values.country.toLowerCase());
+    const supportedCurrencies: CurrencyCode[] = ['USD', 'EUR', 'GBP', 'PKR', 'INR', 'SAR', 'AED', 'CAD', 'AUD'];
+    
+    let targetCurrency: CurrencyCode = 'USD';
+    if (countryData && countryData.currency) {
+      const countryCurrency = countryData.currency.toUpperCase() as CurrencyCode;
+      if (supportedCurrencies.includes(countryCurrency)) {
+        targetCurrency = countryCurrency;
+      }
+    }
+    setCurrency(targetCurrency);
+
     setPersonal({
       fullName: values.fullName,
       email: values.email,
@@ -198,6 +230,37 @@ function Wizard() {
     const charityUSD = state.charity ? convert(state.charity, state.currency as CurrencyCode, BASE_CURRENCY) : 0;
     return base + charityUSD;
   }, [state.pricingType, state.fixedFee, state.monthlyIncome, state.charity, state.currency, selectedPlan]);
+
+  // Minimum wage calculation for the selected country
+  const minWageData = useMemo(() => {
+    if (!state.personal.country || salaries.length === 0) return null;
+    const countryData = salaries.find(s => s.country.toLowerCase() === state.personal.country.toLowerCase());
+    if (!countryData || !countryData.minimum_wage_monthly) return null;
+
+    const rawAmount = countryData.minimum_wage_monthly;
+    const amount = typeof rawAmount === 'object' ? rawAmount.current : rawAmount;
+    if (amount === undefined || amount === null) return null;
+
+    const currency = countryData.currency;
+
+    // Try to convert to the user's selected currency for validation
+    let convertedAmount = null;
+    const supportedCurrencies = ['USD', 'EUR', 'GBP', 'PKR', 'INR', 'SAR', 'AED', 'CAD', 'AUD'];
+    if (supportedCurrencies.includes(currency) && supportedCurrencies.includes(state.currency)) {
+      convertedAmount = convert(amount, currency as CurrencyCode, state.currency as CurrencyCode);
+    } else if (currency === 'USD' || state.currency === 'USD') {
+      // If one of them is USD, we can still convert if the other one is supported
+      if (supportedCurrencies.includes(currency) && supportedCurrencies.includes(state.currency)) {
+        convertedAmount = convert(amount, currency as CurrencyCode, state.currency as CurrencyCode);
+      }
+    }
+
+    return {
+      originalAmount: amount,
+      originalCurrency: currency,
+      convertedAmount: convertedAmount,
+    };
+  }, [state.personal.country, salaries, state.currency]);
 
   // Convert total to selected currency (placeholder conversion)
   const totalInCurrency = useMemo(() => convert(totalMonthlyUSD, BASE_CURRENCY, state.currency as CurrencyCode), [totalMonthlyUSD, state.currency]);
@@ -468,19 +531,24 @@ function Wizard() {
                       <Label htmlFor="income" required>Enter your monthly family income ({state.currency})</Label>
                       <div className="grid md:grid-cols-2 gap-6 mt-2 items-start">
                         <div>
-                          <Input id="income" type="number" min={0} value={state.monthlyIncome ?? ''} onChange={(e) => {
-                            const val = e.target.value;
-                            setMonthlyIncome(val ? Number(val) : null);
-                          }} className="h-10" />
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {selectedPlan ? (() => {
-                              const planFromConfig = PLANS.find(p => p.key === selectedPlan.key);
-                              const percentage = planFromConfig?.incomePercentage ?? 0.025;
-                              return `${(percentage * 100).toFixed(1)}%`;
-                            })() : '2.5%'} applies automatically
-                          </p>
+                          <Input
+                            id="income"
+                            type="number"
+                            min={0}
+                            value={state.monthlyIncome ?? ''}
+                            onChange={(e) => {
+                               const val = e.target.value;
+                               setMonthlyIncome(val ? Number(val) : null);
+                             }}
+                             className={`h-10 ${state.monthlyIncome !== null && minWageData?.convertedAmount != null && state.monthlyIncome < (minWageData?.convertedAmount ?? 0) ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
+                           />
+                           {minWageData && (
+                             <p className={`text-xs mt-1 ${state.monthlyIncome !== null && minWageData?.convertedAmount != null && state.monthlyIncome < (minWageData?.convertedAmount ?? 0) ? 'text-red-500 font-medium' : 'text-muted-foreground'}`}>
+                               Minimum wage in {state.personal.country}: {minWageData.convertedAmount !== null ? `${minWageData.convertedAmount} ${state.currency}` : `${minWageData.originalAmount} ${minWageData.originalCurrency}`}
+                             </p>
+                           )}
                         </div>
-                        <div className="flex items-center">
+                        <div className="flex flex-col">
                           <div className="rounded-lg border bg-emerald-50 px-4 py-3 flex items-center justify-between w-full h-10">
                             <div className="flex items-center gap-2 text-sm font-medium text-emerald-900">
                               <Calculator className="h-4 w-4" />
@@ -490,6 +558,13 @@ function Wizard() {
                               {calculatedIncomeFee} {state.currency}
                             </span>
                           </div>
+                          <p className="text-xs text-muted-foreground mt-1 text-right px-1">
+                            {selectedPlan ? (() => {
+                              const planFromConfig = PLANS.find(p => p.key === selectedPlan.key);
+                              const percentage = planFromConfig?.incomePercentage ?? 0.025;
+                              return `${(percentage * 100).toFixed(1)}%`;
+                            })() : '2.5%'} applies automatically
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -518,7 +593,25 @@ function Wizard() {
 
               <div className="flex justify-between">
                 <Button variant="outline" onClick={() => setStep(2)}>Back</Button>
-                <Button onClick={() => setStep(4)} disabled={!state.plan || (state.pricingType === 'fixed' && !state.fixedFee) || (state.pricingType === 'income' && !state.monthlyIncome)}>Next</Button>
+                <Button
+                   onClick={() => {
+                     if (state.pricingType === 'income') {
+                       setShowIncomeConfirmation(true);
+                     } else {
+                       setStep(4);
+                     }
+                   }}
+                   disabled={
+                     !state.plan ||
+                     (state.pricingType === 'fixed' && !state.fixedFee) ||
+                     (state.pricingType === 'income' && (
+                       !state.monthlyIncome ||
+                       (minWageData?.convertedAmount != null && state.monthlyIncome < (minWageData?.convertedAmount ?? 0))
+                     ))
+                   }
+                 >
+                   Next
+                 </Button>
               </div>
             </div>
           )}
@@ -539,10 +632,28 @@ function Wizard() {
                 ]}
                 total={`${totalInCurrency} ${state.currency}`}
               />
+
+              <div className="flex justify-center py-4">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+                  onChange={(token) => setRecaptchaToken(token)}
+                />
+              </div>
+
               <div className="flex justify-between">
-                <Button variant="outline" onClick={() => setStep(3)}>Back</Button>
+                <Button variant="outline" onClick={() => {
+                  setRecaptchaToken(null);
+                  recaptchaRef.current?.reset();
+                  setStep(3);
+                }}>Back</Button>
                 <Button
                   onClick={async () => {
+                    if (!recaptchaToken) {
+                      toast.error('Please complete the reCAPTCHA');
+                      return;
+                    }
+
                     setIsSubmitting(true);
                     setShowLoadingModal(true);
 
@@ -559,6 +670,7 @@ function Wizard() {
                       totalInCurrency,
                       bonusDuaIncluded: state.bonusDuaIncluded,
                       isTrial: isTrial,
+                      recaptchaToken: recaptchaToken,
                     };
                     try {
                       const res = await fetch('/api/enroll', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
@@ -585,7 +697,7 @@ function Wizard() {
                       console.error('Enrollment submission error:', e);
                     }
                   }}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !recaptchaToken}
                 >
                   {isSubmitting ? (
                     <>
@@ -593,7 +705,7 @@ function Wizard() {
                       Submitting...
                     </>
                   ) : (
-                    'Confirm & Submit'
+                    isTrial ? 'Register for Trial' : 'Confirm & Submit'
                   )}
                 </Button>
               </div>
@@ -683,6 +795,35 @@ function Wizard() {
               className="w-full sm:w-auto"
             >
               Start New Enrollment
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Income Confirmation Modal */}
+      <Dialog open={showIncomeConfirmation} onOpenChange={setShowIncomeConfirmation}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+             <DialogTitle className="text-center text-lg font-medium leading-relaxed pt-4">
+               I confirm my total monthly family income is accurate. I understand no proof is required – this institute trusts my word. Allah is witness to my declaration, and I will be accountable for it on the Day of Judgment.✅
+             </DialogTitle>
+           </DialogHeader>
+          <DialogFooter className="flex flex-row gap-3 sm:justify-center pt-6 pb-2">
+            <Button 
+              variant="outline" 
+              onClick={() => setShowIncomeConfirmation(false)} 
+              className="flex-1 h-12 text-base font-semibold border-2"
+            >
+              No
+            </Button>
+            <Button 
+              onClick={() => {
+                setShowIncomeConfirmation(false);
+                setStep(4);
+              }} 
+              className="flex-1 h-12 text-base font-semibold bg-[#a855f7] hover:bg-[#9333ea] text-white shadow-md transition-all active:scale-95"
+            >
+              Confirm
             </Button>
           </DialogFooter>
         </DialogContent>

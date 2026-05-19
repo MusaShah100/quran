@@ -7,11 +7,13 @@ import { Navigation } from '@/components/layout/navigation';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/sonner';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap', preload: false });
 const amiri = Amiri({
   subsets: ['arabic', 'latin'],
   weight: ['400', '700'],
-  variable: '--font-amiri'
+  variable: '--font-amiri',
+  display: 'swap',
+  preload: false
 });
 const notoSansArabic = Noto_Sans_Arabic({
   subsets: ['arabic'],
@@ -19,6 +21,7 @@ const notoSansArabic = Noto_Sans_Arabic({
   variable: '--font-noto-arabic',
   display: 'swap',
   adjustFontFallback: true,
+  preload: false
 });
 
 export const metadata: Metadata = {

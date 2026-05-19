@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { TajweedColorGame } from '@/components/games/tajweed-color-game';
 import { HarakatHeroGame } from '@/components/games/harakat-hero-game';
+import { ArabicWhiteboard } from '@/components/games/ArabicWhiteboard';
+import { ArabicWhiteboard2 } from '@/components/games/ArabicWhiteboard2';
 import { ArabicVowelMarksGame } from './arabicvowelmarks';
 import { 
   Gamepad2, 
@@ -21,6 +23,24 @@ import {
 } from 'lucide-react';
 
 const games = [
+  {
+    id: 'arabic-whiteboard-2',
+    title: 'Arabic Whiteboard v2',
+    description: 'An enhanced interactive board with smoother drawing and improved recording performance',
+    icon: Palette,
+    difficulty: 'All Levels',
+    estimatedTime: 'Self-paced',
+    thumbnail: null
+  },
+  {
+    id: 'arabic-whiteboard',
+    title: 'Arabic Whiteboard',
+    description: 'A smart interactive board for practicing Arabic writing with recording and replay features',
+    icon: Palette,
+    difficulty: 'All Levels',
+    estimatedTime: 'Self-paced',
+    thumbnail: null
+  },
   {
     id: 'arabic-letter-match',
     title: 'Arabic Letter Match',
@@ -96,12 +116,17 @@ export default function GamesPage() {
       case 'Beginner': return 'bg-primary';
       case 'Intermediate': return 'bg-secondary';
       case 'Advanced': return 'bg-red-500';
+      case 'All Levels': return 'bg-green-500';
       default: return 'bg-gray-500';
     }
   };
 
   const renderSelectedGame = () => {
     switch (selectedGame) {
+      case 'arabic-whiteboard-2':
+        return <ArabicWhiteboard2 onBack={() => setSelectedGame(null)} />;
+      case 'arabic-whiteboard':
+        return <ArabicWhiteboard onBack={() => setSelectedGame(null)} />;
       case 'tajweed-color':
         return <TajweedColorGame onComplete={() => setSelectedGame(null)} />;
       case 'harakat-hero':

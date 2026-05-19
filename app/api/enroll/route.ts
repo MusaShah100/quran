@@ -9,6 +9,37 @@ export async function POST(req: Request) {
   try {
     const data: EnrollmentData = await req.json();
     
+    // Validate reCAPTCHA
+    if (!data.recaptchaToken) {
+      return NextResponse.json(
+        { ok: false, error: 'reCAPTCHA token is missing' },
+        { status: 400 }
+      );
+    }
+
+    try {
+      const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${data.recaptchaToken}`,
+      });
+      const recaptchaData = await recaptchaRes.json();
+
+      if (!recaptchaData.success) {
+        console.error('reCAPTCHA verification failed:', recaptchaData['error-codes']);
+        return NextResponse.json(
+          { ok: false, error: 'reCAPTCHA verification failed' },
+          { status: 400 }
+        );
+      }
+    } catch (error) {
+      console.error('reCAPTCHA verification error:', error);
+      return NextResponse.json(
+        { ok: false, error: 'Internal server error during reCAPTCHA verification' },
+        { status: 500 }
+      );
+    }
+    
     // Validate required fields
     if (!data.personal?.email || !data.personal?.fullName || !data.courseId || !data.plan) {
       console.error('Missing required fields:', {

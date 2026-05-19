@@ -45,6 +45,7 @@ export interface EnrollmentData {
   totalInCurrency: number;
   bonusDuaIncluded: boolean;
   isTrial?: boolean;
+  recaptchaToken?: string;
 }
 
 const courseNames: Record<string, string> = {
