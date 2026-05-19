@@ -142,13 +142,13 @@ export function TajweedColorGame({ onComplete }: TajweedColorGameProps) {
             <div className="space-y-3">
               <h3 className="font-semibold">Tajwīd Rules Reference:</h3>
               {tajweedRules.map((rule) => (
-                <div key={rule.rule} className="flex items-center gap-3 p-3 border rounded">
-                  <div className={cn("w-6 h-6 rounded", rule.color)} />
-                  <div>
-                    <p className="font-medium">{rule.rule}</p>
-                    <p className="text-sm text-muted-foreground">{rule.description}</p>
+                <div key={rule.rule} className="flex items-start sm:items-center gap-3 p-3 border rounded">
+                  <div className={cn("w-6 h-6 rounded shrink-0 mt-1 sm:mt-0", rule.color)} />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm sm:text-base">{rule.rule}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground truncate sm:whitespace-normal">{rule.description}</p>
                   </div>
-                  <div className="ml-auto arabic-text text-xl">{rule.example}</div>
+                  <div className="arabic-text text-lg sm:text-xl shrink-0">{rule.example}</div>
                 </div>
               ))}
             </div>
@@ -168,19 +168,19 @@ export function TajweedColorGame({ onComplete }: TajweedColorGameProps) {
   return (
     <div className="max-w-2xl mx-auto">
       <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
+        <CardHeader className="px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" onClick={onComplete}>
+              <Button variant="ghost" size="icon" onClick={onComplete} className="shrink-0">
                 <ArrowLeft className="h-4 w-4" />
               </Button>
-              <CardTitle>Question {currentQuestion + 1} of {questions.length}</CardTitle>
+              <CardTitle className="text-base sm:text-xl">Question {currentQuestion + 1} of {questions.length}</CardTitle>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="text-sm">
+            <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6">
+              <div className="text-xs sm:text-sm">
                 Score: <span className="font-bold">{score}/{questions.length}</span>
               </div>
-              <div className="text-sm">
+              <div className="text-xs sm:text-sm">
                 Time: <span className="font-bold">{timeLeft}s</span>
               </div>
             </div>
@@ -188,17 +188,17 @@ export function TajweedColorGame({ onComplete }: TajweedColorGameProps) {
           <Progress value={progress} className="mt-2" />
         </CardHeader>
         
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
           <div className="text-center">
-            <h3 className="text-lg font-semibold mb-4">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
               Which Tajwīd rule applies to this word?
             </h3>
-            <div className="arabic-text text-4xl p-6 bg-muted/20 rounded-lg mb-4">
+            <div className="arabic-text text-3xl sm:text-4xl p-4 sm:p-6 bg-muted/20 rounded-lg mb-4">
               {currentQ.word}
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {currentQ.options.map((option) => {
               const rule = tajweedRules.find(r => r.rule === option);
               const isCorrect = option === currentQ.correctRule;
@@ -210,7 +210,7 @@ export function TajweedColorGame({ onComplete }: TajweedColorGameProps) {
                   key={option}
                   variant="outline"
                   className={cn(
-                    "h-auto p-4 text-left flex items-center gap-3",
+                    "h-auto p-3 sm:p-4 text-left flex items-center gap-3 relative overflow-hidden",
                     isSelected && showResult && isCorrect && "border-green-500 bg-green-50",
                     isSelected && showResult && !isCorrect && "border-red-500 bg-red-50",
                     !isSelected && showResult && isCorrect && "border-green-500 bg-green-50"
@@ -218,18 +218,21 @@ export function TajweedColorGame({ onComplete }: TajweedColorGameProps) {
                   onClick={() => handleAnswer(option)}
                   disabled={answered}
                 >
-                  <div className={cn("w-6 h-6 rounded", rule?.color)} />
-                  <div className="flex-1">
-                    <p className="font-medium">{option}</p>
-                    <p className="text-sm text-muted-foreground">{rule?.description}</p>
+                  <div className={cn("w-5 h-5 sm:w-6 sm:h-6 rounded shrink-0", rule?.color)} />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm sm:text-base">{option}</p>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{rule?.description}</p>
                   </div>
-                  {showResult && isSelected && (
-                    isCorrect ? 
-                      <Check className="h-5 w-5 text-green-600" /> : 
-                      <X className="h-5 w-5 text-red-600" />
-                  )}
-                  {showResult && !isSelected && isCorrect && (
-                    <Check className="h-5 w-5 text-green-600" />
+                  {showResult && (
+                    <div className="shrink-0">
+                      {isSelected ? (
+                        isCorrect ? 
+                          <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" /> : 
+                          <X className="h-4 w-4 sm:h-5 sm:w-5 text-red-600" />
+                      ) : (
+                        isCorrect && <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
+                      )}
+                    </div>
                   )}
                 </Button>
               );

@@ -166,11 +166,11 @@ export function ArabicVowelMarksGame({ onComplete }: ArabicVowelMarksGameProps) 
             
             <div className="space-y-3">
               <h3 className="font-semibold">Vowel Marks Reference:</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {Object.entries(vowelMarkNames).map(([symbol, name]) => (
                   <div key={symbol} className="flex items-center gap-3 p-3 border rounded">
-                    <div className="arabic-text text-2xl">{symbol}</div>
-                    <p className="font-medium text-sm">{name}</p>
+                    <div className="arabic-text text-2xl shrink-0">{symbol}</div>
+                    <p className="font-medium text-xs sm:text-sm">{name}</p>
                   </div>
                 ))}
               </div>
@@ -217,22 +217,22 @@ export function ArabicVowelMarksGame({ onComplete }: ArabicVowelMarksGameProps) 
   return (
     <div className="max-w-3xl mx-auto">
       <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
+        <CardHeader className="px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" onClick={onComplete}>
+              <Button variant="ghost" size="icon" onClick={onComplete} className="shrink-0">
                 <ArrowLeft className="h-4 w-4" />
               </Button>
-              <CardTitle>Question {currentQuestion + 1} of {vowelMarkQuestions.length}</CardTitle>
+              <CardTitle className="text-base sm:text-xl">Question {currentQuestion + 1} of {vowelMarkQuestions.length}</CardTitle>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="text-sm">
+            <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6">
+              <div className="text-xs sm:text-sm">
                 Score: <span className="font-bold">{score}</span>
               </div>
-              <div className="text-sm">
+              <div className="text-xs sm:text-sm">
                 Streak: <span className="font-bold text-orange-500">{streak}</span>
               </div>
-              <div className="text-sm">
+              <div className="text-xs sm:text-sm">
                 Time: <span className={cn("font-bold", timeLeft <= 10 ? "text-red-500" : "")}>{timeLeft}s</span>
               </div>
             </div>
@@ -240,23 +240,24 @@ export function ArabicVowelMarksGame({ onComplete }: ArabicVowelMarksGameProps) 
           <Progress value={progress} className="mt-2" />
         </CardHeader>
         
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <h3 className="text-lg font-semibold">
+              <h3 className="text-base sm:text-lg font-semibold">
                 Add vowel marks to complete the word:
               </h3>
               <Button 
                 variant="ghost" 
                 size="sm" 
                 onClick={() => setShowHint(!showHint)}
+                className="shrink-0"
               >
                 <Volume2 className="h-4 w-4" />
               </Button>
             </div>
             
             <Badge variant="outline" className={cn(
-              "mb-4",
+              "mb-4 text-[10px] sm:text-xs",
               currentQ.difficulty === 'easy' && "border-green-500",
               currentQ.difficulty === 'medium' && "border-yellow-500",
               currentQ.difficulty === 'hard' && "border-red-500"
@@ -265,45 +266,47 @@ export function ArabicVowelMarksGame({ onComplete }: ArabicVowelMarksGameProps) 
             </Badge>
             
             <div className="space-y-2">
-              <div className="arabic-text text-5xl p-6 bg-muted/20 rounded-lg">
+              <div className="arabic-text text-4xl sm:text-5xl p-4 sm:p-6 bg-muted/20 rounded-lg">
                 {baseWord}
               </div>
-              <p className="text-muted-foreground">Meaning: "{currentQ.meaning}"</p>
+              <p className="text-sm sm:text-base text-muted-foreground">Meaning: "{currentQ.meaning}"</p>
               {showHint && (
-                <p className="text-sm text-blue-600">Pronunciation: {currentQ.transliteration}</p>
+                <p className="text-xs sm:text-sm text-blue-600 animate-in fade-in slide-in-from-top-1">Pronunciation: {currentQ.transliteration}</p>
               )}
             </div>
           </div>
           
           <div className="space-y-4">
             <div className="text-center">
-              <h4 className="font-semibold mb-2">Your vowel marks:</h4>
-              <div className="flex justify-center gap-2 min-h-[3rem] items-center">
+              <h4 className="text-sm sm:text-base font-semibold mb-2">Your vowel marks:</h4>
+              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 min-h-[3rem] items-center">
                 {userAnswers.map((mark, index) => (
-                  <div key={index} className="w-12 h-12 border-2 border-primary rounded-lg flex items-center justify-center arabic-text text-2xl bg-primary/10">
+                  <div key={index} className="w-10 h-10 sm:w-12 sm:h-12 border-2 border-primary rounded-lg flex items-center justify-center arabic-text text-xl sm:text-2xl bg-primary/10 transition-all scale-in">
                     {mark}
                   </div>
                 ))}
-                {Array.from({ length: currentQ.vowelMarks.length - userAnswers.length }).map((_, index) => (
-                  <div key={`empty-${index}`} className="w-12 h-12 border-2 border-dashed border-muted-foreground rounded-lg flex items-center justify-center">
+                {Array.from({ length: Math.max(0, currentQ.vowelMarks.length - userAnswers.length) }).map((_, index) => (
+                  <div key={`empty-${index}`} className="w-10 h-10 sm:w-12 sm:h-12 border-2 border-dashed border-muted-foreground/30 rounded-lg flex items-center justify-center text-muted-foreground/30 text-xs sm:text-sm">
                     ?
                   </div>
                 ))}
               </div>
             </div>
             
-            <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-1.5 sm:gap-2">
               {Object.keys(vowelMarkNames).map((mark) => (
                 <Button
                   key={mark}
                   variant="outline"
-                  className="h-16 text-xl"
+                  className="h-14 sm:h-16 px-1"
                   onClick={() => handleVowelMarkSelect(mark)}
                   disabled={answered || userAnswers.length >= currentQ.vowelMarks.length}
                 >
                   <div className="text-center">
-                    <div className="arabic-text text-2xl mb-1">{mark}</div>
-                    <div className="text-xs">{vowelMarkNames[mark as keyof typeof vowelMarkNames]}</div>
+                    <div className="arabic-text text-xl sm:text-2xl mb-0.5 sm:mb-1">{mark}</div>
+                    <div className="text-[9px] sm:text-[10px] leading-tight text-muted-foreground uppercase truncate w-full px-1">
+                      {vowelMarkNames[mark as keyof typeof vowelMarkNames].split(' ')[0]}
+                    </div>
                   </div>
                 </Button>
               ))}

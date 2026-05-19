@@ -136,11 +136,11 @@ export function HarakatHeroGame({ onComplete }: HarakatHeroGameProps) {
             
             <div className="space-y-3">
               <h3 className="font-semibold">Harakāt Reference:</h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {Object.entries(harakatNames).map(([symbol, name]) => (
                   <div key={symbol} className="flex items-center gap-3 p-3 border rounded">
-                    <div className="arabic-text text-2xl">{symbol}</div>
-                    <p className="font-medium">{name}</p>
+                    <div className="arabic-text text-2xl shrink-0">{symbol}</div>
+                    <p className="font-medium text-sm sm:text-base">{name}</p>
                   </div>
                 ))}
               </div>
@@ -174,22 +174,22 @@ export function HarakatHeroGame({ onComplete }: HarakatHeroGameProps) {
   return (
     <div className="max-w-2xl mx-auto">
       <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
+        <CardHeader className="px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" onClick={onComplete}>
+              <Button variant="ghost" size="icon" onClick={onComplete} className="shrink-0">
                 <ArrowLeft className="h-4 w-4" />
               </Button>
-              <CardTitle>Question {currentQuestion + 1} of {harakatQuestions.length}</CardTitle>
+              <CardTitle className="text-base sm:text-xl">Question {currentQuestion + 1} of {harakatQuestions.length}</CardTitle>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="text-sm">
+            <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6">
+              <div className="text-xs sm:text-sm">
                 Score: <span className="font-bold">{score}</span>
               </div>
-              <div className="text-sm">
+              <div className="text-xs sm:text-sm">
                 Streak: <span className="font-bold text-orange-500">{streak}</span>
               </div>
-              <div className="text-sm">
+              <div className="text-xs sm:text-sm">
                 Time: <span className={cn("font-bold", timeLeft <= 5 ? "text-red-500" : "")}>{timeLeft}s</span>
               </div>
             </div>
@@ -197,14 +197,14 @@ export function HarakatHeroGame({ onComplete }: HarakatHeroGameProps) {
           <Progress value={progress} className="mt-2" />
         </CardHeader>
         
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
           <div className="text-center">
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="text-base sm:text-lg font-semibold mb-2">
               Complete the word by adding the correct Harakāt:
             </h3>
-            <p className="text-muted-foreground mb-4">"{currentQ.meaning}"</p>
+            <p className="text-sm sm:text-base text-muted-foreground mb-4">"{currentQ.meaning}"</p>
             
-            <div className="arabic-text text-5xl p-6 bg-muted/20 rounded-lg mb-4">
+            <div className="arabic-text text-4xl sm:text-5xl p-4 sm:p-6 bg-muted/20 rounded-lg mb-4">
               {displayWord}
             </div>
           </div>
@@ -220,7 +220,7 @@ export function HarakatHeroGame({ onComplete }: HarakatHeroGameProps) {
                   key={option}
                   variant="outline"
                   className={cn(
-                    "h-20 text-2xl",
+                    "h-16 sm:h-20 text-xl sm:text-2xl relative",
                     isSelected && showResult && isCorrect && "border-green-500 bg-green-50",
                     isSelected && showResult && !isCorrect && "border-red-500 bg-red-50",
                     !isSelected && showResult && isCorrect && "border-green-500 bg-green-50"
@@ -229,8 +229,8 @@ export function HarakatHeroGame({ onComplete }: HarakatHeroGameProps) {
                   disabled={answered}
                 >
                   <div className="text-center">
-                    <div className="arabic-text text-3xl mb-1">{option}</div>
-                    <div className="text-xs">{harakatNames[option as keyof typeof harakatNames]}</div>
+                    <div className="arabic-text text-2xl sm:text-3xl mb-0.5 sm:mb-1">{option}</div>
+                    <div className="text-[10px] sm:text-xs uppercase tracking-wider">{harakatNames[option as keyof typeof harakatNames]}</div>
                   </div>
                   {showResult && isSelected && (
                     <div className="absolute top-1 right-1">

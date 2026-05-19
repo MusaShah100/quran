@@ -1,15 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { TajweedColorGame } from '@/components/games/tajweed-color-game';
-import { HarakatHeroGame } from '@/components/games/harakat-hero-game';
-import { ArabicWhiteboard } from '@/components/games/ArabicWhiteboard';
-import { ArabicWhiteboard2 } from '@/components/games/ArabicWhiteboard2';
-import { ArabicVowelMarksGame } from './arabicvowelmarks';
 import { 
   Gamepad2, 
   Clock, 
@@ -18,7 +13,6 @@ import {
   Headphones,
   Brain,
   Play,
-  Upload,
   Image as ImageIcon
 } from 'lucide-react';
 
@@ -30,7 +24,8 @@ const games = [
     icon: Palette,
     difficulty: 'All Levels',
     estimatedTime: 'Self-paced',
-    thumbnail: null
+    thumbnail: null,
+    href: '/games/arabic-whiteboard-2'
   },
   {
     id: 'arabic-whiteboard',
@@ -39,7 +34,8 @@ const games = [
     icon: Palette,
     difficulty: 'All Levels',
     estimatedTime: 'Self-paced',
-    thumbnail: null
+    thumbnail: null,
+    href: '/games/arabic-whiteboard'
   },
   {
     id: 'arabic-letter-match',
@@ -49,7 +45,6 @@ const games = [
     difficulty: 'Beginner',
     estimatedTime: '3-5 min',
     thumbnail: null,
-    newTab: true,
     href: '/games/arabic-letter-match'
   },
   {
@@ -59,7 +54,8 @@ const games = [
     icon: Palette,
     difficulty: 'Beginner',
     estimatedTime: '5-10 min',
-    thumbnail: null
+    thumbnail: null,
+    href: '/games/tajweed-color'
   },
   {
     id: 'harakat-hero',
@@ -68,7 +64,8 @@ const games = [
     icon: Type,
     difficulty: 'Beginner',
     estimatedTime: '3-7 min',
-    thumbnail: null
+    thumbnail: null,
+    href: '/games/harakat-hero'
   },
   {
     id: 'arabic-vowel-marks',
@@ -77,7 +74,8 @@ const games = [
     icon: Type,
     difficulty: 'Intermediate',
     estimatedTime: '8-12 min',
-    thumbnail: null
+    thumbnail: null,
+    href: '/games/arabic-vowel-marks'
   },
   {
     id: 'ayah-puzzle',
@@ -86,7 +84,8 @@ const games = [
     icon: Brain,
     difficulty: 'Intermediate',
     estimatedTime: '8-12 min',
-    thumbnail: null
+    thumbnail: null,
+    href: '#'
   },
   {
     id: 'root-hunt',
@@ -95,7 +94,8 @@ const games = [
     icon: Brain,
     difficulty: 'Advanced',
     estimatedTime: '10-15 min',
-    thumbnail: null
+    thumbnail: null,
+    href: '#'
   },
   {
     id: 'listen-point',
@@ -104,13 +104,12 @@ const games = [
     icon: Headphones,
     difficulty: 'Intermediate',
     estimatedTime: '5-8 min',
-    thumbnail: null
+    thumbnail: null,
+    href: '#'
   }
 ];
 
 export default function GamesPage() {
-  const [selectedGame, setSelectedGame] = useState<string | null>(null);
-
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'Beginner': return 'bg-primary';
@@ -120,31 +119,6 @@ export default function GamesPage() {
       default: return 'bg-gray-500';
     }
   };
-
-  const renderSelectedGame = () => {
-    switch (selectedGame) {
-      case 'arabic-whiteboard-2':
-        return <ArabicWhiteboard2 onBack={() => setSelectedGame(null)} />;
-      case 'arabic-whiteboard':
-        return <ArabicWhiteboard onBack={() => setSelectedGame(null)} />;
-      case 'tajweed-color':
-        return <TajweedColorGame onComplete={() => setSelectedGame(null)} />;
-      case 'harakat-hero':
-        return <HarakatHeroGame onComplete={() => setSelectedGame(null)} />;
-      case 'arabic-vowel-marks':
-        return <ArabicVowelMarksGame onComplete={() => setSelectedGame(null)} />;
-      default:
-        return null;
-    }
-  };
-
-  if (selectedGame) {
-    return (
-      <div className="container py-6">
-        {renderSelectedGame()}
-      </div>
-    );
-  }
 
   return (
     <div className="container py-6">
@@ -213,17 +187,14 @@ export default function GamesPage() {
                 </div>
                 
                 <Button 
-                  onClick={() => {
-                    if (game.newTab && game.href) {
-                      window.open(game.href, '_blank');
-                    } else {
-                      setSelectedGame(game.id);
-                    }
-                  }}
+                  asChild
                   className="w-full"
+                  disabled={game.href === '#'}
                 >
-                  <Play className="h-4 w-4 mr-2" />
-                  Start Game
+                  <Link href={game.href}>
+                    <Play className="h-4 w-4 mr-2" />
+                    Start Game
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
