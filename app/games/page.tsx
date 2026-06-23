@@ -13,19 +13,20 @@ import {
   Headphones,
   Brain,
   Play,
+  Rocket,
   Image as ImageIcon
 } from 'lucide-react';
 
 const games = [
   {
-    id: 'arabic-whiteboard-2',
-    title: 'Arabic Whiteboard v2',
-    description: 'An enhanced interactive board with smoother drawing and improved recording performance',
-    icon: Palette,
-    difficulty: 'All Levels',
-    estimatedTime: 'Self-paced',
+    id: 'arabic-space-game',
+    title: 'Arabic Space Adventure',
+    description: 'An epic space journey to master Arabic letters and vowel marks',
+    icon: Rocket,
+    difficulty: 'Beginner',
+    estimatedTime: '10-15 min',
     thumbnail: null,
-    href: '/games/arabic-whiteboard-2'
+    href: '/games/arabic-space-game'
   },
   {
     id: 'arabic-whiteboard',
