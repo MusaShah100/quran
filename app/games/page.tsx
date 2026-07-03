@@ -5,28 +5,39 @@ import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Gamepad2, 
-  Clock, 
+import {
+  Gamepad2,
+  Clock,
   Palette,
   Type,
   Headphones,
   Brain,
   Play,
   Rocket,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Circle
 } from 'lucide-react';
 
 const games = [
   {
-    id: 'arabic-space-game',
-    title: 'Arabic Space Adventure',
-    description: 'An epic space journey to master Arabic letters and vowel marks',
+    id: 'arabic-space-shooter',
+    title: 'Arabic Space Shooter',
+    description: 'Shoot the matching Arabic letters in this fun space shooter game!',
     icon: Rocket,
     difficulty: 'Beginner',
-    estimatedTime: '10-15 min',
+    estimatedTime: '5-10 min',
     thumbnail: null,
-    href: '/games/arabic-space-game'
+    href: '/games/arabic-space-shooter'
+  },
+  {
+    id: 'arabic-spin-wheel',
+    title: 'Arabic Alphabet Spin Wheel',
+    description: 'Spin the wheel and learn Arabic letters!',
+    icon: Circle,
+    difficulty: 'Beginner',
+    estimatedTime: '3-5 min',
+    thumbnail: null,
+    href: '/games/arabic-spin-wheel'
   },
   {
     id: 'arabic-whiteboard',
@@ -146,8 +157,8 @@ export default function GamesPage() {
                   <div className="flex items-center gap-3">
                     <div className="relative">
                       {game.thumbnail ? (
-                        <img 
-                          src={game.thumbnail} 
+                        <img
+                          src={game.thumbnail}
                           alt={game.title}
                           className="w-16 h-16 rounded-lg object-cover"
                         />
@@ -163,8 +174,8 @@ export default function GamesPage() {
                     <div>
                       <CardTitle className="text-lg">{game.title}</CardTitle>
                       <div className="flex items-center gap-2 mt-1">
-                        <Badge 
-                          variant="secondary" 
+                        <Badge
+                          variant="secondary"
                           className={`text-white text-xs ${getDifficultyColor(game.difficulty)}`}
                         >
                           {game.difficulty}
@@ -174,20 +185,20 @@ export default function GamesPage() {
                   </div>
                 </div>
               </CardHeader>
-              
+
               <CardContent>
                 <CardDescription className="mb-4 line-clamp-2">
                   {game.description}
                 </CardDescription>
-                
+
                 <div className="flex items-center justify-between mb-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
                     <span>{game.estimatedTime}</span>
                   </div>
                 </div>
-                
-                <Button 
+
+                <Button
                   asChild
                   className="w-full"
                   disabled={game.href === '#'}
@@ -215,9 +226,8 @@ export default function GamesPage() {
           <div className="space-y-3">
             {games.slice(0, 3).map((game, index) => (
               <div key={game.id} className="flex items-center gap-3 p-3 rounded-lg border">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm ${
-                  index === 0 ? 'bg-primary' : 'bg-muted-foreground'
-                }`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm ${index === 0 ? 'bg-primary' : 'bg-muted-foreground'
+                  }`}>
                   {index + 1}
                 </div>
                 <div className="flex-1">
@@ -236,7 +246,7 @@ export default function GamesPage() {
         <CardContent className="p-6 md:p-8 text-center">
           <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Ready for Structured Learning?</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            While games are fun, structured courses with certified teachers provide 
+            While games are fun, structured courses with certified teachers provide
             comprehensive Qur'an education. Start your free 3-day trial today!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background: #0b0e1a;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.game-wrapper {
+    background: linear-gradient(145deg, #141b2b, #0a0e18);
+    border-radius: 2.5rem;
+    padding: 1.5rem 2rem 2rem 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+#gameCanvas {
+    display: block;
+    width: 800px;
+    height: 600px;
+    border-radius: 1.8rem;
+    background: radial-gradient(ellipse at 50% 100%, #0e1a2b, #05080f);
+    box-shadow: inset 0 0 80px rgba(10, 40, 100, 0.3);
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.2rem;
+    padding: 0 0.5rem;
+    color: #b8d0f0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.hud-left,
+.hud-right {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.hud-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.4rem 1.2rem 0.4rem 1rem;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hud-item .icon {
+    font-size: 1.2rem;
+}
+
+.hud-item .value {
+    font-size: 1.4rem;
+    min-width: 2.8rem;
+    text-align: center;
+    color: #f0f8ff;
+    font-variant-numeric: tabular-nums;
+}
+
+.hud-item .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #7a93b8;
+}
+
+#restartBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #b8d0f0;
+    padding: 0.4rem 1.4rem;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#restartBtn:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    transform: scale(1.02);
+}
+
+@media (max-width: 860px) {
+    .game-wrapper {
+        padding: 0.8rem;
+        border-radius: 1.5rem;
+    }
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 800 / 600;
+        border-radius: 1.2rem;
+    }
+    .hud {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        justify-content: center;
+    }
+    .hud-left,
+    .hud-right {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hud-item {
+        padding: 0.3rem 0.8rem 0.3rem 0.7rem;
+    }
+    .hud-item .value {
+        font-size: 1.1rem;
+        min-width: 2rem;
+    }
+}

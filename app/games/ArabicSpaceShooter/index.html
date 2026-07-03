@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arabic Alphabet Space Shooter</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+        <div class="hud">
+            <div class="hud-left">
+                <div class="hud-item">
+                    <span class="icon">⭐</span>
+                    <span class="value" id="scoreDisplay">0</span>
+                    <span class="label">Points</span>
+                </div>
+                <div class="hud-item">
+                    <span class="icon">🎯</span>
+                    <span class="value" id="comboDisplay">0</span>
+                    <span class="label">Combo</span>
+                </div>
+            </div>
+            <div class="hud-right">
+                <div class="hud-item">
+                    <span class="icon">📖</span>
+                    <span class="value" id="letterDisplay">أ</span>
+                    <span class="label">Target</span>
+                </div>
+                <button id="restartBtn">⟳ Restart</button>
+            </div>
+        </div>
+    </div>
+
+    <!--
+      In dev, point this at your bundler's compiled output, e.g.:
+        <script type="module" src="/dist/main.js"></script>
+      main.ts (or wherever you mount the game) should contain:
+
+        import { ArabicSpaceShooter } from './arabic-space-shooter';
+
+        const game = new ArabicSpaceShooter({
+          canvas: document.getElementById('gameCanvas') as HTMLCanvasElement,
+          scoreEl: document.getElementById('scoreDisplay')!,
+          comboEl: document.getElementById('comboDisplay')!,
+          targetLetterEl: document.getElementById('letterDisplay')!,
+          restartButton: document.getElementById('restartBtn'),
+        });
+        game.start();
+    -->
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
