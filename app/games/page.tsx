@@ -40,6 +40,16 @@ const games = [
     href: '/games/arabic-spin-wheel'
   },
   {
+    id: 'arabic-vowels-spaceship',
+    title: 'Arabic Vowels Spaceship',
+    description: 'Match the falling Arabic letter with vowel mark to the correct spaceship!',
+    icon: Rocket,
+    difficulty: 'Beginner',
+    estimatedTime: '5-10 min',
+    thumbnail: null,
+    href: '/games/arabic-vowels-spaceship'
+  },
+  {
     id: 'arabic-whiteboard',
     title: 'Arabic Whiteboard',
     description: 'A smart interactive board for practicing Arabic writing with recording and replay features',
@@ -151,7 +161,7 @@ export default function GamesPage() {
         {games.map((game) => {
           const Icon = game.icon;
           return (
-            <Card key={game.id} className="transition-all hover:shadow-lg">
+            <Card key={game.id} className="transition-all hover:shadow-lg flex flex-col h-full">
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
@@ -186,8 +196,8 @@ export default function GamesPage() {
                 </div>
               </CardHeader>
 
-              <CardContent>
-                <CardDescription className="mb-4 line-clamp-2">
+              <CardContent className="flex flex-col flex-grow">
+                <CardDescription className="mb-4 line-clamp-2 flex-grow">
                   {game.description}
                 </CardDescription>
 
@@ -200,7 +210,7 @@ export default function GamesPage() {
 
                 <Button
                   asChild
-                  className="w-full"
+                  className="w-full mt-auto"
                   disabled={game.href === '#'}
                 >
                   <Link href={game.href}>

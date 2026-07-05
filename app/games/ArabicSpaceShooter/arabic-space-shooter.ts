@@ -31,10 +31,11 @@ interface Particle {
 
 export interface ArabicSpaceShooterOptions {
   canvas: HTMLCanvasElement;
-  scoreEl: HTMLElement;
-  comboEl: HTMLElement;
-  targetLetterEl: HTMLElement;
+  scoreEl: HTMLElement | null;
+  comboEl: HTMLElement | null;
+  targetLetterEl: HTMLElement | null;
   restartButton?: HTMLElement | null;
+  scale: number;
 }
 
 // ── Constants ──────────────────────────────────────────────────
@@ -45,10 +46,10 @@ const ARABIC_ALPHABET: string[] = [
   'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ي'
 ];
 
-const CANVAS_W = 800;
-const CANVAS_H = 600;
-const SPACESHIP_Y = 540;
-const LETTER_RADIUS = 34;
+const BASE_CANVAS_W = 800;
+const BASE_CANVAS_H = 600;
+const BASE_SPACESHIP_Y = 540;
+const BASE_LETTER_RADIUS = 34;
 const FALL_SPEED_MIN = 0.55;
 const FALL_SPEED_MAX = 1.35;
 const SPAWN_INTERVAL_MS = 1600;
@@ -69,10 +70,11 @@ function randFloat(min: number, max: number): number {
 export class ArabicSpaceShooter {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private scoreEl: HTMLElement;
-  private comboEl: HTMLElement;
-  private targetLetterEl: HTMLElement;
+  private scoreEl: HTMLElement | null;
+  private comboEl: HTMLElement | null;
+  private targetLetterEl: HTMLElement | null;
   private restartButton?: HTMLElement | null;
+  private scale: number;
 
   private score = 0;
   private combo = 0;
@@ -103,8 +105,25 @@ export class ArabicSpaceShooter {
     this.comboEl = options.comboEl;
     this.targetLetterEl = options.targetLetterEl;
     this.restartButton = options.restartButton;
+    this.scale = options.scale;
 
     this.setupEvents();
+  }
+
+  private get canvasWidth() {
+    return BASE_CANVAS_W * this.scale;
+  }
+
+  private get canvasHeight() {
+    return BASE_CANVAS_H * this.scale;
+  }
+
+  private get spaceshipY() {
+    return BASE_SPACESHIP_Y * this.scale;
+  }
+
+  private get letterRadius() {
+    return BASE_LETTER_RADIUS * this.scale;
   }
 
   /** Start (or restart) the game. Call this once after construction. */
@@ -171,15 +190,15 @@ export class ArabicSpaceShooter {
     const sameCount = this.letters.filter(l => l.char === char).length;
     if (sameCount > 2) return;
 
-    const x = randFloat(LETTER_RADIUS + 10, CANVAS_W - LETTER_RADIUS - 10);
-    const speed = randFloat(FALL_SPEED_MIN, FALL_SPEED_MAX);
+    const x = randFloat(this.letterRadius + 10 * this.scale, this.canvasWidth - this.letterRadius - 10 * this.scale);
+    const speed = randFloat(FALL_SPEED_MIN * this.scale, FALL_SPEED_MAX * this.scale);
 
     this.letters.push({
       char,
       x,
-      y: -LETTER_RADIUS - 10,
+      y: -this.letterRadius - 10 * this.scale,
       speed,
-      radius: LETTER_RADIUS,
+      radius: this.letterRadius,
       alive: true
     });
   }
@@ -188,36 +207,36 @@ export class ArabicSpaceShooter {
     const dx = to.x - from.x;
     const dy = to.y - from.y;
     const dist = Math.hypot(dx, dy) || 1;
-    const baseVx = (dx / dist) * 4.5;
-    const baseVy = (dy / dist) * 4.5;
+    const baseVx = (dx / dist) * 4.5 * this.scale;
+    const baseVy = (dy / dist) * 4.5 * this.scale;
 
     for (let i = 0; i < count; i++) {
       const angleSpread = randFloat(-0.9, 0.9);
-      const speedSpread = randFloat(2.5, 7.5);
-      const spreadX = (Math.random() - 0.5) * 3;
-      const spreadY = (Math.random() - 0.5) * 3;
+      const speedSpread = randFloat(2.5, 7.5) * this.scale;
+      const spreadX = (Math.random() - 0.5) * 3 * this.scale;
+      const spreadY = (Math.random() - 0.5) * 3 * this.scale;
 
       this.fireParticles.push({
-        x: from.x + (Math.random() - 0.5) * 16,
-        y: from.y + (Math.random() - 0.5) * 16,
+        x: from.x + (Math.random() - 0.5) * 16 * this.scale,
+        y: from.y + (Math.random() - 0.5) * 16 * this.scale,
         vx: baseVx + Math.sin(angleSpread) * speedSpread + spreadX,
         vy: baseVy + Math.cos(angleSpread) * speedSpread + spreadY,
         life: 1.0,
         maxLife: randFloat(0.5, 1.2),
-        size: randFloat(5, 18),
+        size: randFloat(5 * this.scale, 18 * this.scale),
         color: randomFrom(['#ff6a00', '#ff9a00', '#ffcc00', '#ff4400', '#ffdd55'])
       });
     }
 
     for (let i = 0; i < 12; i++) {
       this.fireParticles.push({
-        x: from.x + (Math.random() - 0.5) * 10,
-        y: from.y + (Math.random() - 0.5) * 10,
-        vx: (Math.random() - 0.5) * 3,
-        vy: -randFloat(2, 6),
+        x: from.x + (Math.random() - 0.5) * 10 * this.scale,
+        y: from.y + (Math.random() - 0.5) * 10 * this.scale,
+        vx: (Math.random() - 0.5) * 3 * this.scale,
+        vy: -randFloat(2 * this.scale, 6 * this.scale),
         life: 1.0,
         maxLife: randFloat(0.2, 0.6),
-        size: randFloat(4, 12),
+        size: randFloat(4 * this.scale, 12 * this.scale),
         color: '#fffbe6'
       });
     }
@@ -226,15 +245,15 @@ export class ArabicSpaceShooter {
   private spawnExplosion(pos: Vector2, count = 30): void {
     for (let i = 0; i < count; i++) {
       const angle = randFloat(0, Math.PI * 2);
-      const speed = randFloat(1.5, 6);
+      const speed = randFloat(1.5, 6) * this.scale;
       this.particles.push({
         x: pos.x,
         y: pos.y,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 0.5,
+        vy: Math.sin(angle) * speed - 0.5 * this.scale,
         life: 1.0,
         maxLife: randFloat(0.5, 1.4),
-        size: randFloat(4, 16),
+        size: randFloat(4 * this.scale, 16 * this.scale),
         color: randomFrom(['#4fc3f7', '#29b6f6', '#03a9f4', '#81d4fa', '#b3e5fc'])
       });
     }
@@ -247,7 +266,7 @@ export class ArabicSpaceShooter {
     const points = BASE_POINTS + bonus;
     this.score += points;
 
-    const from = { x: CANVAS_W / 2, y: SPACESHIP_Y - 10 };
+    const from = { x: this.canvasWidth / 2, y: this.spaceshipY - 10 * this.scale };
     const to = { x: letter.x, y: letter.y };
     this.spawnFire(from, to, 50);
     this.spawnExplosion({ x: letter.x, y: letter.y }, 40);
@@ -261,15 +280,15 @@ export class ArabicSpaceShooter {
     this.combo = 0;
     for (let i = 0; i < 16; i++) {
       const angle = randFloat(0, Math.PI * 2);
-      const speed = randFloat(1, 3.5);
+      const speed = randFloat(1 * this.scale, 3.5 * this.scale);
       this.particles.push({
         x: letter.x,
         y: letter.y,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 0.3,
+        vy: Math.sin(angle) * speed - 0.3 * this.scale,
         life: 1.0,
         maxLife: randFloat(0.4, 0.9),
-        size: randFloat(4, 10),
+        size: randFloat(4 * this.scale, 10 * this.scale),
         color: '#ff1744'
       });
     }
@@ -303,9 +322,9 @@ export class ArabicSpaceShooter {
   }
 
   private updateHUD(): void {
-    this.scoreEl.textContent = String(this.score);
-    this.comboEl.textContent = String(this.combo);
-    this.targetLetterEl.textContent = this.currentTarget;
+    if (this.scoreEl) this.scoreEl.textContent = String(this.score);
+    if (this.comboEl) this.comboEl.textContent = String(this.combo);
+    if (this.targetLetterEl) this.targetLetterEl.textContent = this.currentTarget;
   }
 
   // ── Game loop ────────────────────────────────────────────────
@@ -328,18 +347,18 @@ export class ArabicSpaceShooter {
     for (const l of this.letters) {
       if (!l.alive) continue;
       l.y += l.speed * dt;
-      if (l.y > CANVAS_H + 60) {
+      if (l.y > this.canvasHeight + 60 * this.scale) {
         if (l.char === this.currentTarget) {
           this.gameOver = true;
           for (let i = 0; i < 40; i++) {
             this.particles.push({
               x: l.x,
-              y: CANVAS_H - 20,
-              vx: (Math.random() - 0.5) * 8,
-              vy: -randFloat(2, 7),
+              y: this.canvasHeight - 20 * this.scale,
+              vx: (Math.random() - 0.5) * 8 * this.scale,
+              vy: -randFloat(2 * this.scale, 7 * this.scale),
               life: 1.0,
               maxLife: randFloat(0.8, 1.8),
-              size: randFloat(4, 14),
+              size: randFloat(4 * this.scale, 14 * this.scale),
               color: '#ff6b6b'
             });
           }
@@ -378,14 +397,14 @@ export class ArabicSpaceShooter {
   // ── Rendering ────────────────────────────────────────────────
   private render(): void {
     const ctx = this.ctx;
-    ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+    ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
     // Background stars
     ctx.fillStyle = 'rgba(255,255,255,0.08)';
     for (let i = 0; i < 100; i++) {
-      const sx = (i * 137.5 + 42) % CANVAS_W;
-      const sy = (i * 97.3 + 13) % CANVAS_H;
-      const size = ((i * 31) % 3) + 1;
+      const sx = (i * 137.5 + 42) % this.canvasWidth;
+      const sy = (i * 97.3 + 13) % this.canvasHeight;
+      const size = (((i * 31) % 3) + 1) * this.scale;
       ctx.beginPath();
       ctx.arc(sx, sy, size * 0.5, 0, Math.PI * 2);
       ctx.fill();
@@ -396,50 +415,40 @@ export class ArabicSpaceShooter {
       if (!l.alive) continue;
       const isTarget = l.char === this.currentTarget;
 
-      const grad = ctx.createRadialGradient(l.x, l.y, 2, l.x, l.y, l.radius + 14);
-      if (isTarget) {
-        grad.addColorStop(0, 'rgba(0, 200, 255, 0.25)');
-        grad.addColorStop(1, 'rgba(0, 200, 255, 0)');
-      } else {
-        grad.addColorStop(0, 'rgba(255, 100, 100, 0.15)');
-        grad.addColorStop(1, 'rgba(255, 100, 100, 0)');
-      }
+      // Same colors for all letters!
+      const grad = ctx.createRadialGradient(l.x, l.y, 2 * this.scale, l.x, l.y, l.radius + 14 * this.scale);
+      grad.addColorStop(0, 'rgba(0, 200, 255, 0.25)');
+      grad.addColorStop(1, 'rgba(0, 200, 255, 0)');
       ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.arc(l.x, l.y, l.radius + 14, 0, Math.PI * 2);
+      ctx.arc(l.x, l.y, l.radius + 14 * this.scale, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.shadowColor = isTarget ? 'rgba(0, 200, 255, 0.5)' : 'rgba(255, 100, 100, 0.2)';
-      ctx.shadowBlur = isTarget ? 30 : 12;
+      ctx.shadowColor = 'rgba(0, 200, 255, 0.5)';
+      ctx.shadowBlur = 30 * this.scale;
 
-      const bgGrad = ctx.createRadialGradient(l.x - 8, l.y - 10, 4, l.x, l.y, l.radius);
-      if (isTarget) {
-        bgGrad.addColorStop(0, '#1a3a5a');
-        bgGrad.addColorStop(0.7, '#0d1f33');
-        bgGrad.addColorStop(1, '#06101c');
-      } else {
-        bgGrad.addColorStop(0, '#4a1a2a');
-        bgGrad.addColorStop(0.7, '#2a0f1a');
-        bgGrad.addColorStop(1, '#15080c');
-      }
+      const bgGrad = ctx.createRadialGradient(l.x - 8 * this.scale, l.y - 10 * this.scale, 4 * this.scale, l.x, l.y, l.radius);
+      bgGrad.addColorStop(0, '#1a3a5a');
+      bgGrad.addColorStop(0.7, '#0d1f33');
+      bgGrad.addColorStop(1, '#06101c');
       ctx.fillStyle = bgGrad;
       ctx.beginPath();
       ctx.arc(l.x, l.y, l.radius, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.shadowBlur = 0;
-      ctx.strokeStyle = isTarget ? 'rgba(0, 220, 255, 0.7)' : 'rgba(255, 120, 120, 0.4)';
-      ctx.lineWidth = isTarget ? 2.5 : 1.5;
+      ctx.strokeStyle = 'rgba(0, 220, 255, 0.7)';
+      ctx.lineWidth = 2.5 * this.scale;
       ctx.beginPath();
       ctx.arc(l.x, l.y, l.radius, 0, Math.PI * 2);
       ctx.stroke();
 
       if (isTarget) {
         ctx.strokeStyle = 'rgba(0, 220, 255, 0.25)';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([4, 6]);
+        ctx.lineWidth = 2 * this.scale;
+        ctx.setLineDash([4 * this.scale, 6 * this.scale]);
         ctx.beginPath();
-        ctx.arc(l.x, l.y, l.radius + 10, 0, Math.PI * 2);
+        ctx.arc(l.x, l.y, l.radius + 10 * this.scale, 0, Math.PI * 2);
         ctx.stroke();
         ctx.setLineDash([]);
       }
@@ -448,93 +457,93 @@ export class ArabicSpaceShooter {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.font = `bold ${l.radius * 1.2}px "Arial", "Segoe UI", sans-serif`;
-      ctx.fillStyle = isTarget ? '#e8f8ff' : '#ffd0d0';
-      ctx.shadowColor = isTarget ? 'rgba(0,200,255,0.6)' : 'rgba(255,100,100,0.3)';
-      ctx.shadowBlur = 16;
-      ctx.fillText(l.char, l.x, l.y + 2);
+      ctx.fillStyle = '#e8f8ff';
+      ctx.shadowColor = 'rgba(0,200,255,0.6)';
+      ctx.shadowBlur = 16 * this.scale;
+      ctx.fillText(l.char, l.x, l.y + 2 * this.scale);
       ctx.shadowBlur = 0;
 
       if (isTarget) {
-        ctx.font = '12px sans-serif';
+        ctx.font = `${12 * this.scale}px sans-serif`;
         ctx.fillStyle = 'rgba(0, 220, 255, 0.7)';
         ctx.textBaseline = 'bottom';
-        ctx.fillText('\u{1F3AF}', l.x, l.y - l.radius - 6);
+        ctx.fillText('\u{1F3AF}', l.x, l.y - l.radius - 6 * this.scale);
       }
     }
 
     // Spaceship
-    const shipX = CANVAS_W / 2;
-    const shipY = SPACESHIP_Y;
+    const shipX = this.canvasWidth / 2;
+    const shipY = this.spaceshipY;
 
-    const glow = ctx.createRadialGradient(shipX, shipY + 16, 4, shipX, shipY + 24, 50);
+    const glow = ctx.createRadialGradient(shipX, shipY + 16 * this.scale, 4 * this.scale, shipX, shipY + 24 * this.scale, 50 * this.scale);
     glow.addColorStop(0, 'rgba(0, 180, 255, 0.35)');
     glow.addColorStop(0.6, 'rgba(0, 100, 255, 0.12)');
     glow.addColorStop(1, 'rgba(0, 50, 255, 0)');
     ctx.fillStyle = glow;
     ctx.beginPath();
-    ctx.ellipse(shipX, shipY + 24, 60, 30, 0, 0, Math.PI * 2);
+    ctx.ellipse(shipX, shipY + 24 * this.scale, 60 * this.scale, 30 * this.scale, 0, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.shadowColor = 'rgba(0, 150, 255, 0.3)';
-    ctx.shadowBlur = 30;
+    ctx.shadowBlur = 30 * this.scale;
 
-    const hullGrad = ctx.createLinearGradient(shipX, shipY - 20, shipX, shipY + 12);
+    const hullGrad = ctx.createLinearGradient(shipX, shipY - 20 * this.scale, shipX, shipY + 12 * this.scale);
     hullGrad.addColorStop(0, '#3a7bd5');
     hullGrad.addColorStop(0.5, '#2a5fa8');
     hullGrad.addColorStop(1, '#1a3f7a');
     ctx.fillStyle = hullGrad;
     ctx.beginPath();
-    ctx.ellipse(shipX, shipY, 60, 18, 0, 0, Math.PI * 2);
+    ctx.ellipse(shipX, shipY, 60 * this.scale, 18 * this.scale, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.strokeStyle = 'rgba(100, 200, 255, 0.3)';
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 1.5 * this.scale;
     ctx.stroke();
 
-    const domeGrad = ctx.createRadialGradient(shipX - 12, shipY - 20, 4, shipX, shipY - 8, 24);
+    const domeGrad = ctx.createRadialGradient(shipX - 12 * this.scale, shipY - 20 * this.scale, 4 * this.scale, shipX, shipY - 8 * this.scale, 24 * this.scale);
     domeGrad.addColorStop(0, '#6aafff');
     domeGrad.addColorStop(0.7, '#2a7fd5');
     domeGrad.addColorStop(1, '#1a4f8a');
     ctx.fillStyle = domeGrad;
     ctx.beginPath();
-    ctx.ellipse(shipX, shipY - 8, 34, 18, 0, 0, Math.PI * 2);
+    ctx.ellipse(shipX, shipY - 8 * this.scale, 34 * this.scale, 18 * this.scale, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.strokeStyle = 'rgba(150, 220, 255, 0.25)';
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 1 * this.scale;
     ctx.stroke();
 
-    const cockpit = ctx.createRadialGradient(shipX - 6, shipY - 14, 2, shipX, shipY - 8, 14);
+    const cockpit = ctx.createRadialGradient(shipX - 6 * this.scale, shipY - 14 * this.scale, 2 * this.scale, shipX, shipY - 8 * this.scale, 14 * this.scale);
     cockpit.addColorStop(0, 'rgba(180, 240, 255, 0.6)');
     cockpit.addColorStop(0.5, 'rgba(60, 180, 255, 0.2)');
     cockpit.addColorStop(1, 'rgba(0, 80, 200, 0)');
     ctx.fillStyle = cockpit;
     ctx.beginPath();
-    ctx.ellipse(shipX, shipY - 8, 22, 12, 0, 0, Math.PI * 2);
+    ctx.ellipse(shipX, shipY - 8 * this.scale, 22 * this.scale, 12 * this.scale, 0, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.shadowBlur = 0;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.font = 'bold 32px "Arial", "Segoe UI", sans-serif';
+    ctx.font = `bold ${32 * this.scale}px "Arial", "Segoe UI", sans-serif`;
     ctx.fillStyle = '#e8f8ff';
     ctx.shadowColor = 'rgba(0, 200, 255, 0.8)';
-    ctx.shadowBlur = 24;
-    ctx.fillText(this.currentTarget, shipX, shipY - 6);
+    ctx.shadowBlur = 24 * this.scale;
+    ctx.fillText(this.currentTarget, shipX, shipY - 6 * this.scale);
     ctx.shadowBlur = 0;
 
     ctx.fillStyle = 'rgba(100, 200, 255, 0.15)';
     ctx.beginPath();
-    ctx.rect(shipX - 12, shipY - 24, 24, 6);
+    ctx.rect(shipX - 12 * this.scale, shipY - 24 * this.scale, 24 * this.scale, 6 * this.scale);
     ctx.fill();
 
     // Fire particles
     for (const p of this.fireParticles) {
       const alpha = Math.max(0, p.life);
       ctx.globalAlpha = alpha;
-      ctx.shadowBlur = 20;
+      ctx.shadowBlur = 20 * this.scale;
       ctx.shadowColor = p.color;
       ctx.fillStyle = p.color;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, Math.max(0.5, p.size * p.life * 0.8), 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, Math.max(0.5 * this.scale, p.size * p.life * 0.8), 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
@@ -544,11 +553,11 @@ export class ArabicSpaceShooter {
     for (const p of this.particles) {
       const alpha = Math.max(0, p.life);
       ctx.globalAlpha = alpha;
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = 8 * this.scale;
       ctx.shadowColor = p.color;
       ctx.fillStyle = p.color;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, Math.max(0.5, p.size * p.life * 0.9), 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, Math.max(0.5 * this.scale, p.size * p.life * 0.9), 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
@@ -557,33 +566,33 @@ export class ArabicSpaceShooter {
     // Game over overlay
     if (this.gameOver) {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
-      ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+      ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
 
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.font = 'bold 52px "Segoe UI", sans-serif';
+      ctx.font = `bold ${52 * this.scale}px "Segoe UI", sans-serif`;
       ctx.fillStyle = '#ff6b6b';
       ctx.shadowColor = 'rgba(255, 0, 0, 0.5)';
-      ctx.shadowBlur = 40;
-      ctx.fillText('\u{1F4A5} Game Over', CANVAS_W / 2, CANVAS_H / 2 - 20);
+      ctx.shadowBlur = 40 * this.scale;
+      ctx.fillText('\u{1F4A5} Game Over', this.canvasWidth / 2, this.canvasHeight / 2 - 20 * this.scale);
 
-      ctx.font = '24px "Segoe UI", sans-serif';
+      ctx.font = `${24 * this.scale}px "Segoe UI", sans-serif`;
       ctx.fillStyle = '#b8d0f0';
-      ctx.shadowBlur = 10;
-      ctx.fillText(`Score: ${this.score}  \u2022  Combo: ${this.combo}`, CANVAS_W / 2, CANVAS_H / 2 + 50);
+      ctx.shadowBlur = 10 * this.scale;
+      ctx.fillText(`Score: ${this.score}  \u2022  Combo: ${this.combo}`, this.canvasWidth / 2, this.canvasHeight / 2 + 50 * this.scale);
 
-      ctx.font = '18px "Segoe UI", sans-serif';
+      ctx.font = `${18 * this.scale}px "Segoe UI", sans-serif`;
       ctx.fillStyle = '#8899bb';
-      ctx.fillText('Click "Restart" to try again', CANVAS_W / 2, CANVAS_H / 2 + 100);
+      ctx.fillText('Click "Restart" to try again', this.canvasWidth / 2, this.canvasHeight / 2 + 100 * this.scale);
       ctx.shadowBlur = 0;
     }
 
     if (!this.gameOver) {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'bottom';
-      ctx.font = '14px "Segoe UI", sans-serif';
+      ctx.font = `${14 * this.scale}px "Segoe UI", sans-serif`;
       ctx.fillStyle = 'rgba(255,255,255,0.12)';
-      ctx.fillText('Click the letter that matches the one on your ship', CANVAS_W / 2, CANVAS_H - 6);
+      ctx.fillText('Click the letter that matches the one on your ship', this.canvasWidth / 2, this.canvasHeight - 6 * this.scale);
     }
   }
 }
