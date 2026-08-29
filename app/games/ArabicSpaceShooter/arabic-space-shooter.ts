@@ -277,19 +277,21 @@ export class ArabicSpaceShooter {
   }
 
   private onWrongHit(letter: LetterData): void {
+    this.gameOver = true;
     this.combo = 0;
-    for (let i = 0; i < 16; i++) {
+    // Spawn big explosion!
+    for (let i = 0; i < 40; i++) {
       const angle = randFloat(0, Math.PI * 2);
-      const speed = randFloat(1 * this.scale, 3.5 * this.scale);
+      const speed = randFloat(1.5 * this.scale, 5 * this.scale);
       this.particles.push({
         x: letter.x,
         y: letter.y,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 0.3 * this.scale,
+        vy: Math.sin(angle) * speed - 0.5 * this.scale,
         life: 1.0,
-        maxLife: randFloat(0.4, 0.9),
-        size: randFloat(4 * this.scale, 10 * this.scale),
-        color: '#ff1744'
+        maxLife: randFloat(0.6, 1.4),
+        size: randFloat(4 * this.scale, 16 * this.scale),
+        color: randomFrom(['#ff6b6b', '#ff1744', '#ff4444', '#ff5555', '#ff6666'])
       });
     }
     this.updateHUD();
@@ -443,32 +445,15 @@ export class ArabicSpaceShooter {
       ctx.arc(l.x, l.y, l.radius, 0, Math.PI * 2);
       ctx.stroke();
 
-      if (isTarget) {
-        ctx.strokeStyle = 'rgba(0, 220, 255, 0.25)';
-        ctx.lineWidth = 2 * this.scale;
-        ctx.setLineDash([4 * this.scale, 6 * this.scale]);
-        ctx.beginPath();
-        ctx.arc(l.x, l.y, l.radius + 10 * this.scale, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      }
-
       ctx.shadowBlur = 0;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.font = `bold ${l.radius * 1.2}px "Arial", "Segoe UI", sans-serif`;
+      ctx.font = `bold ${l.radius * 1.4}px "Arial", "Segoe UI", sans-serif`;
       ctx.fillStyle = '#e8f8ff';
       ctx.shadowColor = 'rgba(0,200,255,0.6)';
       ctx.shadowBlur = 16 * this.scale;
       ctx.fillText(l.char, l.x, l.y + 2 * this.scale);
       ctx.shadowBlur = 0;
-
-      if (isTarget) {
-        ctx.font = `${12 * this.scale}px sans-serif`;
-        ctx.fillStyle = 'rgba(0, 220, 255, 0.7)';
-        ctx.textBaseline = 'bottom';
-        ctx.fillText('\u{1F3AF}', l.x, l.y - l.radius - 6 * this.scale);
-      }
     }
 
     // Spaceship
@@ -523,7 +508,7 @@ export class ArabicSpaceShooter {
     ctx.shadowBlur = 0;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.font = `bold ${32 * this.scale}px "Arial", "Segoe UI", sans-serif`;
+    ctx.font = `bold ${50 * this.scale}px "Arial", "Segoe UI", sans-serif`;
     ctx.fillStyle = '#e8f8ff';
     ctx.shadowColor = 'rgba(0, 200, 255, 0.8)';
     ctx.shadowBlur = 24 * this.scale;
@@ -565,34 +550,54 @@ export class ArabicSpaceShooter {
 
     // Game over overlay
     if (this.gameOver) {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+      // Gradient background overlay
+      const overlayGrad = ctx.createLinearGradient(0, 0, 0, this.canvasHeight);
+      overlayGrad.addColorStop(0, 'rgba(15, 23, 42, 0.92)');
+      overlayGrad.addColorStop(0.5, 'rgba(30, 41, 59, 0.88)');
+      overlayGrad.addColorStop(1, 'rgba(15, 23, 42, 0.92)');
+      ctx.fillStyle = overlayGrad;
       ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
 
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.font = `bold ${52 * this.scale}px "Segoe UI", sans-serif`;
-      ctx.fillStyle = '#ff6b6b';
-      ctx.shadowColor = 'rgba(255, 0, 0, 0.5)';
-      ctx.shadowBlur = 40 * this.scale;
-      ctx.fillText('\u{1F4A5} Game Over', this.canvasWidth / 2, this.canvasHeight / 2 - 20 * this.scale);
 
-      ctx.font = `${24 * this.scale}px "Segoe UI", sans-serif`;
-      ctx.fillStyle = '#b8d0f0';
+      // Game over title
+      ctx.font = `bold ${60 * this.scale}px "Segoe UI", sans-serif`;
+      const titleGrad = ctx.createLinearGradient(this.canvasWidth / 2 - 100 * this.scale, this.canvasHeight / 2 - 40 * this.scale, this.canvasWidth / 2 + 100 * this.scale, this.canvasHeight / 2);
+      titleGrad.addColorStop(0, '#ff6b6b');
+      titleGrad.addColorStop(0.5, '#f97316');
+      titleGrad.addColorStop(1, '#ef4444');
+      ctx.fillStyle = titleGrad;
+      ctx.shadowColor = 'rgba(255, 100, 100, 0.6)';
+      ctx.shadowBlur = 50 * this.scale;
+      ctx.fillText('💥 Game Over', this.canvasWidth / 2, this.canvasHeight / 2 - 50 * this.scale);
+
+      // Score and combo
+      ctx.font = `bold ${32 * this.scale}px "Segoe UI", sans-serif`;
+      ctx.fillStyle = '#e2e8f0';
+      ctx.shadowBlur = 20 * this.scale;
+      ctx.shadowColor = 'rgba(148, 163, 184, 0.5)';
+      ctx.fillText(`Score: ${this.score}  •  Best Combo: ${this.combo}`, this.canvasWidth / 2, this.canvasHeight / 2 + 30 * this.scale);
+
+      // Restart hint
+      ctx.font = `${20 * this.scale}px "Segoe UI", sans-serif`;
+      ctx.fillStyle = '#94a3b8';
       ctx.shadowBlur = 10 * this.scale;
-      ctx.fillText(`Score: ${this.score}  \u2022  Combo: ${this.combo}`, this.canvasWidth / 2, this.canvasHeight / 2 + 50 * this.scale);
+      ctx.shadowColor = 'rgba(148, 163, 184, 0.3)';
+      ctx.fillText('Click Restart button to play again!', this.canvasWidth / 2, this.canvasHeight / 2 + 90 * this.scale);
 
-      ctx.font = `${18 * this.scale}px "Segoe UI", sans-serif`;
-      ctx.fillStyle = '#8899bb';
-      ctx.fillText('Click "Restart" to try again', this.canvasWidth / 2, this.canvasHeight / 2 + 100 * this.scale);
       ctx.shadowBlur = 0;
     }
 
     if (!this.gameOver) {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'bottom';
-      ctx.font = `${14 * this.scale}px "Segoe UI", sans-serif`;
-      ctx.fillStyle = 'rgba(255,255,255,0.12)';
-      ctx.fillText('Click the letter that matches the one on your ship', this.canvasWidth / 2, this.canvasHeight - 6 * this.scale);
+      ctx.font = `bold ${18 * this.scale}px "Segoe UI", sans-serif`;
+      ctx.fillStyle = 'rgba(160, 200, 255, 0.85)';
+      ctx.shadowColor = 'rgba(0, 100, 255, 0.4)';
+      ctx.shadowBlur = 8 * this.scale;
+      ctx.fillText('Click the letter that matches the one on your ship', this.canvasWidth / 2, this.canvasHeight - 10 * this.scale);
+      ctx.shadowBlur = 0;
     }
   }
 }

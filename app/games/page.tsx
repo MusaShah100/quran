@@ -40,6 +40,16 @@ const games = [
     href: '/games/arabic-spin-wheel'
   },
   {
+    id: 'arabic-space-wheel-2',
+    title: 'Arabic Space Wheel 2',
+    description: 'Spin the wheel and learn Arabic letters with sound effects!',
+    icon: Circle,
+    difficulty: 'Beginner',
+    estimatedTime: '3-5 min',
+    thumbnail: null,
+    href: '/games/arabic-spin-wheel-2'
+  },
+  {
     id: 'arabic-vowels-spaceship',
     title: 'Arabic Vowels Spaceship',
     description: 'Match the falling Arabic letter with vowel mark to the correct spaceship!',

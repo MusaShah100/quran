@@ -35,8 +35,8 @@ export function ArabicSpinWheel() {
             ctx.save();
             ctx.translate(center, center);
             const mid = start + arc / 2;
-            const tx = Math.cos(mid) * radius * 0.65;
-            const ty = Math.sin(mid) * radius * 0.65;
+            const tx = Math.cos(mid) * radius * 0.85;
+            const ty = Math.sin(mid) * radius * 0.85;
             ctx.translate(tx, ty);
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';

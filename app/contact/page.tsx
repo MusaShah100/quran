@@ -141,7 +141,7 @@ export default function ContactPage() {
             </Link>
           </Button>
           <Button variant="outline" className="gap-2" asChild>
-            <Link href="https://www.instagram.com/miftahquraninstitute?igsh=dHdlZDhpb3J1ZXZo">
+            <Link href="https://www.instagram.com/miftahquranonline/">
               <Instagram className="h-5 w-5 text-pink-600" />
               Instagram
             </Link>
