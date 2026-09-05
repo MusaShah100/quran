@@ -1,7 +1,7 @@
 import { ArabicSpinWheel2 } from '@/components/games/ArabicSpinWheel2';
 
 export const metadata = {
-  title: 'Arabic Spin Wheel 2 - Mam',
+  title: 'Arabic Alphabet Spin Wheel - Mam',
   description: 'Spin the wheel and learn Arabic letters!',
 };
 

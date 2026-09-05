@@ -187,7 +187,7 @@ export function ArabicSpinWheel2() {
 
             <div className="relative z-10">
                 <header className="mb-2 text-center px-2">
-                    <h1 className="text-lg sm:text-xl font-bold text-black">Arabic Space Wheel 2</h1>
+                    <h1 className="text-lg sm:text-xl font-bold text-black">Arabic Alphabet Spin Wheel</h1>
                     <p className="mt-1 text-xs sm:text-sm text-black font-bold">Click the button to spin and learn a letter!</p>
                 </header>
 

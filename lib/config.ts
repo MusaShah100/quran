@@ -55,7 +55,7 @@ export const PLANS: PlanConfig[] = [
     classesPerWeek: 4,
     durationMinutes: '30–35 mins',
     fixedRange: [40, 50], // $40-$50 USD per month
-    incomePercentage: 0.025, // 2.5% of monthly family income
+    incomePercentage: 0.03, // 2.5% of monthly family income
     popular: true, // Marked as "Most Popular"
   },
   {
@@ -64,7 +64,7 @@ export const PLANS: PlanConfig[] = [
     classesPerWeek: 5,
     durationMinutes: '30–35 mins',
     fixedRange: [50, 70], // $50-$70 USD per month
-    incomePercentage: 0.03, // 3% of monthly family income
+    incomePercentage: 0.04, // 4% of monthly family income
   },
 ];
 

@@ -15,7 +15,8 @@ import {
   Play,
   Rocket,
   Image as ImageIcon,
-  Circle
+  Circle,
+  Sparkles
 } from 'lucide-react';
 
 const games = [
@@ -30,18 +31,8 @@ const games = [
     href: '/games/arabic-space-shooter'
   },
   {
-    id: 'arabic-spin-wheel',
-    title: 'Arabic Alphabet Spin Wheel',
-    description: 'Spin the wheel and learn Arabic letters!',
-    icon: Circle,
-    difficulty: 'Beginner',
-    estimatedTime: '3-5 min',
-    thumbnail: null,
-    href: '/games/arabic-spin-wheel'
-  },
-  {
     id: 'arabic-space-wheel-2',
-    title: 'Arabic Space Wheel 2',
+    title: 'Arabic Alphabet Spin Wheel',
     description: 'Spin the wheel and learn Arabic letters with sound effects!',
     icon: Circle,
     difficulty: 'Beginner',
@@ -218,16 +209,25 @@ export default function GamesPage() {
                   </div>
                 </div>
 
-                <Button
-                  asChild
-                  className="w-full mt-auto"
-                  disabled={game.href === '#'}
-                >
-                  <Link href={game.href}>
-                    <Play className="h-4 w-4 mr-2" />
-                    Start Game
-                  </Link>
-                </Button>
+                {game.href === '#' ? (
+                  <Button
+                    disabled
+                    className="w-full mt-auto bg-gray-400 hover:bg-gray-400 text-white cursor-not-allowed"
+                  >
+                    <Sparkles className="h-4 w-4 mr-2" />
+                    Coming Soon
+                  </Button>
+                ) : (
+                  <Button
+                    asChild
+                    className="w-full mt-auto"
+                  >
+                    <Link href={game.href}>
+                      <Play className="h-4 w-4 mr-2" />
+                      Start Game
+                    </Link>
+                  </Button>
+                )}
               </CardContent>
             </Card>
           );
